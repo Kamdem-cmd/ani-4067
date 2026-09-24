@@ -77,11 +77,6 @@ Status: Not running
 
 Cette commande `jenga info` renseigne davantage sur:
 --
-**->** le nom du projet `MaSalle`; 
-
-**->** le type de projet `ConsoleApp`;
-
-**->** le langage de programmation `C++`; 
 
 **->** Elle dit que les tests unitaires ne sont pas actifs `Test `qui contient `No`.
 
