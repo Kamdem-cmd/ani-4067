@@ -98,7 +98,7 @@ Status:         ✓ SUCCESS
 ════════════════════════════════════════════════════════════════════════════════
 ```
 
-**3.Le contenu du fichier `main.cc` :**
+**3.Le contenu du fichier `main.cpp` :**
 
 ```cpp
 #include <iostream>
