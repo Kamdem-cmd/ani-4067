@@ -1,0 +1,28 @@
+NkentseuKit - kit Jenga
+=========================
+
+construit le  : 2026-09-29 17:40
+workspace     : Nkentseu
+jenga         : 2.8.0
+en-tetes      : 286 fichiers dans include/
+
+Modules, dans l'ordre de lien (du plus dependant au plus fondamental) :
+    NKWindow
+    NKEvent
+    NKTime
+    NKFileSystem
+    NKLogger
+    NKMath
+    NKThreading
+    NKContainers
+    NKMemory
+    NKCore
+    NKPlatform
+
+Cibles construites :
+    Debug-Windows : 11 bibliotheques, + systeme : winmm, user32, gdi32, opengl32, dwmapi, shell32, comdlg32, mf, mfplat, mfreadwrite, mfuuid, uuid, ole32, dinput8, dxguid
+
+Pour une cible absente de cette liste, il faut refaire le kit depuis le
+depot : un kit ne contient que ce qui a ete construit avant lui.
+
+Citez la date de construction dans vos retours.

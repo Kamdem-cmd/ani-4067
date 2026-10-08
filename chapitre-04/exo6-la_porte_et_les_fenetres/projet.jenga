@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# exo0 - Jenga Project (inclus dans le workspace via include())
+
+from Jenga import *
+
+with project("exo6"):
+    windowedapp()
+    language("C++")
+    cppdialect("C++17")
+    location(".")
+    files(["**.cpp", "**.hpp"])
+    usenkentseukit()

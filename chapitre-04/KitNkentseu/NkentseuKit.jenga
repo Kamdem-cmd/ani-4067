@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# =============================================================================
+# NkentseuKit.jenga - ECRIT PAR `jenga kit`. Ne pas modifier a la main.
+# =============================================================================
+# Kit extrait du workspace 'Nkentseu' le 2026-09-29 17:40
+# Jenga 2.8.0
+#
+# Chargez-le dans le .jenga de VOTRE workspace :
+#
+#     useconfig("chemin/vers/NkentseuKit.jenga")
+#
+# puis, dans chaque projet qui utilise le kit :
+#
+#     usenkentseukit()
+#
+# L'ordre des archives est celui que l'editeur de liens exige (du plus
+# dependant au plus fondamental) ; ne le changez pas.
+# =============================================================================
+
+from pathlib import Path as _Path
+
+# Racine du kit, deduite de l'emplacement de ce fichier : le kit peut etre
+# copie n'importe ou, y compris dans le depot du consommateur.
+KIT_ROOT = str(_Path(__file__).resolve().parent).replace("\\", "/")
+KIT_NAME = "NkentseuKit"
+KIT_WORKSPACE = "Nkentseu"
+KIT_BUILT = "2026-09-29 17:40"
+KIT_JENGA = "2.8.0"
+
+# Modules du kit, dans l'ORDRE DE LIEN (dependants d'abord).
+KIT_MODULES = [
+    "NKWindow",
+    "NKEvent",
+    "NKTime",
+    "NKFileSystem",
+    "NKLogger",
+    "NKMath",
+    "NKThreading",
+    "NKContainers",
+    "NKMemory",
+    "NKCore",
+    "NKPlatform",
+]
+
+# Dependances directes de chaque module, telles que le workspace les declarait.
+KIT_DEPENDS = {
+    "NKWindow": ['NKContainers', 'NKCore', 'NKEvent', 'NKFileSystem', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKThreading', 'NKTime'],
+    "NKEvent": ['NKContainers', 'NKCore', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKThreading', 'NKTime'],
+    "NKTime": ['NKContainers', 'NKCore', 'NKLogger', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKFileSystem": ['NKContainers', 'NKCore', 'NKLogger', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKLogger": ['NKContainers', 'NKCore', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKMath": ['NKContainers', 'NKCore', 'NKMemory', 'NKPlatform'],
+    "NKThreading": ['NKContainers', 'NKCore', 'NKMemory', 'NKPlatform'],
+    "NKContainers": ['NKCore', 'NKMemory', 'NKPlatform'],
+    "NKMemory": ['NKCore', 'NKPlatform'],
+    "NKCore": ['NKPlatform'],
+    "NKPlatform": [],
+}
+
+# Cibles presentes dans ce kit : (configuration, systeme) -> archives.
+KIT_TARGETS = {
+    ("Debug", "Windows"): "lib/Debug-Windows",
+}
+
+# Bibliotheques DU SYSTEME dont les modules ont besoin. Elles ne sont pas
+# dans le kit : elles sont sur la machine. Le kit se contente de dire
+# lesquelles, ce que le consommateur ne peut pas deviner.
+KIT_SYSTEM_LIBS = {
+    ("Debug", "Windows"): ['winmm', 'user32', 'gdi32', 'opengl32', 'dwmapi', 'shell32', 'comdlg32', 'mf', 'mfplat', 'mfreadwrite', 'mfuuid', 'uuid', 'ole32', 'dinput8', 'dxguid'],
+}
+
+
+def _kit_selection(modules=None):
+    """Les modules demandes plus leurs dependances, en ordre de lien."""
+    if not modules:
+        return list(KIT_MODULES)
+    wanted = set()
+    pending = list(modules)
+    while pending:
+        name = pending.pop()
+        if name in wanted:
+            continue
+        if name not in KIT_DEPENDS:
+            raise ValueError(
+                "%s : module absent du kit %s. Modules : %s"
+                % (name, KIT_NAME, ", ".join(KIT_MODULES)))
+        wanted.add(name)
+        pending.extend(KIT_DEPENDS[name])
+    return [m for m in KIT_MODULES if m in wanted]
+
+
+def usenkentseukit(modules=None, extra_includes=None):
+    """Lie ce projet au kit : en-tetes, dossiers de bibliotheques, archives.
+
+    modules : les modules voulus (leurs dependances suivent toutes seules).
+              Par defaut, tout le kit.
+    extra_includes : dossiers d'inclusion propres au projet.
+    """
+    selection = _kit_selection(modules)
+
+    includes = [KIT_ROOT + "/include"]
+    for extra in (extra_includes or []):
+        includes.append(extra)
+    includedirs(includes)
+
+    with filter("system:Windows && configurations:Debug"):
+        libdirs([KIT_ROOT + "/lib/Debug-Windows"])
+        _archives = []
+        for _m in selection:
+            _f = {
+                "NKWindow": "NKWindow.lib",
+                "NKEvent": "NKEvent.lib",
+                "NKTime": "NKTime.lib",
+                "NKFileSystem": "NKFileSystem.lib",
+                "NKLogger": "NKLogger.lib",
+                "NKMath": "NKMath.lib",
+                "NKThreading": "NKThreading.lib",
+                "NKContainers": "NKContainers.lib",
+                "NKMemory": "NKMemory.lib",
+                "NKCore": "NKCore.lib",
+                "NKPlatform": "NKPlatform.lib",
+            }.get(_m)
+            if _f:
+                _archives.append(KIT_ROOT + "/lib/Debug-Windows/" + _f)
+        if _archives:
+            links(_archives)
+        # Les bibliotheques du systeme viennent APRES les archives :
+        # un editeur de liens GNU resout en une passe.
+        links(['winmm', 'user32', 'gdi32', 'opengl32', 'dwmapi', 'shell32', 'comdlg32', 'mf', 'mfplat', 'mfreadwrite', 'mfuuid', 'uuid', 'ole32', 'dinput8', 'dxguid'])
+
