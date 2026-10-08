@@ -1,0 +1,8 @@
+Lignes avant les fonctions :
+Sans les fonctions PoserAuSol et PoserSurTable, chaque instanciation nécessite de recalculer manuellement le centre en hauteur de manière explicite dans le code principal. Pour placer le plateau, les quatre pieds et chaque objet sur le sol ou sur la table, il faut écrire l'expression de calcul du y à chaque fois. Dans une scène de salle complète contenant une dizaine d'objets et plusieurs meubles, cela représentait environ 45 lignes de code répétitives.
+
+Lignes apres :
+Après la création et l'utilisation systématique des fonctions PoserAuSol et PoserSurTable, la logique d'alignement vertical est centralisée dans ces deux fonctions helper. La construction de la scène se résume désormais à de simples appels de fonctions passant les coordonnées x, z et la hauteur de l'objet sy, ce qui réduit le code de la salle à environ 20 lignes claires et maintenables.
+
+L'erreur que la fonction m'evite :
+L'erreur principale évitée est la confusion fréquente entre la hauteur totale de l'objet sy et sa demi-hauteur sy / 2 lors du calcul de la position du centre (par exemple écrire y = H + sy au lieu de y = H + sy / 2). Sans fonction, cette erreur fait flotter la lampe 200 mm trop haut (à y = 1150 mm au lieu de 950 mm) et le livre 20 mm trop haut (à y = 790 mm au lieu de 770 mm).
