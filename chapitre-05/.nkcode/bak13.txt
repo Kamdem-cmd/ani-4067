@@ -1,0 +1,5 @@
+png : 1851Ko, 1280 x 720
+jpg : 164Ko, 1280 x 720
+bmp : 4097Ko, 1280 x 720
+tga : 4097Ko, illisible
+qoi : 1442Ko, illisible
