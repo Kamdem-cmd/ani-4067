@@ -1,0 +1,17 @@
+#include "NKWindow/NKMain.h"
+#include "NKWindow/NKWindow.h"
+#include "NKLogger/NkLog.h"
+#include "NKImage/Core/NkImage.h"
+#include <cstdio>
+
+NKENTSEU_DEFINE_APP_DATA(([](){
+    nkentseu::NkAppData d{};
+    d.appName = "FormatsImage";
+    d.appVersion = "1.0.0";
+    return d;
+})());
+
+int nkmain(const nkentseu::NkEntryState &state) {
+
+    return 0;
+}

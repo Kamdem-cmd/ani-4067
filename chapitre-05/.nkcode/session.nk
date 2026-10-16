@@ -1,5 +1,5 @@
 nksession/2
-active 12
+active 17
 ui 0 1
 F 14 4 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/chapitre-04.jenga
 F 13 12 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo11-le_son_qui_a_une_place/projet.jenga
@@ -12,6 +12,10 @@ F 13 12 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo5-quatre_filtres_
 F 13 12 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo6-le_chemin_qui_marche_partout/projet.jenga
 F 13 12 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo7-un_panneau_au_dessus_de_la_porte/projet.jenga
 F 13 12 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo8-le_sdf_mesure/projet.jenga
-F 4 17 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo1-treize_formats_une_image/formats.cpp
+F 61 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo1-treize_formats_une_image/formats.cpp
 F 7 417 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo1-treize_formats_une_image/choix.txt
 F 1 2 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo1-treize_formats_une_image/formats.txt
+F 199 13 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo2-l_image_qui_n_existe_pas/inexistant.cpp
+F 474 32 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo2-l_image_qui_n_existe_pas/journal.txt
+F 7 343 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo2-l_image_qui_n_existe_pas/reponse.txt
+F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/exo2-l_image_qui_n_existe_pas/mur-absent.png

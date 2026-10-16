@@ -1,0 +1,8 @@
+Ce que rend Load :
+La méthode `Load` retourne la valeur booléenne `0` (soit `false`), ce qui indique l'échec du chargement de l'image. Par conséquent, l'état de l'image renvoyé par `IsValid()` est `0`, et ses dimensions (`largeur` et `hauteur`) s'initialisent toutes deux à `0`.
+
+Pourquoi rien ne plante :
+Le programme ne plante pas car le moteur gère l'absence de ressource de manière défensive. Au lieu de lever une exception fatale qui interromprait l'application, il consigne l'erreur de chargement dans son journal (`logs/app.log`) et attribue un état vide ou d'erreur à l'objet, permettant au processus de continuer à s'exécuter en toute sécurité.
+
+Ce que montre le mur :
+Le mur affiche une texture de secours par défaut (ou une texture unie de substitution gérée par le système de rendu). Le moteur choisit d'afficher cette solution de repli pour éviter qu'un objet 3D ne se retrouve sans données valides, ce qui prévient un plantage critique du pipeline graphique tout en signalant visuellement l'anomalie.
