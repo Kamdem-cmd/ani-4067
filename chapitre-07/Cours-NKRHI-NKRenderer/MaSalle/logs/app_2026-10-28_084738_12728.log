@@ -321,3 +321,36 @@
 [2026-10-28 22:50:31.480] [INF] [default] [: in ] -> [hover] 'unique' L8:C300 -> un unique
 [2026-10-28 22:50:37.265] [INF] [default] [: in ] -> [hover] 'frames' L8:C264 -> premieres frames
 [2026-10-28 22:50:38.600] [INF] [default] [: in ] -> [ui] barre H : clic (maxScrollX=1646, wrap=0)
+[2026-10-28 22:55:42.269] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 22:55:50.260] [INF] [default] [: in ] -> [lsp] 2 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 22:55:50.542] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 22:55:56.500] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2002.46 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-28 22:55:57.526] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 124 image(s) (2477.86 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : A(appModal) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : deroulant de la barre
+[2026-10-28 22:58:22.471] [INF] [default] [: in ] -> [hover] 'tz' L86:C34 -> (rien)
+[2026-10-28 23:11:53.384] [INF] [default] [: in ] -> [hover] 'hz' L21:C0 -> (rien)
+[2026-10-28 23:11:56.327] [INF] [default] [: in ] -> [hover] 'ms' L23:C26 -> ~ float32 ms
+[2026-10-28 23:15:04.117] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:15:05.501] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:17:24.802] [INF] [default] [: in ] -> [hover] 'ms' L45:C50 -> ~ float32 ms
+[2026-10-28 23:19:39.217] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:19:40.367] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:19:41.009] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:19:41.817] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:22:05.217] [INF] [default] [: in ] -> [hover] 'ms' L42:C65 -> ~ float32 ms
+[2026-10-28 23:22:07.367] [INF] [default] [: in ] -> [hover] 'ms' L46:C50 -> ~ float32 ms
+[2026-10-28 23:23:21.801] [INF] [default] [: in ] -> [hover] 'reel' L45:C30 -> (rien)
+[2026-10-28 23:23:23.166] [INF] [default] [: in ] -> [hover] 'ms' L46:C50 -> ~ float32 ms
+[2026-10-28 23:23:38.564] [INF] [default] [: in ] -> [hover] 'ecart' L36:C50 -> (rien)
+[2026-10-28 23:23:49.644] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:23:50.073] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:23:52.347] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:23:53.745] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:26:10.113] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:26:10.741] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:26:12.813] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:26:13.615] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 23:29:25.382] [INF] [default] [: in ] -> [hover] 'ms' L87:C46 -> ~ float32 ms
+[2026-10-28 23:29:27.985] [INF] [default] [: in ] -> [hover] 'ms' L82:C64 -> ~ float32 ms
+[2026-10-28 23:29:47.617] [INF] [default] [: in ] -> [hover] 'predit' L91:C37 -> (rien)
+[2026-10-28 23:29:56.223] [INF] [default] [: in ] -> [hover] 'predit' L91:C37 -> (rien)
+[2026-10-28 23:32:00.394] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2011.66 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer

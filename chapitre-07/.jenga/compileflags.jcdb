@@ -9,7 +9,7 @@ project	exo2
 dir	D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode
 std	c++17
 inc	D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle\Kits\R3D\include
-project	exo4
+project	exo3
 dir	D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse
 std	c++17
 inc	D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle\Kits\R3D\include

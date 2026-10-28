@@ -1,0 +1,8 @@
+La série programmée :
+La série programmée est d'une stabilité exemplaire. Malgré des variations notables de l'intervalle de temps (dt oscillant entre 66.0 ms et 159.5 ms en raison du démarrage et de la charge), la vitesse angulaire calculée reste rigoureusement constante à exactement (0.00, 30.00, 0.00) deg/s sur l'axe Y à chaque image. Cela prouve que le calcul par quaternions compense mathématiquement les fluctuations de dt.
+
+La série à la souris :
+À l'inverse, la série enregistrée à la souris est extrêmement erratique. Les vitesses oscillent brutalement entre des phases d'immobilité totale (vitesse de 0.00 deg/s lorsque la souris ne bouge pas, par exemple aux images 9, 12, 13 ou 14) et des pics de forte accélération (atteignant des sauts de -64.10 deg/s sur l'axe Y ou -40.34 deg/s sur l'axe Z à l'image 17), reflétant la nature discontinue des mouvements de la main.
+
+D'où vient le bruit :
+Le bruit ne provient ni du calcul mathématique par quaternions ni des variations de dt, puisque la série programmée démontre que le système est parfaitement stable face à ces variables. Il provient exclusivement de la source d'entrée physique (la souris et le geste humain) : les interruptions de la souris capturent des deltas de pixels par a-coups, provoquant des variations instantanées de vitesse très agressive d'une image à l'autre qu'un système de prédiction en VR devrait impérativement filtrer.
