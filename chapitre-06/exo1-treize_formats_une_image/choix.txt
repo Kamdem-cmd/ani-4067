@@ -1,0 +1,8 @@
+Mon format pour un mur :
+jpg
+
+Pourquoi :
+Le format JPG est le choix optimal pour une texture de mur (comme une brique). En effet, il offre un ratio de compression extrêmement performant, ce qui en fait le fichier le plus léger parmi ceux testés (beaucoup plus léger que le PNG et infiniment plus compact que le format BMP). Pour une texture de type mur ou sol, la compression avec pertes du JPEG supprime les micro-variations de haute fréquence imperceptibles à l'œil nu, réduisant drastiquement l'espace de stockage sur le disque et accélérant les temps de chargement des assets dans le moteur.
+
+Ce qui m'a surpris :
+Ce qui m'a le plus surpris, c'est l'écart massif de poids sur le disque entre les différents formats pour une image qui, une fois chargée en mémoire vive (RAM), occupe exactement le même nombre de pixels bruts. Le format BMP s'est révélé être le plus lourd de tous en raison de l'absence totale de compression (stockage brut ligne par ligne), tandis que le JPEG parvient à diviser considérablement le poids du fichier tout en conservant une qualité visuelle amplement suffisante pour une application 3D. De plus, constater que certains formats générés n'ont pas pu être relivisibles par le moteur souligne l'importance de bien cibler les codecs réellement robustes pour son pipeline de développement.

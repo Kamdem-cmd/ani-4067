@@ -1,0 +1,75 @@
+R3D - kit Jenga
+=================
+
+construit le  : 2026-10-10 02:12
+workspace     : Nkentseu
+jenga         : 2.8.18
+en-tetes      : 900 fichiers dans include/
+
+Modules, dans l'ordre de lien (du plus dependant au plus fondamental) :
+    NKRenderer
+    NKAudio
+    NKRHI
+    NKMedia
+    NKWindow
+    NKImage
+    NKEvent
+    NKStream
+    NKSerialization
+    NKAnima
+    NKSL
+    NKTime
+    NKFont
+    NKFileSystem
+    NKReflection
+    NKLogger
+    NKThreading
+    NKMath
+    NKContainers
+    NKMemory
+    NKCore
+    NKSPIRVCross
+    NKGLSlang
+    NKGlad
+    NKPlatform
+
+Cibles construites :
+    Debug-Windows : 25 bibliotheques [bibliotheque C++ : libc++], + systeme : winmm, user32, gdi32, opengl32, dwmapi, shell32, comdlg32, mf, mfplat, mfreadwrite, mfuuid, uuid, ole32, dinput8, dxguid, d3d11, d3d12, dxgi, d3dcompiler, vulkan-1, avrt
+    Release-Windows : 25 bibliotheques [bibliotheque C++ : libc++], + systeme : winmm, user32, gdi32, opengl32, dwmapi, shell32, comdlg32, mf, mfplat, mfreadwrite, mfuuid, uuid, ole32, dinput8, dxguid, d3d11, d3d12, dxgi, d3dcompiler, vulkan-1, avrt
+
+A INSTALLER SUR LA MACHINE QUI CONSTRUIT :
+
+Ces dossiers ne sont PAS dans le kit. Ils appartiennent a des SDK
+installes a part, et le kit ne fait que dire ou ils etaient chez son
+producteur. Si les votres sont ailleurs, corrigez les chemins dans le
+fichier de configuration du kit.
+
+    C:/VulkanSDK/1.4.363.0/Lib
+
+Leurs EN-TETES ne sont pas necessaires : les modules du kit les
+encapsulent et n'en exposent rien dans leurs en-tetes publics. Seules
+les bibliotheques sont reclamees, a l'edition de liens.
+
+Pour une cible absente de cette liste, il faut refaire le kit depuis le
+depot : un kit ne contient que ce qui a ete construit avant lui.
+
+N'incluez aucun .jenga du projet d'origine dans votre
+workspace : ces fichiers dependent de la configuration de LEUR
+workspace et casseront a la lecture. Tout ce dont vous avez
+besoin est deja ici.
+
+Citez la date de construction dans vos retours.
+
+Rendu autonome par scripts/MakeKit.py le 2026-10-10 02:12.
+Cibles : Debug-Windows, Release-Windows.
+
+RESSOURCES LUES A L'EXECUTION (dans ce kit, a copier dans VOTRE projet) :
+  Resources/NKRenderer/Shaders  (482 fichiers)
+Le programme les cherche RELATIVEMENT AU DOSSIER COURANT, puis a cote de l'executable.
+Copiez-les par un postbuild de votre .jenga (voir le projet de depart livre avec le kit),
+et lancez le programme depuis le dossier de votre projet.
+Bibliotheques externes embarquees (elles etaient cherchees dans un dossier de la machine d'origine) :
+  lib/Debug-Windows/vulkan-1.lib  <-  C:/VulkanSDK/1.4.363.0/Lib/vulkan-1.lib
+  lib/Release-Windows/vulkan-1.lib  <-  C:/VulkanSDK/1.4.363.0/Lib/vulkan-1.lib
+vulkan-1 est la bibliotheque d'import du chargeur Vulkan (Khronos, Apache-2.0). A l'execution,
+le programme demande vulkan-1.dll, que les pilotes graphiques installent.

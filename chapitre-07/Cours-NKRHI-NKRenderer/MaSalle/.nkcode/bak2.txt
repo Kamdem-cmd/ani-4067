@@ -1,0 +1,277 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# =============================================================================
+# R3D.jenga - ECRIT PAR `jenga kit`. Ne pas modifier a la main.
+# =============================================================================
+# Kit extrait du workspace 'Nkentseu' le 2026-10-22 06:51
+# Jenga 2.9.0
+#
+# Chargez-le dans le .jenga de VOTRE workspace, ou qu'il soit sur la machine
+# (Jenga 2.8.20 et plus) :
+#
+#     loadkit("R3D")              # cherche le kit par son nom
+#     loadkit("D:/chemin/vers/R3D")  # ou ce dossier precis
+#
+# Par son nom, il est cherche : a cote du .jenga qui l'appelle, dans les
+# dossiers de kitpaths(...), dans JENGA_KITS, dans le dossier de kits de
+# l'utilisateur, puis a la racine du workspace. Avec un Jenga plus ancien :
+#     useconfig("chemin/vers/R3D.jenga")
+#
+# puis, dans chaque projet qui utilise le kit :
+#
+#     user3d()
+#
+# L'ordre des archives est celui que l'editeur de liens exige (du plus
+# dependant au plus fondamental) ; ne le changez pas.
+#
+# /!\ N'INCLUEZ AUCUN .jenga DU PROJET D'ORIGINE.
+#
+#     with include(".../UnModule/UnModule.jenga"):   <-- NON
+#
+# Ces fichiers appellent des fonctions que leur propre workspace
+# definit par useconfig, et qui n'existent pas chez vous : la lecture
+# echoue sur un « name '...' is not defined ». C'est aussi inutile, le
+# module etant deja dans ce kit, compile, avec ses dependances.
+# =============================================================================
+
+from pathlib import Path as _Path
+
+# Racine du kit, deduite de l'emplacement de ce fichier : le kit peut etre
+# copie n'importe ou, y compris dans le depot du consommateur.
+KIT_ROOT = str(_Path(__file__).resolve().parent).replace("\\", "/")
+KIT_NAME = "R3D"
+KIT_WORKSPACE = "Nkentseu"
+KIT_BUILT = "2026-10-22 06:51"
+KIT_JENGA = "2.9.0"
+
+# Modules du kit, dans l'ORDRE DE LIEN (dependants d'abord).
+KIT_MODULES = [
+    "NKRenderer",
+    "NKAudio",
+    "NKRHI",
+    "NKMedia",
+    "NKWindow",
+    "NKImage",
+    "NKEvent",
+    "NKSerialization",
+    "NKAnima",
+    "NKSL",
+    "NKStream",
+    "NKTime",
+    "NKReflection",
+    "NKFont",
+    "NKFileSystem",
+    "NKLogger",
+    "NKThreading",
+    "NKMath",
+    "NKContainers",
+    "NKMemory",
+    "NKCore",
+    "NKSPIRVCross",
+    "NKGLSlang",
+    "NKGlad",
+    "NKPlatform",
+]
+
+# Dependances directes de chaque module, telles que le workspace les declarait.
+KIT_DEPENDS = {
+    "NKRenderer": ['NKAnima', 'NKContainers', 'NKCore', 'NKEvent', 'NKFileSystem', 'NKFont', 'NKGlad', 'NKImage', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKRHI', 'NKReflection', 'NKSL', 'NKSerialization', 'NKStream', 'NKThreading', 'NKTime', 'NKWindow'],
+    "NKAudio": ['NKContainers', 'NKCore', 'NKFileSystem', 'NKImage', 'NKLogger', 'NKMath', 'NKMedia', 'NKMemory', 'NKPlatform', 'NKStream', 'NKThreading'],
+    "NKRHI": ['NKContainers', 'NKCore', 'NKEvent', 'NKFileSystem', 'NKGLSlang', 'NKGlad', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKSL', 'NKSPIRVCross', 'NKThreading', 'NKTime', 'NKWindow'],
+    "NKMedia": ['NKContainers', 'NKCore', 'NKFileSystem', 'NKFont', 'NKImage', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKStream', 'NKThreading', 'NKTime'],
+    "NKWindow": ['NKContainers', 'NKCore', 'NKEvent', 'NKFileSystem', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKThreading', 'NKTime'],
+    "NKImage": ['NKContainers', 'NKCore', 'NKFileSystem', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKStream', 'NKThreading'],
+    "NKEvent": ['NKContainers', 'NKCore', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKThreading', 'NKTime'],
+    "NKSerialization": ['NKContainers', 'NKCore', 'NKFileSystem', 'NKLogger', 'NKMemory', 'NKPlatform', 'NKReflection', 'NKThreading'],
+    "NKAnima": ['NKContainers', 'NKCore', 'NKFileSystem', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKSL": ['NKContainers', 'NKCore', 'NKFileSystem', 'NKGLSlang', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKSPIRVCross', 'NKThreading'],
+    "NKStream": ['NKContainers', 'NKCore', 'NKFileSystem', 'NKLogger', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKTime": ['NKContainers', 'NKCore', 'NKLogger', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKReflection": ['NKContainers', 'NKCore', 'NKLogger', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKFont": ['NKContainers', 'NKCore', 'NKLogger', 'NKMath', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKFileSystem": ['NKContainers', 'NKCore', 'NKLogger', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKLogger": ['NKContainers', 'NKCore', 'NKMemory', 'NKPlatform', 'NKThreading'],
+    "NKThreading": ['NKContainers', 'NKCore', 'NKMemory', 'NKPlatform'],
+    "NKMath": ['NKContainers', 'NKCore', 'NKMemory', 'NKPlatform'],
+    "NKContainers": ['NKCore', 'NKMemory', 'NKPlatform'],
+    "NKMemory": ['NKCore', 'NKPlatform'],
+    "NKCore": ['NKPlatform'],
+    "NKSPIRVCross": [],
+    "NKGLSlang": [],
+    "NKGlad": [],
+    "NKPlatform": [],
+}
+
+# Cibles presentes dans ce kit : (configuration, systeme) -> archives.
+KIT_TARGETS = {
+    ("Debug", "Windows"): "lib/Debug-Windows",
+    ("Release", "Windows"): "lib/Release-Windows",
+}
+
+# Bibliotheques DU SYSTEME dont les modules ont besoin. Elles ne sont pas
+# dans le kit : elles sont sur la machine. Le kit se contente de dire
+# lesquelles, ce que le consommateur ne peut pas deviner.
+KIT_SYSTEM_LIBS = {
+    ("Debug", "Windows"): ['winmm', 'user32', 'gdi32', 'opengl32', 'dwmapi', 'shell32', 'comdlg32', 'mf', 'mfplat', 'mfreadwrite', 'mfuuid', 'uuid', 'ole32', 'dinput8', 'dxguid', 'd3d11', 'd3d12', 'dxgi', 'd3dcompiler', 'vulkan-1', 'avrt'],
+    ("Release", "Windows"): ['winmm', 'user32', 'gdi32', 'opengl32', 'dwmapi', 'shell32', 'comdlg32', 'mf', 'mfplat', 'mfreadwrite', 'mfuuid', 'uuid', 'ole32', 'dinput8', 'dxguid', 'd3d11', 'd3d12', 'dxgi', 'd3dcompiler', 'vulkan-1', 'avrt'],
+}
+
+# Bibliotheque C++ contre laquelle les archives ont ete compilees (lue dans
+# les archives). Le consommateur doit lier avec la meme.
+KIT_STDLIB = {
+    "Windows": "libc++",
+}
+# Famille du compilateur qui a produit les archives (clang ou gcc). Sous MinGW,
+# les objets de l'un ne se lient pas toujours avec ceux de l'autre.
+KIT_COMPILER = {
+    "Windows": "clang",
+}
+
+
+def _kit_selection(modules=None):
+    """Les modules demandes plus leurs dependances, en ordre de lien."""
+    if not modules:
+        return list(KIT_MODULES)
+    wanted = set()
+    pending = list(modules)
+    while pending:
+        name = pending.pop()
+        if name in wanted:
+            continue
+        if name not in KIT_DEPENDS:
+            raise ValueError(
+                "%s : module absent du kit %s. Modules : %s"
+                % (name, KIT_NAME, ", ".join(KIT_MODULES)))
+        wanted.add(name)
+        pending.extend(KIT_DEPENDS[name])
+    return [m for m in KIT_MODULES if m in wanted]
+
+
+def user3d(modules=None, extra_includes=None):
+    """Lie ce projet au kit : en-tetes, dossiers de bibliotheques, archives.
+
+    modules : les modules voulus (leurs dependances suivent toutes seules).
+              Par defaut, tout le kit.
+    extra_includes : dossiers d'inclusion propres au projet.
+    """
+    selection = _kit_selection(modules)
+
+    includes = [KIT_ROOT + "/include"]
+    for extra in (extra_includes or []):
+        includes.append(extra)
+    includedirs(includes)
+
+    # Ce que ce kit exige de la chaine qui le lie, et les configurations qu'il
+    # ne sert pas : un message clair avant de compiler (Jenga >= 2.8.17), au
+    # lieu de centaines de symboles introuvables a l'edition de liens.
+    _exiger = globals().get("kitrequire")
+    _refuser = globals().get("builderror")
+    for _os, _lib in sorted(KIT_STDLIB.items()):
+        _fam = KIT_COMPILER.get(_os, "")
+        if _exiger and (_lib or _fam):
+            _exiger(KIT_NAME, stdlib=_lib, compiler=_fam, system=_os)
+    try:
+        from Jenga.Core.Api import getcurrentworkspace as _ws_courant
+        _configs = list(_ws_courant().configurations or [])
+    except Exception:
+        _configs = []
+    for _os in sorted({_o for (_c, _o) in KIT_TARGETS}):
+        _servies = sorted(_c for (_c, _o) in KIT_TARGETS if _o == _os)
+        for _cfg in _configs:
+            if (_cfg, _os) in KIT_TARGETS:
+                continue
+            _msg = ("Le kit %s ne contient pas de bibliotheques pour %s-%s (il contient : %s). "
+                    "Construisez en %s, ou refaites le kit avec cette configuration "
+                    "(jenga kit ... --config %s)."
+                    % (KIT_NAME, _cfg, _os, ", ".join(_servies), " ou ".join(_servies), _cfg))
+            if _refuser:
+                with filter("system:%s && configurations:%s" % (_os, _cfg)):
+                    _refuser(_msg)
+            else:
+                print("[kit %s] ATTENTION : %s" % (KIT_NAME, _msg))
+
+    with filter("system:Windows && configurations:Debug"):
+        # la runtime du compilateur (libunwind, libc++) dans l'executable, et pas en DLL
+        ldflags(["-static"])
+        # Dossiers de SDK exterieurs au kit : ils doivent exister
+        # sur la machine qui construit. Voir KIT.txt.
+        libdirs([KIT_ROOT + "/lib/Debug-Windows"])
+        _archives = []
+        for _m in selection:
+            _f = {
+                "NKRenderer": "NKRenderer.lib",
+                "NKAudio": "NKAudio.lib",
+                "NKRHI": "NKRHI.lib",
+                "NKMedia": "NKMedia.lib",
+                "NKWindow": "NKWindow.lib",
+                "NKImage": "NKImage.lib",
+                "NKEvent": "NKEvent.lib",
+                "NKSerialization": "NKSerialization.lib",
+                "NKAnima": "NKAnima.lib",
+                "NKSL": "NKSL.lib",
+                "NKStream": "NKStream.lib",
+                "NKTime": "NKTime.lib",
+                "NKReflection": "NKReflection.lib",
+                "NKFont": "NKFont.lib",
+                "NKFileSystem": "NKFileSystem.lib",
+                "NKLogger": "NKLogger.lib",
+                "NKThreading": "NKThreading.lib",
+                "NKMath": "NKMath.lib",
+                "NKContainers": "NKContainers.lib",
+                "NKMemory": "NKMemory.lib",
+                "NKCore": "NKCore.lib",
+                "NKSPIRVCross": "NKSPIRVCross.lib",
+                "NKGLSlang": "NKGLSlang.lib",
+                "NKGlad": "NKGlad.lib",
+                "NKPlatform": "NKPlatform.lib",
+            }.get(_m)
+            if _f:
+                _archives.append(KIT_ROOT + "/lib/Debug-Windows/" + _f)
+        if _archives:
+            links(_archives)
+        # Les bibliotheques du systeme viennent APRES les archives :
+        # un editeur de liens GNU resout en une passe.
+        links(['winmm', 'user32', 'gdi32', 'opengl32', 'dwmapi', 'shell32', 'comdlg32', 'mf', 'mfplat', 'mfreadwrite', 'mfuuid', 'uuid', 'ole32', 'dinput8', 'dxguid', 'd3d11', 'd3d12', 'dxgi', 'd3dcompiler', 'vulkan-1', 'avrt'])
+
+    with filter("system:Windows && configurations:Release"):
+        # la runtime du compilateur (libunwind, libc++) dans l'executable, et pas en DLL
+        ldflags(["-static"])
+        # Dossiers de SDK exterieurs au kit : ils doivent exister
+        # sur la machine qui construit. Voir KIT.txt.
+        libdirs([KIT_ROOT + "/lib/Release-Windows"])
+        _archives = []
+        for _m in selection:
+            _f = {
+                "NKRenderer": "NKRenderer.lib",
+                "NKAudio": "NKAudio.lib",
+                "NKRHI": "NKRHI.lib",
+                "NKMedia": "NKMedia.lib",
+                "NKWindow": "NKWindow.lib",
+                "NKImage": "NKImage.lib",
+                "NKEvent": "NKEvent.lib",
+                "NKSerialization": "NKSerialization.lib",
+                "NKAnima": "NKAnima.lib",
+                "NKSL": "NKSL.lib",
+                "NKStream": "NKStream.lib",
+                "NKTime": "NKTime.lib",
+                "NKReflection": "NKReflection.lib",
+                "NKFont": "NKFont.lib",
+                "NKFileSystem": "NKFileSystem.lib",
+                "NKLogger": "NKLogger.lib",
+                "NKThreading": "NKThreading.lib",
+                "NKMath": "NKMath.lib",
+                "NKContainers": "NKContainers.lib",
+                "NKMemory": "NKMemory.lib",
+                "NKCore": "NKCore.lib",
+                "NKSPIRVCross": "NKSPIRVCross.lib",
+                "NKGLSlang": "NKGLSlang.lib",
+                "NKGlad": "NKGlad.lib",
+                "NKPlatform": "NKPlatform.lib",
+            }.get(_m)
+            if _f:
+                _archives.append(KIT_ROOT + "/lib/Release-Windows/" + _f)
+        if _archives:
+            links(_archives)
+        # Les bibliotheques du systeme viennent APRES les archives :
+        # un editeur de liens GNU resout en une passe.
+        links(['winmm', 'user32', 'gdi32', 'opengl32', 'dwmapi', 'shell32', 'comdlg32', 'mf', 'mfplat', 'mfreadwrite', 'mfuuid', 'uuid', 'ole32', 'dinput8', 'dxguid', 'd3d11', 'd3d12', 'dxgi', 'd3dcompiler', 'vulkan-1', 'avrt'])

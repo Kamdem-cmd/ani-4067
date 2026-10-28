@@ -1,0 +1,624 @@
+#pragma once
+// AUTEUR : TEUGUIA TADJUIDJE Rodolf Séderis — Rihen
+// =============================================================================
+// NkOpenGLCommandBuffer.h
+// Command buffer OpenGL : enregistre les commandes en mémoire CPU,
+// les rejoue sur le thread GL via Execute().
+// =============================================================================
+#include "NKRHI/Commands/NkICommandBuffer.h"
+#include "NKContainers/Sequential/NkVector.h"
+#include "NKContainers/Functional/NkFunction.h"
+#include "NKCore/NkTraits.h"
+#include "NKLogger/NkLog.h"
+#include <cstring>
+
+#ifndef NK_NO_GLAD2
+#include <glad/gl.h>
+#endif
+
+namespace nkentseu {
+
+	class NkOpenGLDevice;
+
+	class NkOpenGLCommandBuffer final : public NkICommandBuffer {
+		public:
+			explicit NkOpenGLCommandBuffer(NkOpenGLDevice *dev, NkCommandBufferType type) : mDev(dev), mType(type) {
+			}
+
+			~NkOpenGLCommandBuffer() override = default;
+
+			// ── Cycle de vie ─────────────────────────────────────────────────────────
+			bool Begin() override {
+				mCmds.Clear();
+				mRecording = true;
+				return true;
+			}
+
+			void End() override {
+				mRecording = false;
+			}
+
+			void Reset() override {
+				mCmds.Clear();
+				mRecording = false;
+			}
+
+			bool IsValid() const override {
+				return mDev != nullptr;
+			}
+
+			NkCommandBufferType GetType() const override {
+				return mType;
+			}
+
+			// ── Exécution (appelé par NkOpenGLDevice::Submit) ───────────────────────────
+			void Execute(NkOpenGLDevice *dev);
+
+			// =========================================================================
+			// Render Pass
+			// =========================================================================
+			bool BeginRenderPass(NkRenderPassHandle rp, NkFramebufferHandle fb, const NkRect2D &area) override {
+				// NB : fb.IsValid()==false (id=0) est ACCEPTE — sur OpenGL ca correspond
+				// au default framebuffer (FBO 0 = swapchain). De meme pour rp.id=0 :
+				// pas de NkRenderPassHandle explicite => clear via mClearR/G/B/A.
+				if (!mRecording || area.width <= 0 || area.height <= 0)
+					return false;
+				Push([=] { GL_BeginRenderPass(rp, fb, area); });
+				return true;
+			}
+
+			void EndRenderPass() override {
+				Push([] { /* GL : rien à faire — FBO reste actif jusqu'au prochain bind */ });
+			}
+
+			// =========================================================================
+			// Viewport & Scissor
+			// =========================================================================
+			void SetViewport(const NkViewport &vp) override {
+				Push([vp] {
+					glViewport((GLint)vp.x, (GLint)vp.y, (GLsizei)vp.width, (GLsizei)vp.height);
+					glDepthRangef(vp.minDepth, vp.maxDepth);
+				});
+			}
+
+			void SetViewports(const NkViewport *vps, uint32 n) override {
+				NkVector<NkViewport> v = CopyArray(vps, n);
+				Push([v = traits::NkMove(v)] {
+#if defined(NK_OPENGL_ES)
+					if (!v.empty()) {
+						glViewport((GLint)v[0].x, (GLint)v[0].y, (GLsizei)v[0].width, (GLsizei)v[0].height);
+						glDepthRangef(v[0].minDepth, v[0].maxDepth);
+					}
+#else
+					for (uint32 i = 0; i < (uint32)v.size(); i++) {
+						GLfloat vp[] = {(float)v[i].x, (float)v[i].y, v[i].width, v[i].height};
+						glViewportIndexedfv(i, vp);
+					}
+#endif
+				});
+			}
+
+			void SetScissor(const NkRect2D &r) override {
+				Push([r] {
+					glScissor(r.x, r.y, (GLsizei)r.width, (GLsizei)r.height);
+					glEnable(GL_SCISSOR_TEST);
+				});
+			}
+
+			void SetScissors(const NkRect2D *rects, uint32 n) override {
+				NkVector<NkRect2D> v = CopyArray(rects, n);
+				Push([v = traits::NkMove(v)] {
+#if defined(NK_OPENGL_ES)
+					if (!v.empty()) {
+						glScissor(v[0].x, v[0].y, (GLsizei)v[0].width, (GLsizei)v[0].height);
+					}
+#else
+					for (uint32 i = 0; i < (uint32)v.size(); i++)
+						glScissorIndexed(i, v[i].x, v[i].y, (GLsizei)v[i].width, (GLsizei)v[i].height);
+#endif
+				});
+			}
+
+			// Clear dynamique — stocké comme état du CB, lu dans GL_BeginRenderPass.
+			// Ces appels marquent aussi qu'un clear est demande pour le prochain
+			// BeginRenderPass (mClearColorPending / mClearDepthPending). RenderGraph
+			// les appelle uniquement si loadOp==CLEAR, donc l'absence d'appel signifie
+			// "preserver l'attachment" (LOAD) et BeginRenderPass ne clear pas.
+			void SetClearColor(float r, float g, float b, float a = 1.f) override {
+				Push([this, r, g, b, a] {
+					mClearR = r;
+					mClearG = g;
+					mClearB = b;
+					mClearA = a;
+					mClearColorPending = true;
+				});
+			}
+
+			void SetClearDepth(float depth = 1.f, uint32 stencil = 0) override {
+				Push([this, depth, stencil] {
+					mClearDepth = depth;
+					mClearStencil = stencil;
+					mClearDepthPending = true;
+				});
+			}
+
+			// =========================================================================
+			// Pipeline
+			// =========================================================================
+			void BindGraphicsPipeline(NkPipelineHandle p) override {
+				mBoundPipeline = p;
+				Push([this, p] { GL_BindGraphicsPipeline(p); });
+			}
+
+			void BindComputePipeline(NkPipelineHandle p) override {
+				mBoundPipeline = p;
+				Push([this, p] { GL_BindComputePipeline(p); });
+			}
+
+			void BindDescriptorSet(NkDescSetHandle set, uint32 idx, uint32 *dynOff, uint32 dynCount) override {
+				NkVector<uint32> offs = CopyArray(dynOff, dynCount);
+				Push([this, set, idx, offs = traits::NkMove(offs)] { GL_BindDescriptorSet(set, idx, offs); });
+			}
+
+			void PushConstants(NkShaderStage stages, uint32 offset, uint32 size, const void *data) override {
+				NkVector<uint8> buf = CopyBytes(data, size);
+				Push([this, stages, offset, size, buf = traits::NkMove(buf)] {
+					(void)stages;
+					(void)offset;
+					(void)size;
+					if (mCurrentProgram == 0)
+						return;
+					GLint loc = glGetUniformLocation(mCurrentProgram, "_PushConstants");
+					// Certains drivers preferent l'array-suffix
+					if (loc < 0)
+						loc = glGetUniformLocation(mCurrentProgram, "_PushConstants[0]");
+#if defined(NK_OPENGL_ES)
+					// Diagnostic temporaire (enquete ecran noir Tuto02Renderer Android) :
+					// si loc<0 le matrice ortho n'est JAMAIS envoyee au shader -> gl_Position
+					// reste (0,0,0,0) -> geometrie degenerescente invisible, sans la moindre
+					// erreur GL. A retirer une fois la cause confirmee.
+					static int sPCLogCount = 0;
+					if (sPCLogCount < 8) {
+						sPCLogCount++;
+						const float *f = (const float *)buf.Data();
+						logger.Infof("[NkRHI_GL][ES] PushConstants prog=%u loc=%d size=%u m00=%f m11=%f m30=%f "
+									 "m31=%f m33=%f\n",
+									 mCurrentProgram, loc, size, f[0], f[5], f[12], f[13], f[15]);
+					}
+#endif
+					if (loc >= 0)
+						glUniform4fv(loc, (GLsizei)(buf.size() / 16), (const GLfloat *)buf.Data());
+				});
+			}
+
+			// =========================================================================
+			// Vertex / Index Buffers
+			// =========================================================================
+			void BindVertexBuffer(uint32 binding, NkBufferHandle buf, uint64 offset) override {
+				Push([this, binding, buf, offset] { GL_BindVertexBuffer(binding, buf, offset); });
+			}
+
+			void UpdateBuffer(NkBufferHandle buf, uint64 dstOffset, uint64 size, const void *data) override;
+
+			void BindVertexBuffers(uint32 first, const NkBufferHandle *bufs, const uint64 *offs,
+								   uint32 count) override {
+				NkVector<NkBufferHandle> bv = CopyArray(bufs, count);
+				NkVector<uint64> ov = CopyArray(offs, count);
+				Push([this, first, bv = traits::NkMove(bv), ov = traits::NkMove(ov)] {
+					for (uint32 i = 0; i < (uint32)bv.size(); i++)
+						GL_BindVertexBuffer(first + i, bv[i], ov[i]);
+				});
+			}
+
+			void BindIndexBuffer(NkBufferHandle buf, NkIndexFormat fmt, uint64 offset) override {
+				Push([this, buf, fmt, offset] { GL_BindIndexBuffer(buf, fmt, offset); });
+			}
+
+			// =========================================================================
+			// Draw — *Impl : les publiques comptent dans NkICommandBuffer (NVI).
+			// =========================================================================
+			void DrawImpl(uint32 vertCnt, uint32 instCnt, uint32 firstVert, uint32 firstInst) override {
+				Push([this, vertCnt, instCnt, firstVert, firstInst] {
+					if (instCnt > 1) {
+#if defined(NK_OPENGL_ES)
+						glDrawArraysInstanced(mPrimitive, firstVert, vertCnt, instCnt);
+#else
+						glDrawArraysInstancedBaseInstance(mPrimitive, firstVert, vertCnt, instCnt, firstInst);
+#endif
+					} else {
+						glDrawArrays(mPrimitive, firstVert, vertCnt);
+					}
+				});
+			}
+
+			void DrawIndexedImpl(uint32 idxCnt, uint32 instCnt, uint32 firstIdx, int32 vtxOff, uint32 firstInst) override {
+				Push([this, idxCnt, instCnt, firstIdx, vtxOff, firstInst] {
+					GLenum idxFmt = mIndexFormat == NkIndexFormat::NK_UINT16 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT;
+					uint64 byteOff = firstIdx * (mIndexFormat == NkIndexFormat::NK_UINT16 ? 2 : 4) + mIndexOffset;
+					// ── TRACE DU REJEU, OPT-IN ───────────────────────────────────────
+					// ⚠️ ELLE RESTE. Ce dorsal est le seul des quatre a DIFFERER ses
+					// commandes : rien n'est dessine quand une passe « s'execute » dans
+					// le journal, tout part au rejeu de `Execute`. Un plantage y est donc
+					// illisible sans voir l'etat REELLEMENT lie a cet instant-la.
+					// Elle a nomme le defaut du 07/09 en une ligne :
+					//   sain    vao=24 ibo=2 iboOctets=144
+					//   plante  vao=21 ibo=0 iboOctets=0   <- aucun tampon d'indices
+					// stderr + fflush, PAS le journal : le tir suivant peut tuer le
+					// processus, et un journal tamponne perdrait la derniere ligne --
+					// justement celle qui compte.
+					// NK_GL_TRACE=1 pour l'armer ; eteinte, elle coute un booleen statique.
+					static const bool sTrace = (getenv("NK_GL_TRACE") != nullptr);
+					static int sDrawNo = 0;
+					if (sTrace) {
+						GLint vao = 0, ibo = 0, prog = 0, vbo = 0, fbo = 0;
+						glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &vao);
+						glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &ibo);
+						glGetIntegerv(GL_CURRENT_PROGRAM, &prog);
+						glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &vbo);
+						glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
+						GLint iboSize = 0;
+						if (ibo)
+							glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &iboSize);
+						const uint64 besoin = byteOff + (uint64)idxCnt * (idxFmt == GL_UNSIGNED_SHORT ? 2u : 4u);
+						fprintf(stderr,
+								"[GLTRACE] tir=%d idxCnt=%u fmt=%s off=%llu vtxOff=%d | vao=%d ibo=%d "
+								"iboOctets=%d besoin=%llu%s | prog=%d vbo=%d fbo=%d | pipeline.id=%llu "
+								"mVAO=%u mProg=%u\n",
+								++sDrawNo, idxCnt, idxFmt == GL_UNSIGNED_SHORT ? "u16" : "u32",
+								(unsigned long long)byteOff, vtxOff, vao, ibo, iboSize,
+								(unsigned long long)besoin,
+								(iboSize > 0 && besoin > (uint64)iboSize) ? "  <<< DEBORDE" : "",
+								prog, vbo, fbo, (unsigned long long)mBoundPipeline.id, mCurrentVAO, mCurrentProgram);
+						fflush(stderr);
+					}
+
+					if (instCnt > 1) {
+#if defined(NK_OPENGL_ES)
+						glDrawElementsInstanced(mPrimitive, idxCnt, idxFmt, (const void *)byteOff, instCnt);
+#else
+						glDrawElementsInstancedBaseVertexBaseInstance(mPrimitive, idxCnt, idxFmt, (const void *)byteOff,
+																	  instCnt, vtxOff, firstInst);
+#endif
+					} else {
+#if defined(NK_OPENGL_ES)
+						// glDrawElementsBaseVertex n'existe QUE depuis GLES 3.2 core (ou
+						// extension EXT/OES_draw_elements_base_vertex) — absent sur
+						// nombre de drivers ES 3.0/3.1 (dont certains émulateurs). Le
+						// binaire y résout ce symbole a NULL -> crash au premier appel.
+						// NkRender2D (et la plupart des dessinateurs 2D) appellent
+						// TOUJOURS DrawIndexed avec vtxOff=0 : dans ce cas glDrawElements
+						// est strictement équivalent et disponible partout (ES 2.0+).
+						if (vtxOff == 0) {
+							glDrawElements(mPrimitive, idxCnt, idxFmt, (const void *)byteOff);
+						} else {
+							glDrawElementsBaseVertex(mPrimitive, idxCnt, idxFmt, (const void *)byteOff, vtxOff);
+						}
+#else
+						glDrawElementsBaseVertex(mPrimitive, idxCnt, idxFmt, (const void *)byteOff, vtxOff);
+#endif
+					}
+#if defined(NK_OPENGL_ES)
+					// Diagnostic temporaire : erreur GL par-draw uniquement (leger). Le
+					// readback par-draw a ete RETIRE : glReadPixels au milieu d'un
+					// renderpass force un resolve du tile buffer sur GPU tile-based
+					// (Adreno) et pouvait fausser le diagnostic. A retirer a la fin.
+					GLenum ndErr = glGetError();
+					if (ndErr != GL_NO_ERROR)
+						logger.Errorf("[NkRHI_GL][ES] DrawIndexed idxCnt=%u vtxOff=%d error=0x%X\n", idxCnt, vtxOff,
+									  ndErr);
+#if defined(NKENTSEU_PLATFORM_EMSCRIPTEN)
+					// NKTEMP-DIAG : a retirer (instrumentation draw WebGL2) — etat
+					// complet du 1er draw en echec, une seule fois.
+					if (ndErr != GL_NO_ERROR) {
+						static bool sOnce = false;
+						if (!sOnce) {
+							sOnce = true;
+							GLint vao = 0, ibo = 0, prog = 0;
+							glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &vao);
+							glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &ibo);
+							glGetIntegerv(GL_CURRENT_PROGRAM, &prog);
+							fprintf(stderr,
+									"[WebDiag] draw FAIL err=0x%X prim=0x%X idxCnt=%u fmt=0x%X off=%llu vao=%d ibo=%d "
+									"prog=%d inst=%u\n",
+									ndErr, mPrimitive, idxCnt, idxFmt, (unsigned long long)byteOff, vao, ibo, prog,
+									instCnt);
+							GLint valid = 0;
+							glValidateProgram((GLuint)prog);
+							glGetProgramiv((GLuint)prog, GL_VALIDATE_STATUS, &valid);
+							char vbuf[1024] = {0};
+							glGetProgramInfoLog((GLuint)prog, 1023, nullptr, vbuf);
+							fprintf(stderr, "[WebDiag] validate=%d log:%s\n", valid, vbuf);
+						}
+					}
+#endif
+#endif
+				});
+			}
+
+			void DrawIndirectImpl(NkBufferHandle buf, uint64 off, uint32 cnt, uint32 stride) override {
+				Push([this, buf, off, cnt, stride] {
+					GL_BindForIndirect(buf);
+#if defined(NK_OPENGL_ES)
+					for (uint32 i = 0; i < cnt; ++i) {
+						glDrawArraysIndirect(mPrimitive, (const void *)(off + i * stride));
+					}
+#else
+					if (cnt > 1)
+						glMultiDrawArraysIndirect(mPrimitive, (const void *)off, cnt, (GLsizei)stride);
+					else
+						glDrawArraysIndirect(mPrimitive, (const void *)off);
+#endif
+				});
+			}
+
+			void DrawIndexedIndirectImpl(NkBufferHandle buf, uint64 off, uint32 cnt, uint32 stride) override {
+				Push([this, buf, off, cnt, stride] {
+					GL_BindForIndirect(buf);
+					GLenum fmt = mIndexFormat == NkIndexFormat::NK_UINT16 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT;
+#if defined(NK_OPENGL_ES)
+					for (uint32 i = 0; i < cnt; ++i) {
+						glDrawElementsIndirect(mPrimitive, fmt, (const void *)(off + i * stride));
+					}
+#else
+					if (cnt > 1)
+						glMultiDrawElementsIndirect(mPrimitive, fmt, (const void *)off, cnt, (GLsizei)stride);
+					else
+						glDrawElementsIndirect(mPrimitive, fmt, (const void *)off);
+#endif
+				});
+			}
+
+			// =========================================================================
+			// Compute
+			// =========================================================================
+			void Dispatch(uint32 gx, uint32 gy, uint32 gz) override {
+				Push([gx, gy, gz] { glDispatchCompute(gx, gy, gz); });
+			}
+
+			void DispatchIndirect(NkBufferHandle buf, uint64 off) override {
+				Push([this, buf, off] {
+					GL_BindForIndirect(buf);
+					glDispatchComputeIndirect((GLintptr)off);
+				});
+			}
+
+			// =========================================================================
+			// Copies
+			// =========================================================================
+			void CopyBuffer(NkBufferHandle src, NkBufferHandle dst, const NkBufferCopyRegion &r) override {
+				Push([this, src, dst, r] { GL_CopyBuffer(src, dst, r); });
+			}
+
+			void CopyBufferToTexture(NkBufferHandle src, NkTextureHandle dst,
+									 const NkBufferTextureCopyRegion &r) override {
+				Push([this, src, dst, r] { GL_CopyBufferToTexture(src, dst, r); });
+			}
+
+			void CopyTextureToBuffer(NkTextureHandle src, NkBufferHandle dst,
+									 const NkBufferTextureCopyRegion &r) override {
+				Push([this, src, dst, r] { GL_CopyTextureToBuffer(src, dst, r); });
+			}
+
+			void CopyTexture(NkTextureHandle src, NkTextureHandle dst, const NkTextureCopyRegion &r) override {
+				Push([this, src, dst, r] { GL_CopyTexture(src, dst, r); });
+			}
+
+			void BlitTexture(NkTextureHandle src, NkTextureHandle dst, const NkTextureCopyRegion &r,
+							 NkFilter filter) override {
+				Push([this, src, dst, r, filter] { GL_BlitTexture(src, dst, r, filter); });
+			}
+
+			// =========================================================================
+			// Barriers (GL : glMemoryBarrier)
+			// =========================================================================
+			void Barrier(const NkBufferBarrier *bb, uint32 bc, const NkTextureBarrier *tb, uint32 tc) override {
+				GLbitfield bits = 0;
+				for (uint32 i = 0; i < bc; i++) {
+					auto &b = bb[i];
+					if (b.stateAfter == NkResourceState::NK_SHADER_READ ||
+						b.stateAfter == NkResourceState::NK_UNORDERED_ACCESS)
+						bits |= GL_SHADER_STORAGE_BARRIER_BIT | GL_UNIFORM_BARRIER_BIT;
+					if (b.stateAfter == NkResourceState::NK_INDIRECT_ARG)
+						bits |= GL_COMMAND_BARRIER_BIT;
+					if (b.stateAfter == NkResourceState::NK_TRANSFER_DST ||
+						b.stateAfter == NkResourceState::NK_TRANSFER_SRC)
+						bits |= GL_BUFFER_UPDATE_BARRIER_BIT;
+				}
+				for (uint32 i = 0; i < tc; i++) {
+					auto &b = tb[i];
+					if (b.stateAfter == NkResourceState::NK_SHADER_READ)
+						bits |= GL_TEXTURE_FETCH_BARRIER_BIT;
+					if (b.stateAfter == NkResourceState::NK_UNORDERED_ACCESS)
+						bits |= GL_SHADER_IMAGE_ACCESS_BARRIER_BIT;
+					if (b.stateAfter == NkResourceState::NK_RENDER_TARGET ||
+						b.stateAfter == NkResourceState::NK_DEPTH_WRITE)
+						bits |= GL_FRAMEBUFFER_BARRIER_BIT;
+					if (b.stateAfter == NkResourceState::NK_TRANSFER_DST)
+						bits |= GL_TEXTURE_UPDATE_BARRIER_BIT;
+				}
+				if (bits == 0)
+					bits = GL_ALL_BARRIER_BITS;
+#if defined(NKENTSEU_PLATFORM_EMSCRIPTEN)
+				// glMemoryBarrier est ES 3.1 : il N'EXISTE PAS en WebGL2 (ES 3.0),
+				// le pointeur glad reste NUL et l'appel wasm leve
+				// "RuntimeError: null function" (crash constate au 1er Barrier()).
+				// WebGL2 n'a de toute facon ni SSBO ni image load/store : les
+				// acces concernes y sont deja ordonnes implicitement -> no-op.
+				(void)bits;
+#else
+				Push([bits] { glMemoryBarrier(bits); });
+#endif
+			}
+
+			// =========================================================================
+			// Mip generation
+			// =========================================================================
+			void GenerateMipmaps(NkTextureHandle tex, NkFilter) override {
+				Push([this, tex] { GL_GenerateMipmaps(tex); });
+			}
+
+			// =========================================================================
+			// Debug markers
+			// =========================================================================
+			void BeginDebugGroup(const char *name, float r, float g, float b) override {
+				(void)r;
+				(void)g;
+				(void)b;
+				NkVector<char> n = CopyCString(name);
+				Push([n = traits::NkMove(n)] {
+					const GLsizei textLen = n.Size() > 0 ? (GLsizei)(n.Size() - 1) : 0;
+					glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 0, textLen, n.Size() > 0 ? n.Data() : "");
+				});
+			}
+
+			void EndDebugGroup() override {
+				Push([] { glPopDebugGroup(); });
+			}
+
+			void InsertDebugLabel(const char *name) override {
+				NkVector<char> n = CopyCString(name);
+				Push([n = traits::NkMove(n)] {
+					const GLsizei textLen = n.Size() > 0 ? (GLsizei)(n.Size() - 1) : 0;
+					glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION, GL_DEBUG_TYPE_MARKER, 0,
+										 GL_DEBUG_SEVERITY_NOTIFICATION, textLen, n.Size() > 0 ? n.Data() : "");
+				});
+			}
+
+			// =========================================================================
+			// Timestamp
+			// =========================================================================
+			// Marqueur d'horodatage ENREGISTRE dans le tampon (2026-09-04) : il part avec les
+			// commandes, la ou le dessin a lieu -- un appel direct au device tombe AVANT la
+			// relecture du tampon et ne mesure rien. Convention : idx pair = DEBUT du chrono
+			// idx/2, idx impair = FIN (0/1 = la frame, 2/3 = la passe VFX). AVANT : ce corps
+			// appelait glQueryCounter(idx, ...) avec idx comme NOM d'objet GL jamais alloue.
+			void WriteTimestamp(uint32 idx) override {
+#if defined(NK_OPENGL_ES)
+				(void)idx;
+				// OpenGL ES ne supporte pas les timestamp queries de cette manière.
+#else
+				Push([this, idx] { GL_WriteTimestamp(idx); }); // corps dans le .cpp : le device n'est que declare ici
+#endif
+			}
+
+		private:
+			using Cmd = NkFunction<void()>;
+
+			void Push(Cmd c) {
+				mCmds.PushBack(traits::NkMove(c));
+			}
+
+			template <typename T> static NkVector<T> CopyArray(const T *data, uint32 count) {
+				NkVector<T> out;
+				if (!data || count == 0)
+					return out;
+				out.Reserve(count);
+				for (uint32 i = 0; i < count; ++i)
+					out.PushBack(data[i]);
+				return out;
+			}
+
+			static NkVector<uint8> CopyBytes(const void *data, uint32 size) {
+				NkVector<uint8> out;
+				if (!data || size == 0)
+					return out;
+				const uint8 *bytes = static_cast<const uint8 *>(data);
+				out.Reserve(size);
+				for (uint32 i = 0; i < size; ++i)
+					out.PushBack(bytes[i]);
+				return out;
+			}
+
+			static NkVector<char> CopyCString(const char *text) {
+				NkVector<char> out;
+				if (!text) {
+					out.PushBack('\0');
+					return out;
+				}
+				const usize len = std::strlen(text);
+				out.Reserve(len + 1);
+				for (usize i = 0; i < len; ++i)
+					out.PushBack(text[i]);
+				out.PushBack('\0');
+				return out;
+			}
+
+			// ── Implémentations GL appelées depuis Execute ────────────────────────────
+			void GL_BeginRenderPass(NkRenderPassHandle rp, NkFramebufferHandle fb, const NkRect2D &area);
+			void GL_WriteTimestamp(uint32 idx);
+			void GL_BindGraphicsPipeline(NkPipelineHandle p);
+			void GL_BindComputePipeline(NkPipelineHandle p);
+			void GL_BindDescriptorSet(NkDescSetHandle set, uint32 idx, const NkVector<uint32> &dynOff);
+			void GL_BindVertexBuffer(uint32 binding, NkBufferHandle buf, uint64 off);
+			void GL_BindIndexBuffer(NkBufferHandle buf, NkIndexFormat fmt, uint64 off);
+			void GL_RebindVAOState();
+			void GL_BindForIndirect(NkBufferHandle buf);
+			void GL_CopyBuffer(NkBufferHandle src, NkBufferHandle dst, const NkBufferCopyRegion &r);
+			void GL_CopyBufferToTexture(NkBufferHandle src, NkTextureHandle dst, const NkBufferTextureCopyRegion &r);
+			void GL_CopyTextureToBuffer(NkTextureHandle src, NkBufferHandle dst, const NkBufferTextureCopyRegion &r);
+			void GL_CopyTexture(NkTextureHandle src, NkTextureHandle dst, const NkTextureCopyRegion &r);
+			void GL_BlitTexture(NkTextureHandle src, NkTextureHandle dst, const NkTextureCopyRegion &r,
+								NkFilter filter);
+			void GL_GenerateMipmaps(NkTextureHandle tex);
+
+			NkOpenGLDevice *mDev = nullptr;
+			NkCommandBufferType mType;
+			NkVector<Cmd> mCmds;
+			bool mRecording = false;
+
+			// Valeurs de clear dynamiques (SetClearColor / SetClearDepth)
+			float mClearR = 0.f, mClearG = 0.f, mClearB = 0.f, mClearA = 1.f;
+			float mClearDepth = 1.f;
+			uint32 mClearStencil = 0;
+			bool mClearColorPending = false; // arme par SetClearColor, consomme par BeginRenderPass
+			bool mClearDepthPending = false;
+
+			// État courant (mis à jour par les commandes Bind*)
+			NkPipelineHandle mBoundPipeline;
+			GLuint mCurrentProgram = 0;
+			GLuint mCurrentVAO = 0;
+			GLenum mPrimitive = GL_TRIANGLES;
+			NkIndexFormat mIndexFormat = NkIndexFormat::NK_UINT16;
+			uint64 mIndexOffset = 0;
+			bool mIsCompute = false;
+
+			// -- Ce que le VAO emporte, et qu'il faut lui rendre ---------------------
+			// En OpenGL, le liage du tampon d'indices ET des tampons de sommets est un
+			// etat DU VAO, pas un etat global (NkOpenglDevice.cpp:1343 l'ecrit deja
+			// pour les indices). Or chaque pipeline porte son propre VAO -- le format
+			// des sommets y est grave a la creation -- et GL_BindGraphicsPipeline fait
+			// glBindVertexArray(). Donc tout changement de pipeline APRES un
+			// BindIndexBuffer basculait vers un VAO ou plus rien n'etait lie.
+			// glDrawElements recevait alors ELEMENT_ARRAY_BUFFER = 0 avec une adresse
+			// nulle, la traitait comme un POINTEUR CLIENT -- comportement specifie, pas
+			// un caprice de pilote -- et le pilote deferencait zero : 0xC0000005.
+			//
+			// Mesure du 2026-09-08, trace du rejeu (NK_GL_TRACE=1), le meme tir :
+			//     sain    tir=1 idxCnt=6 vao=24 ibo=2 iboOctets=144
+			//     plante  tir=1 idxCnt=6 vao=21 ibo=0 iboOctets=0
+			//
+			// Seule la transparence le declenchait : partout ailleurs l'ordre est
+			// pipeline-puis-maillage et le defaut dort. FlushTransparent est le seul
+			// chemin qui lie le maillage PUIS PBR_BlendBack PUIS PBR_Blend -- d'ou le
+			// seuil exact dc.alpha < 0.999f de NkRender3D::Submit. Repro minimal : un
+			// cube sans materiau ni ombre, seul dans la scene, sain a 0.9995 et tombe
+			// a 0.998. OpenGL etant le dorsal par defaut de NKCraft, tout objet
+			// semi-opaque -- verre, fondu, apercu -- faisait tomber l'outil.
+			//
+			// On memorise donc ce que l'appelant a demande, pour le lui rendre apres
+			// chaque bascule de VAO. Ce n'est PAS une compensation : c'est l'etat qu'il
+			// a explicitement demande, repose a l'endroit ou OpenGL le range.
+			static constexpr uint32 kMaxVertexBindings = 16;
+
+			struct VertexBindingState {
+					NkBufferHandle buf;
+					uint64 off = 0;
+					bool set = false;
+			};
+
+			VertexBindingState mVertexBindings[kMaxVertexBindings];
+			NkBufferHandle mIndexBuffer;
+			bool mIndexBufferSet = false;
+	};
+
+} // namespace nkentseu

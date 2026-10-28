@@ -1,0 +1,453 @@
+[2026-10-16 13:15:30.443] [INF] [default] [NkGpuPolicy.cpp:112 in ApplyPreContext] -> [NkRHI_GpuPolicy] api=Vulkan pref=Default vendor=Any adapterIndex=-1
+
+[2026-10-16 13:15:30.482] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_surface
+[2026-10-16 13:15:30.483] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_win32_surface
+[2026-10-16 13:15:30.483] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_external_memory_capabilities
+[2026-10-16 13:15:30.483] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_external_semaphore_capabilities
+[2026-10-16 13:15:30.484] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_external_fence_capabilities
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_get_physical_device_properties2
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_get_surface_capabilities2
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_device_group_creation
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_EXT_swapchain_colorspace
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_EXT_debug_report
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_EXT_debug_utils
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_portability_enumeration
+[2026-10-16 13:15:30.485] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_LUNARG_direct_driver_loading
+[2026-10-16 13:15:30.511] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_OBS_HOOK
+[2026-10-16 13:15:30.511] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_api_dump
+[2026-10-16 13:15:30.511] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_gfxreconstruct
+[2026-10-16 13:15:30.511] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_synchronization2
+[2026-10-16 13:15:30.512] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_validation
+[2026-10-16 13:15:30.512] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_monitor
+[2026-10-16 13:15:30.512] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_screenshot
+[2026-10-16 13:15:30.512] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_profiles
+[2026-10-16 13:15:30.512] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_shader_object
+[2026-10-16 13:15:30.512] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_crash_diagnostic
+[2026-10-16 13:15:31.019] [INF] [default] [NkVulkanDevice.cpp:536 in Initialize] -> [NkRHI_VK] Initialise (1280?720, 3 frames in flight)
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkDeviceFactory.cpp:133 in CreateForApi] -> [NkDeviceFactory] Device RHI cree: Vulkan | OK
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkDeviceFactory.cpp:335 in CreateAutoDetect] -> [NkDeviceFactory] CreateAutoDetect: API selectionnee = Vulkan
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkRendererImpl.cpp:78 in Initialize] -> [NkRendererImpl] Initialize start (api=3)
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkRendererImpl.cpp:123 in Initialize] -> [NkRendererImpl] framesInFlight config=2 -> 3 (profondeur REELLE du device : les rings doivent la suivre, sinon deux frames consecutives partagent un slot)
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkRendererImpl.cpp:145 in Initialize] -> [NkRendererImpl] FPS cap = 0 (0=vsync gere le rythme, env NK_FPS_CAP)
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkRendererImpl.cpp:152 in Initialize] -> [NkRendererImpl]  step 0: InitRHI
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkRendererImpl.cpp:157 in Initialize] -> [NkRendererImpl]  step 1: NkResources::Init
+
+[2026-10-16 13:15:31.019] [INF] [default] [NkResources.cpp:27 in Init] -> [NkResources]   1.a CreateDefaultTextures...
+
+[2026-10-16 13:15:31.020] [INF] [default] [NkResources.cpp:122 in CreateDefaultTextures] -> [NkResources]      White1x1...
+
+[2026-10-16 13:15:31.048] [INF] [default] [NkResources.cpp:124 in CreateDefaultTextures] -> [NkResources]      Black1x1...
+
+[2026-10-16 13:15:31.050] [INF] [default] [NkResources.cpp:126 in CreateDefaultTextures] -> [NkResources]      Normal1x1...
+
+[2026-10-16 13:15:31.054] [INF] [default] [NkResources.cpp:128 in CreateDefaultTextures] -> [NkResources]      Magenta1x1...
+
+[2026-10-16 13:15:31.055] [INF] [default] [NkResources.cpp:130 in CreateDefaultTextures] -> [NkResources]      Gray1x1...
+
+[2026-10-16 13:15:31.055] [INF] [default] [NkResources.cpp:132 in CreateDefaultTextures] -> [NkResources]      defaults done
+
+[2026-10-16 13:15:31.056] [INF] [default] [NkResources.cpp:32 in Init] -> [NkResources]   1.b CreateDefaultSamplers...
+
+[2026-10-16 13:15:31.056] [INF] [default] [NkResources.cpp:37 in Init] -> [NkResources]   1.c CreateStandardLayouts...
+
+[2026-10-16 13:15:31.056] [INF] [default] [NkResources.cpp:44 in Init] -> [NkResources]   1.d Init done
+
+[2026-10-16 13:15:31.056] [INF] [default] [NkRendererImpl.cpp:163 in Initialize] -> [NkRendererImpl]  step 2: NkShaderLibrary::Init
+
+[2026-10-16 13:15:31.056] [INF] [default] [NkRendererImpl.cpp:171 in Initialize] -> [NkRendererImpl]  step 3: NkRenderGraph::ctor
+
+[2026-10-16 13:15:31.056] [INF] [default] [NkRendererImpl.cpp:175 in Initialize] -> [NkRendererImpl]  step 4: NkTextureLibrary::Init
+
+[2026-10-16 13:15:31.056] [INF] [default] [NkRendererImpl.cpp:181 in Initialize] -> [NkRendererImpl]  step 5: NkMeshSystem::Init
+
+[2026-10-16 13:15:31.082] [INF] [default] [NkRendererImpl.cpp:187 in Initialize] -> [NkRendererImpl]  step 6: NkMaterialSystem::Init
+
+[2026-10-16 13:15:31.083] [INF] [default] [NkMaterialCollection.cpp:25 in Init] -> [NkMaterialCollection] Initialized (64 slots max, 1024 bytes UBO, 4 preset slots)
+
+[2026-10-16 13:15:31.084] [INF] [default] [NkMaterialLibrary.cpp:33 in Init] -> [NkMaterialLibrary] Initialized
+
+[2026-10-16 13:15:31.121] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Render2D' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Render2D/NkSL/render2d.vert.nksl
+
+[2026-10-16 13:15:31.122] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Render2D' vsGlsl=929 fsGlsl=7277 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:31.122] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline '2D_Alpha': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:31.437] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline '2D_Add': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:31.653] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline '2D_Opaque': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:31.763] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Glow2D' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Glow2D/NkSL/glow2d.vert.nksl
+
+[2026-10-16 13:15:31.764] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Glow2D' vsGlsl=865 fsGlsl=1108 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:31.764] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline '2D_Glow': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:31.780] [INF] [default] [NkRendererImpl.cpp:267 in Initialize] -> [NkRendererImpl]  step10: InitTextRenderer
+
+[2026-10-16 13:15:31.781] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'ProggyClean' chargee : 13px
+
+[2026-10-16 13:15:31.783] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():215 glyphes rasterises, atlas 512x512, 37 points non nuls
+
+[2026-10-16 13:15:31.795] [INF] [default] [NkRendererImpl.cpp:277 in Initialize] -> [NkRendererImpl]  step12: InitOverlay
+
+[2026-10-16 13:15:31.795] [INF] [default] [NkRendererImpl.cpp:298 in Initialize] -> [NkRendererImpl]  step16: BuildDefaultRenderGraph
+
+[2026-10-16 13:15:31.795] [INF] [default] [NkRendererImpl.cpp:302 in Initialize] -> [NkRendererImpl] Initialize done
+
+[2026-10-16 13:15:31.869] [INF] [default] [NkRendererImpl.cpp:78 in Initialize] -> [NkRendererImpl] Initialize start (api=3)
+
+[2026-10-16 13:15:31.869] [INF] [default] [NkRendererImpl.cpp:123 in Initialize] -> [NkRendererImpl] framesInFlight config=2 -> 3 (profondeur REELLE du device : les rings doivent la suivre, sinon deux frames consecutives partagent un slot)
+
+[2026-10-16 13:15:31.869] [INF] [default] [NkRendererImpl.cpp:145 in Initialize] -> [NkRendererImpl] FPS cap = 0 (0=vsync gere le rythme, env NK_FPS_CAP)
+
+[2026-10-16 13:15:31.869] [INF] [default] [NkRendererImpl.cpp:152 in Initialize] -> [NkRendererImpl]  step 0: InitRHI
+
+[2026-10-16 13:15:31.869] [INF] [default] [NkRendererImpl.cpp:157 in Initialize] -> [NkRendererImpl]  step 1: NkResources::Init
+
+[2026-10-16 13:15:31.869] [INF] [default] [NkResources.cpp:27 in Init] -> [NkResources]   1.a CreateDefaultTextures...
+
+[2026-10-16 13:15:31.869] [INF] [default] [NkResources.cpp:122 in CreateDefaultTextures] -> [NkResources]      White1x1...
+
+[2026-10-16 13:15:31.870] [INF] [default] [NkResources.cpp:124 in CreateDefaultTextures] -> [NkResources]      Black1x1...
+
+[2026-10-16 13:15:31.870] [INF] [default] [NkResources.cpp:126 in CreateDefaultTextures] -> [NkResources]      Normal1x1...
+
+[2026-10-16 13:15:31.871] [INF] [default] [NkResources.cpp:128 in CreateDefaultTextures] -> [NkResources]      Magenta1x1...
+
+[2026-10-16 13:15:31.871] [INF] [default] [NkResources.cpp:130 in CreateDefaultTextures] -> [NkResources]      Gray1x1...
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkResources.cpp:132 in CreateDefaultTextures] -> [NkResources]      defaults done
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkResources.cpp:32 in Init] -> [NkResources]   1.b CreateDefaultSamplers...
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkResources.cpp:37 in Init] -> [NkResources]   1.c CreateStandardLayouts...
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkResources.cpp:44 in Init] -> [NkResources]   1.d Init done
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkRendererImpl.cpp:163 in Initialize] -> [NkRendererImpl]  step 2: NkShaderLibrary::Init
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkRendererImpl.cpp:171 in Initialize] -> [NkRendererImpl]  step 3: NkRenderGraph::ctor
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkRendererImpl.cpp:175 in Initialize] -> [NkRendererImpl]  step 4: NkTextureLibrary::Init
+
+[2026-10-16 13:15:31.872] [INF] [default] [NkRendererImpl.cpp:181 in Initialize] -> [NkRendererImpl]  step 5: NkMeshSystem::Init
+
+[2026-10-16 13:15:31.886] [INF] [default] [NkRendererImpl.cpp:187 in Initialize] -> [NkRendererImpl]  step 6: NkMaterialSystem::Init
+
+[2026-10-16 13:15:31.886] [INF] [default] [NkMaterialCollection.cpp:25 in Init] -> [NkMaterialCollection] Initialized (64 slots max, 1024 bytes UBO, 4 preset slots)
+
+[2026-10-16 13:15:31.886] [INF] [default] [NkMaterialLibrary.cpp:33 in Init] -> [NkMaterialLibrary] Initialized
+
+[2026-10-16 13:15:31.886] [INF] [default] [NkRendererImpl.cpp:227 in Initialize] -> [NkRendererImpl]  step 7: InitShadow
+
+[2026-10-16 13:15:32.424] [INF] [default] [NkRendererImpl.cpp:232 in Initialize] -> [NkRendererImpl]  step 8: InitEnvironment
+
+[2026-10-16 13:15:32.605] [INF] [default] [NkEnvironmentSystem.cpp:176 in TryLoadIBLCache] -> [IBL] Cache charge (hit) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Build/Bin/Debug-Windows/exo4/cache/ibl/nk_ibl_29c9855a.bin
+
+[2026-10-16 13:15:32.605] [INF] [default] [NkRendererImpl.cpp:237 in Initialize] -> [NkRendererImpl]  step 9: InitRender3D
+
+[2026-10-16 13:15:33.072] [WRN] [default] [NkRender3D.cpp:260 in operator()] -> [NkRender3D] Table LTC absente ou invalide : Resources/NKRenderer/LUT/ltc1.bin (0 octets) - repli point representatif
+
+[2026-10-16 13:15:33.073] [WRN] [default] [NkRender3D.cpp:260 in operator()] -> [NkRender3D] Table LTC absente ou invalide : Resources/NKRenderer/LUT/ltc2.bin (0 octets) - repli point representatif
+
+[2026-10-16 13:15:33.073] [INF] [default] [NkRender3D.cpp:277 in Init] -> [NkRender3D] Tables LTC : ltc1=0 ltc2=0
+
+[2026-10-16 13:15:33.084] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PBR' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PBR/NkSL/pbr.vert.nksl
+
+[2026-10-16 13:15:33.087] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PBR' vsGlsl=5659 fsGlsl=91426 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.090] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Shadow' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Shadow/NkSL/shadow.vert.nksl
+
+[2026-10-16 13:15:33.091] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Shadow' vsGlsl=1285 fsGlsl=195 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.148] [INF] [default] [NkRender3D.cpp:646 in Init] -> [NkRender3D] Shadow pipeline create: shader_valid=1 pipeline_valid=1
+
+[2026-10-16 13:15:33.148] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowLinear' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/ShadowLinear/NkSL/shadowlinear.vert.nksl
+
+[2026-10-16 13:15:33.149] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowLinear' vsGlsl=1913 fsGlsl=773 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.149] [INF] [default] [NkRender3D.cpp:659 in Init] -> [NkRender3D] ShadowLinear shader compile: valid=1
+
+[2026-10-16 13:15:33.158] [INF] [default] [NkRender3D.cpp:679 in Init] -> [NkRender3D] ShadowLinear pipeline create: valid=1
+
+[2026-10-16 13:15:33.159] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowInstanced' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/ShadowInstanced/NkSL/shadowinstanced.vert.nksl
+
+[2026-10-16 13:15:33.159] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowInstanced' vsGlsl=2094 fsGlsl=201 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.159] [INF] [default] [NkRender3D.cpp:691 in Init] -> [NkRender3D] ShadowInstanced shader compile: valid=1
+
+[2026-10-16 13:15:33.172] [INF] [default] [NkRender3D.cpp:709 in Init] -> [NkRender3D] ShadowInstanced pipeline create: shader_valid=1 pipeline_valid=1
+
+[2026-10-16 13:15:33.172] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowSkinned' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/ShadowSkinned/NkSL/shadowskinned.vert.nksl
+
+[2026-10-16 13:15:33.172] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowSkinned' vsGlsl=3017 fsGlsl=260 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.173] [INF] [default] [NkRender3D.cpp:723 in Init] -> [NkRender3D] ShadowSkinned shader compile: valid=1
+
+[2026-10-16 13:15:33.196] [INF] [default] [NkRender3D.cpp:750 in Init] -> [NkRender3D] ShadowSkinned pipeline create: shader_valid=1 pipeline_valid=1
+
+[2026-10-16 13:15:33.198] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Skin' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Skin/NkSL/skin.vert.nksl
+
+[2026-10-16 13:15:33.199] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Skin' vsGlsl=3741 fsGlsl=37025 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.200] [INF] [default] [NkRender3D.cpp:763 in Init] -> [NkRender3D] Skin shader compile: valid=1
+
+[2026-10-16 13:15:33.201] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Instanced' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Instanced/NkSL/instanced.vert.nksl
+
+[2026-10-16 13:15:33.202] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Instanced' vsGlsl=3295 fsGlsl=1879 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.203] [INF] [default] [NkRender3D.cpp:775 in Init] -> [NkRender3D] Instanced shader compile: valid=1
+
+[2026-10-16 13:15:33.206] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Skybox' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Skybox/NkSL/skybox.vert.nksl
+
+[2026-10-16 13:15:33.208] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Skybox' vsGlsl=560 fsGlsl=37390 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.209] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'InfiniteGrid' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/InfiniteGrid/NkSL/infinitegrid.vert.nksl
+
+[2026-10-16 13:15:33.209] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'InfiniteGrid' vsGlsl=1005 fsGlsl=10968 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.210] [INF] [default] [NkRender3D.cpp:792 in Init] -> [NkRender3D] InfiniteGrid shader compile: valid=1
+
+[2026-10-16 13:15:33.210] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowAlpha' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/ShadowAlpha/NkSL/shadowalpha.vert.nksl
+
+[2026-10-16 13:15:33.211] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowAlpha' vsGlsl=1423 fsGlsl=2690 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.234] [INF] [default] [NkRender3D.cpp:839 in Init] -> [NkRender3D] ShadowAlpha pipeline create: shader_valid=1 pipeline_valid=1
+
+[2026-10-16 13:15:33.234] [INF] [default] [NkRender3D.cpp:844 in Init] -> [NkRender3D] Init final: ringValid=1 pbrShader.valid=1 (PBR pipeline: lazy create at 1st flush)
+
+[2026-10-16 13:15:33.234] [INF] [default] [NkRender3D.cpp:2535 in SetMaterialCollection] -> [NkRender3D] MaterialCollection UBO bind a set=0 binding=25
+
+[2026-10-16 13:15:33.237] [INF] [default] [NkVoxelAOSystem.cpp:52 in Init] -> [NkVoxelAOSystem] Init OK : 64x32x64 R8 (128 KB)
+
+[2026-10-16 13:15:33.238] [INF] [default] [NkRender3D.cpp:2560 in SetVoxelAO] -> [NkRender3D] VoxelAO texture bind a set=0 binding=27
+
+[2026-10-16 13:15:33.238] [INF] [default] [NkRendererImpl.cpp:272 in Initialize] -> [NkRendererImpl]  step11: InitPostProcess
+
+[2026-10-16 13:15:33.286] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_Tonemap' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_Tonemap/NkSL/pp_tonemap.vert.nksl
+
+[2026-10-16 13:15:33.286] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_Tonemap' vsGlsl=922 fsGlsl=6154 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.287] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'PP_Tone': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.318] [INF] [default] [NkPostProcessStack.cpp:398 in Init] -> [NkPostProcessStack] Phase H.2 init : mBloomRT[0].IsValid()=1
+
+[2026-10-16 13:15:33.318] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_BloomDown' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_BloomDown/NkSL/pp_bloomdown.vert.nksl
+
+[2026-10-16 13:15:33.319] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_BloomDown' vsGlsl=511 fsGlsl=4100 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.319] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_BloomUp' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_BloomUp/NkSL/pp_bloomup.vert.nksl
+
+[2026-10-16 13:15:33.320] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_BloomUp' vsGlsl=506 fsGlsl=2066 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.320] [INF] [default] [NkPostProcessStack.cpp:407 in Init] -> [NkPostProcessStack] Bloom shaders : down.valid=1 up.valid=1
+
+[2026-10-16 13:15:33.373] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_SSAO' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_SSAO/NkSL/pp_ssao.vert.nksl
+
+[2026-10-16 13:15:33.374] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_SSAO' vsGlsl=1086 fsGlsl=7276 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.459] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_SSAOBlur' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_SSAOBlur/NkSL/pp_ssaoblur.vert.nksl
+
+[2026-10-16 13:15:33.460] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_SSAOBlur' vsGlsl=501 fsGlsl=906 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.485] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_AutoExposure' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_AutoExposure/NkSL/pp_autoexposure.vert.nksl
+
+[2026-10-16 13:15:33.485] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_AutoExposure' vsGlsl=1827 fsGlsl=9642 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.485] [INF] [default] [NkPostProcessStack.cpp:504 in Init] -> [NkPostProcessStack] AutoExposure shader : valid=1
+
+[2026-10-16 13:15:33.755] [INF] [default] [NkPostProcessStack.cpp:521 in Init] -> [NkPostProcessStack] AutoExposure pipeline : valid=1
+
+[2026-10-16 13:15:33.755] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'MotionDbg' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/MotionDbg/NkSL/motiondbg.vert.nksl
+
+[2026-10-16 13:15:33.756] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'MotionDbg' vsGlsl=1067 fsGlsl=1886 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.756] [INF] [default] [NkPostProcessStack.cpp:538 in Init] -> [NkPostProcessStack] MotionDbg shader : valid=1
+
+[2026-10-16 13:15:33.757] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_TAA' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_TAA/NkSL/pp_taa.vert.nksl
+
+[2026-10-16 13:15:33.757] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_TAA' vsGlsl=1869 fsGlsl=11035 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.757] [INF] [default] [NkPostProcessStack.cpp:545 in Init] -> [NkPostProcessStack] TAA shader : valid=1
+
+[2026-10-16 13:15:33.758] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'PP_FXAA' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/PP_FXAA/NkSL/pp_fxaa.vert.nksl
+
+[2026-10-16 13:15:33.758] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PP_FXAA' vsGlsl=513 fsGlsl=2364 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.759] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'PP_FXAA': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.780] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Blit' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Blit/NkSL/blit.vert.nksl
+
+[2026-10-16 13:15:33.780] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Blit' vsGlsl=755 fsGlsl=599 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.781] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'Blit': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.790] [INF] [default] [NkRendererImpl.cpp:282 in Initialize] -> [NkRendererImpl]  step13: InitVFX
+
+[2026-10-16 13:15:33.790] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'Particles' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/Particles/NkSL/particles.vert.nksl
+
+[2026-10-16 13:15:33.791] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Particles' vsGlsl=2742 fsGlsl=837 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.792] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'ParticlesBillboard.Additive': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.806] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'ParticlesBillboard.Alpha': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.825] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'ParticlesBillboard.Opaque': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.841] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Trail' vsGlsl=547 fsGlsl=526 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.841] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'TrailMesh': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.855] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Decal' vsGlsl=758 fsGlsl=1063 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:33.855] [INF] [default] [NkVulkanDevice.cpp:1661 in CreateGraphicsPipeline] -> [NkRHI_VK] CreateGraphicsPipeline 'Decal': pas de renderPass specifie, fallback sur swapchain RP (compatible color+depth standard)
+
+[2026-10-16 13:15:33.869] [INF] [default] [NkRendererImpl.cpp:287 in Initialize] -> [NkRendererImpl]  step14: InitAnimation
+
+[2026-10-16 13:15:33.869] [INF] [default] [NkRendererImpl.cpp:298 in Initialize] -> [NkRendererImpl]  step16: BuildDefaultRenderGraph
+
+[2026-10-16 13:15:33.967] [INF] [default] [NkRendererImpl.cpp:302 in Initialize] -> [NkRendererImpl] Initialize done
+
+[2026-10-16 13:15:33.976] [INF] [default] [NkRendererImpl.cpp:564 in RebuildRenderGraph] -> [NkRendererImpl] RebuildRenderGraph #1
+
+[2026-10-16 13:15:34.105] [INF] [default] [NkRenderGraph.cpp:456 in Execute] -> [NkRenderGraph] Execute frame=1 : passes=21 swap=1280x720
+
+[2026-10-16 13:15:34.105] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Shadows' enabled=true hasExecute=true colors=0 hasDepth=false
+
+[2026-10-16 13:15:34.105] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Geometry' enabled=true hasExecute=true colors=1 hasDepth=true
+
+[2026-10-16 13:15:38.254] [INF] [default] [NkRender3D.cpp:923 in EnsurePBRPipeline] -> [NkRender3D] PBR pipeline (lazy) create: shader_valid=1 pipeline_valid=1 rp.id=7204
+
+[2026-10-16 13:15:38.254] [INF] [default] [NkMaterialSystem.cpp:633 in UpdateInstanceDescriptors] -> [NkMaterialSystem] canal albedo lie : id=353 (blanc 1x1 = id=353) -> REPLI BLANC : rien n'a ete pose sur ? albedo ?
+
+[2026-10-16 13:15:38.255] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SelectionMask' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.256] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'VFX' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.256] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SSAO' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.256] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_0' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.257] [INF] [default] [NkRendererImpl.cpp:821 in ComputeBloomThreshold] -> [MESURE cas4] autoOn=0 cfgExpo=1 resolved=1 valid=1 stale=0 aeExposure=1 seuilBrut=1 bloomThr=7.24
+
+[2026-10-16 13:15:38.257] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Overlay3D' enabled=true hasExecute=true colors=1 hasDepth=true
+
+[2026-10-16 13:15:38.257] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SSAO_Blur' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.257] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_1' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.257] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_2' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_3' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_4' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_5' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_4' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_3' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_2' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_1' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_0' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'PostProcess' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.258] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'FXAA_Final' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.259] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SelectionOutline' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.259] [INF] [default] [NkShaderLibrary.cpp:755 in LoadOrCompileVF] -> [NkShaderLibrary] 'SelOutline' -> chemin NkSL (vrai dialecte) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-05/Resources/NKRenderer/Shaders/SelOutline/NkSL/seloutline.vert.nksl
+
+[2026-10-16 13:15:38.260] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'SelOutline' vsGlsl=839 fsGlsl=6537 hlsl(vs=0,fs=0)
+
+[2026-10-16 13:15:38.302] [INF] [default] [NkRender3D.cpp:1402 in EnsureSelOutlinePipeline] -> [NkRender3D] SelOutline pipeline create: shader_valid=1 pipeline_valid=1 rp.id=7267
+
+[2026-10-16 13:15:38.302] [INF] [default] [NkRenderGraph.cpp:456 in Execute] -> [NkRenderGraph] Execute frame=2 : passes=1 swap=1280x720
+
+[2026-10-16 13:15:38.303] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Overlay2D' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.413] [INF] [default] [NkRenderGraph.cpp:456 in Execute] -> [NkRenderGraph] Execute frame=3 : passes=21 swap=1280x720
+
+[2026-10-16 13:15:38.414] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Shadows' enabled=true hasExecute=true colors=0 hasDepth=false
+
+[2026-10-16 13:15:38.414] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Geometry' enabled=true hasExecute=true colors=1 hasDepth=true
+
+[2026-10-16 13:15:38.415] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SelectionMask' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.415] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'VFX' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.415] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SSAO' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.416] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_0' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.416] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Overlay3D' enabled=true hasExecute=true colors=1 hasDepth=true
+
+[2026-10-16 13:15:38.416] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SSAO_Blur' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.417] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_1' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.417] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_2' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.418] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_3' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.418] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_4' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.419] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Down_5' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.419] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_4' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.419] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_3' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.420] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_2' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.420] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_1' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.420] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'Bloom_Up_0' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.421] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'PostProcess' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.421] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'FXAA_Final' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:38.421] [INF] [default] [NkRenderGraph.cpp:492 in Execute] -> [NkRenderGraph]   pass 'SelectionOutline' enabled=true hasExecute=true colors=1 hasDepth=false
+
+[2026-10-16 13:15:41.354] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 295 soumission(s) (image 60)
+
+[2026-10-16 13:15:44.293] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 595 soumission(s) (image 120)
+
+[2026-10-16 13:15:47.217] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 895 soumission(s) (image 180)
+
+[2026-10-16 13:15:50.179] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 1195 soumission(s) (image 240)
+
+[2026-10-16 13:15:53.091] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 1495 soumission(s) (image 300)
+
+[2026-10-16 13:15:56.068] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 1795 soumission(s) (image 360)
+
+[2026-10-16 13:15:58.993] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 2095 soumission(s) (image 420)
+
+[2026-10-16 13:16:01.937] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 2395 soumission(s) (image 480)
+
+[2026-10-16 13:16:04.878] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 2695 soumission(s) (image 540)
+
+[2026-10-16 13:16:07.802] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 2995 soumission(s) (image 600)
+
+[2026-10-16 13:16:10.722] [INF] [default] [NkRender3D.cpp:1726 in ResetFrame] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 3295 soumission(s) (image 660)
+
+[2026-10-16 13:16:13.448] [INF] [default] [NkRender3D.cpp:1465 in Shutdown] -> [NkRender3D] bilan etendues : 0 non renseignee(s) sur 3570 soumission(s)
+
+[2026-10-16 13:16:13.477] [INF] [default] [NkMaterialLibrary.cpp:45 in Shutdown] -> [NkMaterialLibrary] Shutdown
+
+[2026-10-16 13:16:13.481] [INF] [default] [NkMaterialLibrary.cpp:45 in Shutdown] -> [NkMaterialLibrary] Shutdown
+
+[2026-10-16 13:16:13.757] [INF] [default] [NkVulkanDevice.cpp:741 in Shutdown] -> [NkRHI_VK] Shutdown
+

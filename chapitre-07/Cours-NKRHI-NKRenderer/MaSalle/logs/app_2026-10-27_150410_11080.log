@@ -1,0 +1,96 @@
+[2026-10-27 15:04:10.779] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 21px
+
+[2026-10-27 15:04:10.805] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 2048x2048, 2125 points non nuls
+
+[2026-10-27 15:04:10.821] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 17px
+
+[2026-10-27 15:04:10.836] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 1493 points non nuls
+
+[2026-10-27 15:04:10.848] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 13px
+
+[2026-10-27 15:04:10.858] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 956 points non nuls
+
+[2026-10-27 15:04:10.867] [INF] [default] [NkAppFonts.h:25 in NkLoadFallbackFonts] -> [NKCode] polices de repli : C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/
+
+[2026-10-27 15:04:10.901] [WRN] [default] [NkContextFactory.cpp:46 in Create] -> [NkContextFactory][DBG] Create begin api=DirectX 11
+[2026-10-27 15:04:10.901] [INF] [default] [NkGpuPolicy.cpp:114 in ApplyPreContext] -> [NkGpuPolicy] api=DirectX 11 pref=Default vendor=Any adapterIndex=-1
+[2026-10-27 15:04:10.901] [WRN] [default] [NkContextFactory.cpp:95 in Create] -> [NkContextFactory][DBG] Context allocated ptr=0x1de8f62b0d8
+[2026-10-27 15:04:10.901] [WRN] [default] [NkContextFactory.cpp:97 in Create] -> [NkContextFactory][DBG] Initialize begin
+[2026-10-27 15:04:11.114] [INF] [default] [NkDX11Context.cpp:208 in CreateDeviceAndSwapchain] -> [NkDX11] D3D11CreateDevice OK with 11_1+ (chosen FL=0xB100)
+
+[2026-10-27 15:04:11.114] [INF] [default] [NkDX11Context.cpp:242 in CreateDeviceAndSwapchain] -> [NkDX11] Using adapter #0 vendor=0x8086 device=0x5916
+
+[2026-10-27 15:04:11.117] [INF] [default] [NkDX11Context.cpp:269 in CreateDeviceAndSwapchain] -> [NkDX11] Device+Swapchain OK (feature level B100, VRAM 128 MB)
+
+[2026-10-27 15:04:11.118] [INF] [default] [NkDX11Context.cpp:144 in Initialize] -> [NkDX11] Ready a?" DirectX 11 | VRAM 128 MB
+
+[2026-10-27 15:04:11.118] [WRN] [default] [NkContextFactory.cpp:103 in Create] -> [NkContextFactory][DBG] Initialize success
+[2026-10-27 15:04:11.118] [INF] [default] [NkContextFactory.cpp:105 in Create] -> [NkContextFactory] Context created: DirectX 11
+
+[2026-10-27 15:04:11.118] [INF] [default] [NkRenderer2DFactory.cpp:39 in Create] -> [NkRenderer2DFactory] Creating 2D renderer for API: DirectX 11
+[2026-10-27 15:04:11.167] [INF] [default] [NkDX11Renderer2D.cpp:317 in Initialize] -> [NkDX11-2D] Initialized
+[2026-10-27 15:04:11.167] [INF] [default] [NkRenderer2DFactory.cpp:102 in Create] -> [NkRenderer2DFactory] 2D renderer created: DirectX 11
+[2026-10-27 15:04:11.185] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 16px
+
+[2026-10-27 15:04:11.199] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'DejaVuSansMono' chargee : 16px
+
+[2026-10-27 15:04:11.200] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSans-Regular.ttf(569208o)
+
+[2026-10-27 15:04:11.218] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSansSC-Regular.ttf(10559284o)
+
+[2026-10-27 15:04:11.667] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():32023 glyphes rasterises, atlas 4096x4096, 51198 points non nuls
+
+[2026-10-27 15:04:12.074] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 15:04:12.082] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 15:04:12.099] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 15:04:12.105] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 15:04:12.130] [INF] [default] [: in ] -> [nkcode] dossier de l'executable : C:/Users/SMART/AppData/Local/Programs/NKCode
+[2026-10-27 15:04:12.130] [INF] [default] [: in ] -> [nkcode] emplacement : C:\Users\SMART\AppData\Local\NKCode\emplacement.cfg (deja a jour)
+[2026-10-27 15:04:12.130] [INF] [default] [: in ] -> [nkcode] Jenga EMBARQUE actif (aucun Python systeme requis)
+[2026-10-27 15:04:12.134] [INF] [default] [: in ] -> [nkcode] constructions : Jenga embarque, dans NKCode (aucun Python a installer)
+[2026-10-27 15:04:12.137] [INF] [default] [NkAppIcons.h:238 in NkChargerJeuIcones] -> [NKCode] textures (logo, icones) : C:/Users/SMART/AppData/Local/Programs/NKCode/data/textures/
+
+[2026-10-27 15:04:12.152] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? actuel ? (Actuel) catalogue : C:/Users/SMART/AppData/Local/Programs/NKCode/data/textures/icon/
+
+[2026-10-27 15:04:12.152] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? pastilles ? (Pastilles) integre : C:/Users/SMART/AppData/Local/Programs/NKCode/data/extensions/pastilles/
+
+[2026-10-27 15:04:12.152] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? trait ? (Trait) catalogue : C:/Users/SMART/AppData/Local/Programs/NKCode/data/extensions/trait/
+
+[2026-10-27 15:04:39.526] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-27 15:04:41.339] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 15:04:41.348] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 15:04:41.487] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-27 15:04:41.516] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-27 15:04:41.973] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-27 15:04:42.061] [INF] [default] [: in ] -> [hover] 'SDK' -> (commentaire/chaine)
+[2026-10-27 15:04:43.105] [INF] [default] [: in ] -> [jenga-embed] NKCode est lance sans console : flux standard absents a la creation de l'interpreteur : stdout stderr stdin
+[2026-10-27 15:04:43.105] [INF] [default] [: in ] -> [jenga] info (embarque) : 30 ligne(s), 1 projet(s), 8 chaine(s) de compilation
+[2026-10-27 15:04:45.730] [INF] [default] [: in ] -> [ac] index projet PRET: 3659 types, 56137 membres, 4462 fonctions
+[2026-10-27 15:04:48.997] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-27 15:04:49.090] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-27 15:04:49.108] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1615 points non nuls
+
+[2026-10-27 15:05:24.217] [INF] [default] [: in ] -> [hover] 'depuis' L33:C41 -> copie depuis
+[2026-10-27 15:06:43.639] [INF] [default] [: in ] -> [jenga] lance : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle/MaSalle.jenga"
+[2026-10-27 15:06:50.561] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-27 15:06:50.707] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-27 15:06:50.816] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-27 15:06:50.939] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-27 15:06:51.599] [INF] [default] [: in ] -> [jenga] info : 60 ligne(s), 1 projet(s), 8 chaine(s) de compilation
+[2026-10-27 15:07:08.581] [INF] [default] [: in ] -> [jenga] lance : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle/MaSalle.jenga"
+[2026-10-27 15:07:12.256] [INF] [default] [: in ] -> [jenga] info : 60 ligne(s), 1 projet(s), 8 chaine(s) de compilation
+[2026-10-27 15:07:24.085] [INF] [default] [: in ] -> [jenga] lance : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle/MaSalle.jenga"
+[2026-10-27 15:07:28.193] [INF] [default] [: in ] -> [jenga] info : 60 ligne(s), 1 projet(s), 8 chaine(s) de compilation
+[2026-10-27 15:07:28.286] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-27 15:07:28.496] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-27 15:07:28.615] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-27 15:07:28.932] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-27 15:19:13.887] [INF] [default] [: in ] -> [lsp] clangd s'est arrete - repli compile-first seul

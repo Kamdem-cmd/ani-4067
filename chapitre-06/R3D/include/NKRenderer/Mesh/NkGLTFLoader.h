@@ -1,0 +1,281 @@
+#pragma once
+// =============================================================================
+// NkGLTFLoader.h  — NKRenderer v4.0  (Mesh/)
+//
+// Loader glTF 2.0 from-scratch (MVP geometrie) zero-STL.
+//
+// Supporte :
+//   - .gltf (JSON + buffers externes .bin + data URI base64)
+//   - .glb  (conteneur binaire : header + chunk JSON + chunk BIN)
+//   - Attributs : POSITION (obligatoire), NORMAL (sinon calcule par-face),
+//     TANGENT, TEXCOORD_0, TEXCOORD_1, COLOR_0 (sinon blanc).
+//   - Indices : u8/u16/u32 -> promus en uint32. Sinon indices sequentiels.
+//   - Sortie : NkVector<NkVertex3D> entrelaces (layout Default3D) +
+//     NkVector<uint32> + un NkSubMesh par primitive + NkAABB global/par-submesh.
+//
+// DIFFERE (non implemente — voir ROADMAP) :
+//   - Materiaux / textures glTF (NkMaterialSystem est en cours de reecriture).
+//     subMesh.material reste invalide ; importMaterials est ignore pour le MVP.
+//   - Skinning (JOINTS_0 / WEIGHTS_0), animations, morph targets.
+//   - Cameras / lights / KHR extensions / sparse accessors.
+//   - Transformations de noeuds (scene graph) : les primitives sont chargees
+//     en espace local de leur mesh, sans appliquer les matrices de node.
+//
+// Auteur : Rihen
+// =============================================================================
+#include "NKRenderer/Core/NkRendererTypes.h"
+#include "NKRenderer/Mesh/NkMeshSystem.h"
+#include "NKContainers/Sequential/NkVector.h"
+#include "NKContainers/String/NkString.h"
+#include "NKImage/Core/NkImage.h"
+
+namespace nkentseu {
+	namespace renderer {
+
+		// ── Materiau PBR glTF (pbrMetallicRoughness + extensions de base) ─────
+		// Extrait depuis la section glTF `materials[]`. Les *Image* sont des
+		// index dans NkGLTFMeshData::images (-1 = pas de texture pour ce slot).
+		// Les facteurs/couleurs suivent la spec glTF 2.0 (lineaire, sauf
+		// baseColor qui est sRGB cote texture).
+		struct NkGLTFMaterial {
+				NkVec4f baseColorFactor = {1.f, 1.f, 1.f, 1.f};
+				float32 metallicFactor = 1.f;
+				float32 roughnessFactor = 1.f;
+				NkVec3f emissiveFactor = {0.f, 0.f, 0.f};
+				float32 emissiveStrength = 1.f;	 // KHR_materials_emissive_strength
+				float32 normalScale = 1.f;		 // normalTexture.scale
+				float32 occlusionStrength = 1.f; // occlusionTexture.strength
+				float32 alphaCutoff = 0.5f;
+				int32 alphaMode = 0; // 0=OPAQUE 1=MASK 2=BLEND
+				bool doubleSided = false;
+				int32 baseColorImage = -1;		   // index dans images[]
+				int32 metallicRoughnessImage = -1; // glTF : G=rough, B=metal (ORM-like)
+				int32 normalImage = -1;
+				int32 emissiveImage = -1;
+				int32 occlusionImage = -1; // R = AO
+				NkString name;
+		};
+
+		// ── Image decodee referencee par les materiaux glTF ──────────────────
+		// Source possible : URI externe (relatif au .gltf), data URI base64, ou
+		// bufferView (.glb embarque). `decoded` contient les pixels RGBA8 si le
+		// decodage NKImage a reussi (sinon valid()==false : slot a ignorer).
+		struct NkGLTFImage {
+				NkImage decoded; // pixels CPU (RGBA recommande via desiredChannels=4)
+				NkString uri;	 // pour diagnostic (vide si embarque)
+				bool valid = false;
+		};
+
+		// Resultat CPU d'un chargement glTF : geometrie prete a passer a
+		// NkMeshSystem::Create via NkMeshDesc. Les buffers sont possedes par
+		// cette struct (NkVector) ; la duree de vie doit couvrir l'appel a
+		// Create (qui copie les donnees dans des NkBuffer GPU).
+		// ── Animation glTF (squelettique) ────────────────────────────────────
+		// Echantillonneur d'un canal : keyframes (input=temps) -> valeurs
+		// (output : VEC3 translation/scale, VEC4 quaternion rotation).
+		enum class NkGLTFPath : uint8 { TRANSLATION, ROTATION, SCALE, WEIGHTS };
+		enum class NkGLTFInterp : uint8 { LINEAR, STEP, CUBICSPLINE };
+
+		struct NkGLTFAnimChannel {
+				int32 node = -1; // node cible
+				NkGLTFPath path = NkGLTFPath::TRANSLATION;
+				NkGLTFInterp interp = NkGLTFInterp::LINEAR;
+				NkVector<float32> times;  // input (n keyframes)
+				NkVector<NkVec4f> values; // output (n) : .xyz (T/S) ou .xyzw (quat)
+				// WEIGHTS (morph targets) : poids PLATS, n keyframes × nbTargets
+				// (values reste vide pour ce path). nbTargets = weightValues/times.
+				NkVector<float32> weightValues;
+		};
+
+		struct NkGLTFAnimation {
+				NkString name;
+				float32 duration = 0.f;
+				NkVector<NkGLTFAnimChannel> channels;
+		};
+
+		// Transform local d'un node (TRS) + hierarchie. Sert a evaluer la pose
+		// et a baker les transforms de scene-graph dans les meshes statiques.
+		struct NkGLTFNode {
+				// Nom du node — vide = pas de nom, jamais invente. Rempli par le
+				// chemin FBX (nom du Model, ex. "Skeleton_torso_joint_1", #70) ET
+				// par le chemin glTF (cle "name" optionnelle, ParseGLTFNodes, #69 :
+				// les joints d'un skin sont des nodes, leurs noms alimentent la
+				// distribution de masse anthropometrique cote editeur,
+				// NKAnimPhysics::NkPoseMass::SetAnthropometric). UN SEUL membre :
+				// #69 et #70 l'avaient chacun ajoute a deux endroits de la struct,
+				// sans conflit textuel — git a garde les deux (« duplicate member
+				// 'name' », NKRenderer ne compilait plus sur main). Corrige deux fois
+				// (#68 cote Noge, 41f75ba0 cote NKRenderer), refusionne ici (2026-08-17).
+				//
+				// ⚠ QUATRIEME occurrence corrigee le 2026-08-21, cette fois sur main
+				// lui-meme (la fusion ec69f2ac de feat/nkanimation l avait reintroduite ;
+				// NKRenderer ne compilait plus, 11 fichiers, 22 erreurs). Le commentaire
+				// ci-dessus decrivait DEJA l accident et ne l a pas empeche : une fusion
+				// ne lit pas les commentaires. La seule parade qui marche est mecanique --
+				// AVANT d ajouter un membre a cette struct, faire
+				//     grep -nE "^[[:space:]]*NkString name;" NkGLTFLoader.h
+				// et verifier qu il y en a exactement TROIS, un par struct (NkGLTFMaterial,
+				// NkGLTFAnimation, NkGLTFNode).
+				//
+				// ⚠ L ancre "^[[:space:]]*" n est pas un ornement. La parade a ete ecrite
+				// d abord sans elle -- grep -n "NkString name;" -- et elle rendait QUATRE
+				// resultats sur un fichier sain, parce que la ligne de commentaire
+				// ci-dessus CONTIENT le motif qu elle demande de chercher. Une consigne
+				// qui echoue quand on la suit a la lettre est pire que pas de consigne :
+				// le lecteur conclut qu il reste un doublon, ou apprend a ignorer le
+				// chiffre. L ancre exclut les lignes de commentaire, donc la parade ne se
+				// compte plus elle-meme. Verifie le 2026-08-21 : 3, pas 4.
+				//
+				// Deux membres de meme nom ajoutes a deux
+				// ENDROITS differents de la struct ne produisent AUCUN conflit textuel :
+				// git garde sagement les deux, et l erreur n apparait qu a la compilation.
+				// 4e occurrence le 2026-08-21 : le merge ec69f2ac (feat/nkanimation) a
+				// remis les deux membres, NKRenderer ne compilait plus sur main (22
+				// erreurs, 11 fichiers). Si tu ajoutes un nom ici, CHERCHE d abord.
+				//
+				// ── LIMITE CONNUE, ECRITE FAUTE DE PARADE (2026-08-22) ──────────────
+				// Le 21/08 au soir, `main` et huit branches ont ete corrigees puis
+				// propagees par cherry-pick aux dix arbres. Cela couvre les POINTES des
+				// branches : une fusion depuis l'une d'elles ne peut plus reintroduire le
+				// doublon.
+				//
+				// ⚠️ CE QUE CA NE COUVRE PAS : une branche creee a partir d'une base
+				// ANTERIEURE au correctif. Le reservoir n'est pas dans les branches
+				// vivantes, il est dans l'HISTORIQUE — et l'historique ne se corrige pas.
+				// Une telle branche reintroduira le doublon a sa fusion.
+				//
+				// Pourquoi aucune parade n'est posee ici. Un membre double EST DEJA une
+				// erreur de compilation : une parade n'ajouterait aucune detection, elle
+				// changerait seulement le MOMENT et le LIEU ou on l'apprend. Le cout des
+				// quatre recidives n'a jamais ete « on ne savait pas », c'est « on l'a su
+				// trop tard et ailleurs » — a la compilation, souvent sur la branche de
+				// quelqu'un d'autre.
+				//
+				// La seule parade qui tienne seule a ete REPRODUITE ET MESUREE dans un
+				// depot jetable : `.gitattributes` avec `merge=binary` sur ce fichier rend
+				// un vrai CONFLICT a la fusion, et il est versionne donc present dans les
+				// dix arbres sans installation. Son cout : toute edition concurrente de ce
+				// fichier devient un conflit manuel, soit ~7 changements legitimes par mois.
+				// (Le crochet `pre-merge-commit` a ete teste et ELIMINE : silencieux en
+				// avance rapide, muet sur rebase/cherry-pick, et non versionne.)
+				// Cinq agents editent ce depot en parallele : cette taxe est une decision
+				// de Rodolf, elle lui est posee. Tant qu'elle n'est pas prise, la limite
+				// ci-dessus est ce qu'il faut savoir.
+				NkString name;
+				NkVec3f translation = {0, 0, 0};
+				NkVec4f rotation = {0, 0, 0, 1}; // quaternion (x,y,z,w)
+				NkVec3f scale = {1, 1, 1};
+				bool hasMatrix = false;
+				NkMat4f matrix = NkMat4f::Identity();
+				int32 mesh = -1; // index dans meshes[] (-1 = aucun)
+				NkVector<int32> children;
+		};
+
+		struct NkGLTFMeshData {
+				NkVector<NkVertex3D> vertices;
+				NkVector<uint32> indices;
+				NkVector<NkSubMesh> subMeshes;		// un par primitive
+				NkVector<int32> subMeshMaterial;	// index materiau glTF par submesh (-1 = aucun)
+				NkVector<NkGLTFMaterial> materials; // section glTF materials[]
+				NkVector<NkGLTFImage> images;		// images decodees (CPU)
+				NkAABB bounds;						// englobant global
+				NkString debugName;
+
+				// ── Skinning (rempli si JOINTS_0/WEIGHTS_0 + skins[] presents) ────
+				bool isSkinned = false;
+				NkVector<NkVertexSkinned> skinnedVertices; // parallele a `vertices`
+				NkVector<int32> skinJoints;				   // skins[0].joints[] = node indices
+				NkVector<NkMat4f> inverseBind;			   // inverseBindMatrices[] (par joint)
+				int32 skinRootNode = -1;				   // skins[0].skeleton (optionnel)
+
+				// ── Morph targets (rempli si primitives[].targets presents) ──────
+				// Deltas PAR VERTEX GLOBAL (paralleles a `vertices`, memes offsets
+				// baseVertex que les submeshes ; zeros pour les primitives sans
+				// targets). Deltas BAKES world comme les positions/normales.
+				struct NkGLTFMorphTarget {
+						NkVector<NkVec3f> dPos;	   // delta POSITION (taille = vertices)
+						NkVector<NkVec3f> dNormal; // delta NORMAL (taille = vertices, zeros si absent)
+				};
+				bool hasMorphs = false;
+				NkVector<NkGLTFMorphTarget> morphTargets;
+				NkVector<float32> morphDefaultWeights; // mesh.weights (0 si absent)
+				// (2026-10-02, rig 3D) Les NOMS des cibles : mesh.extras.targetNames, la
+				// convention de Blender et des exporteurs courants. VIDE si le fichier
+				// n'en donne pas (les cibles restent indexees).
+				NkVector<NkString> morphNames;
+				int32 morphNode = -1;				   // node portant le mesh morphe (cible WEIGHTS)
+
+				// ── Scene graph + animations (pour evaluer la pose a un temps t) ──
+				NkVector<NkGLTFNode> nodes;			  // tous les nodes (TRS + children)
+				NkVector<NkGLTFAnimation> animations; // animations[]
+
+				// Copie desactivee (NkImage non copiable) — passe par reference.
+				NkGLTFMeshData() = default;
+				NkGLTFMeshData(const NkGLTFMeshData &) = delete;
+				NkGLTFMeshData &operator=(const NkGLTFMeshData &) = delete;
+				// (05/10) Deplacable : la scene de NkAnimaEditor echange ses personnages.
+				NkGLTFMeshData(NkGLTFMeshData &&) = default;
+				NkGLTFMeshData &operator=(NkGLTFMeshData &&) = default;
+
+				bool IsValid() const {
+					return !vertices.Empty();
+				}
+		};
+
+		// ── Evaluation de pose squelettique ──────────────────────────────────
+		// Echantillonne l'animation `animIdx` au temps `t` (boucle sur la duree),
+		// recompose les transforms locales de chaque node, calcule les transforms
+		// globales (hierarchie), puis ecrit dans `outBones` (taille = nb joints)
+		// les joint matrices = globalTransform(joint) * inverseBind(joint).
+		// Si `animIdx < 0` ou aucune animation : produit la BIND POSE (joints a
+		// partir des TRS statiques des nodes).
+		// Retourne false si data non skinnee.
+		bool EvaluateGLTFPose(const NkGLTFMeshData &data, int32 animIdx, float32 t, NkVector<NkMat4f> &outBones);
+
+		// ── Transforms MONDE par joint (pour l'IK + rendu squelette) ──────────
+		// Comme EvaluateGLTFPose mais sort les matrices MONDE de chaque joint
+		// (= globalTransform(joint), SANS l'inverseBind) dans `outWorld`, et le
+		// parent de chaque joint EN INDICE DE JOINT (ou -1) dans `outParentJoint`.
+		// La position monde d'un joint = colonne translation de outWorld[j].
+		// Sert a NkIKSystem (chaine sur un membre reel) et au debug-draw squelette.
+		// Retourne false si data non skinnee.
+		bool EvaluateGLTFWorldJoints(const NkGLTFMeshData &data, int32 animIdx, float32 t, NkVector<NkMat4f> &outWorld,
+									 NkVector<int32> &outParentJoint);
+
+		// ── Morph targets ─────────────────────────────────────────────────────
+		// Echantillonne les canaux WEIGHTS de l'animation `animIdx` au temps `t`
+		// (boucle sur la duree) et ecrit les poids dans `outWeights` (taille =
+		// nb de morph targets). Si animIdx < 0, pas d'animation ou pas de canal
+		// WEIGHTS : sort morphDefaultWeights (ou des zeros). LINEAR/STEP ;
+		// CUBICSPLINE traite comme LINEAR (valeur centrale). Retourne false si
+		// data sans morph targets.
+		bool EvaluateGLTFMorphWeights(const NkGLTFMeshData &data, int32 animIdx, float32 t,
+									  NkVector<float32> &outWeights);
+
+		// Applique les morph targets sur CPU : outVerts = vertices de base +
+		// somme(weights[i] * deltas[i]) (positions ET normales, normales
+		// renormalisees). `outVerts` est redimensionne. Le resultat s'uploade
+		// via NkMeshSystem::UpdateVertices(mesh, outVerts.Data(), count).
+		// count = min(weightCount, morphTargets.Size()). Retourne false si
+		// data sans morph targets.
+		bool ApplyGLTFMorphCPU(const NkGLTFMeshData &data, const float32 *weights, uint32 weightCount,
+							   NkVector<NkVertex3D> &outVerts);
+
+		// Variante SKINNEE : base = data.skinnedVertices (parallele a vertices,
+		// memes deltas par index global). Le morph s'applique AVANT le skinning
+		// GPU : uploader outVerts sur le VBO skinne (mesh dynamic), les bones
+		// (boneIdx/boneWeight) sont preserves tels quels. C'est le chemin
+		// "visage morphe sur personnage squelette" (NkAnima).
+		bool ApplyGLTFMorphCPUSkinned(const NkGLTFMeshData &data, const float32 *weights, uint32 weightCount,
+									  NkVector<NkVertexSkinned> &outVerts);
+
+		// Charge un fichier glTF 2.0 (.gltf ou .glb) dans `out`.
+		// path : chemin du fichier (les .bin externes sont resolus relativement
+		//        au dossier de `path`).
+		// Retourne true si au moins une primitive a ete chargee.
+		// En cas d'echec (fichier introuvable, JSON invalide, aucune geometrie),
+		// retourne false et log un warning ; `out` reste vide.
+		bool LoadGLTF(const NkString &path, NkGLTFMeshData &out);
+
+	} // namespace renderer
+} // namespace nkentseu

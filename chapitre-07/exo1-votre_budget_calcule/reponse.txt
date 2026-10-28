@@ -1,0 +1,8 @@
+La fréquence de mon écran :
+La fréquence de l'écran est dictée par la synchronisation verticale de l'application, entraînant un rythme moyen mesuré d'environ 70.5 ms par image (soit une cadence effective d'environ 14 images par seconde dans ces conditions de test synchronisées).
+
+La cadence que je tiens :
+La cadence mesurée ne tient aucun des budgets stricts de la VR (72, 90 ou 120 Hz, qui exigent respectivement un maximum de 13.89 ms, 11.11 ms et 8.33 ms par image). La moyenne de 70.512 ms dépasse largement ces seuils, révélant que le pipeline actuel est lourdement entravé par l'attente de la synchronisation de l'affichage ou par le coût des passes de rendu graphique.
+
+Ce quod dit le maximum :
+Le maximum enregistré s'élève à 1447.938 ms (plus d'une seconde et demie). Ce pic colossal correspond généralement au temps de chargement initial, à la compilation à chaud des shaders (pipeline PBR) ou à un gel transitoire du système lors des premières frames, illustrant à quel point un unique pic de latence en VR détruirait totalement l'immersion et provoquerait de la nausée chez l'utilisateur.

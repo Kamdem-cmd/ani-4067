@@ -1,0 +1,323 @@
+[2026-10-28 08:47:38.573] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 21px
+
+[2026-10-28 08:47:38.597] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 2048x2048, 2125 points non nuls
+
+[2026-10-28 08:47:38.618] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 17px
+
+[2026-10-28 08:47:38.636] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 1493 points non nuls
+
+[2026-10-28 08:47:38.652] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 13px
+
+[2026-10-28 08:47:38.675] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 956 points non nuls
+
+[2026-10-28 08:47:38.702] [INF] [default] [NkAppFonts.h:25 in NkLoadFallbackFonts] -> [NKCode] polices de repli : C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/
+
+[2026-10-28 08:47:38.729] [WRN] [default] [NkContextFactory.cpp:46 in Create] -> [NkContextFactory][DBG] Create begin api=DirectX 11
+[2026-10-28 08:47:38.729] [INF] [default] [NkGpuPolicy.cpp:114 in ApplyPreContext] -> [NkGpuPolicy] api=DirectX 11 pref=Default vendor=Any adapterIndex=-1
+[2026-10-28 08:47:38.729] [WRN] [default] [NkContextFactory.cpp:95 in Create] -> [NkContextFactory][DBG] Context allocated ptr=0x1f67204a688
+[2026-10-28 08:47:38.729] [WRN] [default] [NkContextFactory.cpp:97 in Create] -> [NkContextFactory][DBG] Initialize begin
+[2026-10-28 08:47:38.958] [INF] [default] [NkDX11Context.cpp:208 in CreateDeviceAndSwapchain] -> [NkDX11] D3D11CreateDevice OK with 11_1+ (chosen FL=0xB100)
+
+[2026-10-28 08:47:38.958] [INF] [default] [NkDX11Context.cpp:242 in CreateDeviceAndSwapchain] -> [NkDX11] Using adapter #0 vendor=0x8086 device=0x5916
+
+[2026-10-28 08:47:38.966] [INF] [default] [NkDX11Context.cpp:269 in CreateDeviceAndSwapchain] -> [NkDX11] Device+Swapchain OK (feature level B100, VRAM 128 MB)
+
+[2026-10-28 08:47:38.968] [INF] [default] [NkDX11Context.cpp:144 in Initialize] -> [NkDX11] Ready a?" DirectX 11 | VRAM 128 MB
+
+[2026-10-28 08:47:38.968] [WRN] [default] [NkContextFactory.cpp:103 in Create] -> [NkContextFactory][DBG] Initialize success
+[2026-10-28 08:47:38.968] [INF] [default] [NkContextFactory.cpp:105 in Create] -> [NkContextFactory] Context created: DirectX 11
+
+[2026-10-28 08:47:38.968] [INF] [default] [NkRenderer2DFactory.cpp:39 in Create] -> [NkRenderer2DFactory] Creating 2D renderer for API: DirectX 11
+[2026-10-28 08:47:39.015] [INF] [default] [NkDX11Renderer2D.cpp:317 in Initialize] -> [NkDX11-2D] Initialized
+[2026-10-28 08:47:39.015] [INF] [default] [NkRenderer2DFactory.cpp:102 in Create] -> [NkRenderer2DFactory] 2D renderer created: DirectX 11
+[2026-10-28 08:47:39.032] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 16px
+
+[2026-10-28 08:47:39.046] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'DejaVuSansMono' chargee : 16px
+
+[2026-10-28 08:47:39.051] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSans-Regular.ttf(569208o)
+
+[2026-10-28 08:47:39.065] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSansSC-Regular.ttf(10559284o)
+
+[2026-10-28 08:47:39.660] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():32023 glyphes rasterises, atlas 4096x4096, 51198 points non nuls
+
+[2026-10-28 08:47:40.113] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-28 08:47:40.121] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-28 08:47:40.149] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-28 08:47:40.160] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-28 08:47:40.191] [INF] [default] [: in ] -> [nkcode] dossier de l'executable : C:/Users/SMART/AppData/Local/Programs/NKCode
+[2026-10-28 08:47:40.191] [INF] [default] [: in ] -> [nkcode] emplacement : C:\Users\SMART\AppData\Local\NKCode\emplacement.cfg (deja a jour)
+[2026-10-28 08:47:40.191] [INF] [default] [: in ] -> [nkcode] Jenga EMBARQUE actif (aucun Python systeme requis)
+[2026-10-28 08:47:40.198] [INF] [default] [: in ] -> [nkcode] constructions : Jenga embarque, dans NKCode (aucun Python a installer)
+[2026-10-28 08:47:40.201] [INF] [default] [NkAppIcons.h:238 in NkChargerJeuIcones] -> [NKCode] textures (logo, icones) : C:/Users/SMART/AppData/Local/Programs/NKCode/data/textures/
+
+[2026-10-28 08:47:40.223] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? actuel ? (Actuel) catalogue : C:/Users/SMART/AppData/Local/Programs/NKCode/data/textures/icon/
+
+[2026-10-28 08:47:40.223] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? pastilles ? (Pastilles) integre : C:/Users/SMART/AppData/Local/Programs/NKCode/data/extensions/pastilles/
+
+[2026-10-28 08:47:40.223] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? trait ? (Trait) catalogue : C:/Users/SMART/AppData/Local/Programs/NKCode/data/extensions/trait/
+
+[2026-10-28 08:47:42.496] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-28 08:47:42.952] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-28 08:47:42.958] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 08:47:42.982] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1615 points non nuls
+
+[2026-10-28 08:47:43.000] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
+[2026-10-28 08:47:43.018] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-28 08:47:43.027] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-28 08:47:43.102] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 15px
+
+[2026-10-28 08:47:43.115] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'DejaVuSansMono' chargee : 15px
+
+[2026-10-28 08:47:43.127] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSans-Regular.ttf(569208o)
+
+[2026-10-28 08:47:43.136] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSansSC-Regular.ttf(10559284o)
+
+[2026-10-28 08:47:43.798] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():32023 glyphes rasterises, atlas 4096x4096, 45836 points non nuls
+
+[2026-10-28 08:47:44.297] [INF] [default] [: in ] -> [ac] index projet PRET: 3622 types, 55966 membres, 4378 fonctions
+[2026-10-28 08:47:44.370] [INF] [default] [: in ] -> [term] demarre dans: D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle
+[2026-10-28 08:47:44.511] [INF] [default] [: in ] -> [jenga-embed] NKCode est lance sans console : flux standard absents a la creation de l'interpreteur : stdout stderr stdin
+[2026-10-28 08:47:44.511] [INF] [default] [: in ] -> [jenga] info (embarque) : 30 ligne(s), 1 projet(s), 8 chaine(s) de compilation
+[2026-10-28 08:47:45.008] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-28 08:47:45.039] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-28 08:47:45.383] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-28 08:47:51.281] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2015.59 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-28 08:47:52.741] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 89 image(s) (3475.24 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-28 08:48:07.844] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-28 08:48:07.963] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-28 08:48:08.208] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
+[2026-10-28 08:48:08.208] [INF] [default] [: in ] -> [term] demarre dans: D:/ENSPY/AN-GAP_4/teguis
+[2026-10-28 08:48:08.223] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-28 08:48:08.223] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-28 09:01:52.467] [INF] [default] [: in ] -> [hover] 'with' L20:C6 -> (rien)
+[2026-10-28 09:01:53.618] [INF] [default] [: in ] -> [hover] 'Add' L23:C6 -> type Add
+[2026-10-28 09:01:57.681] [INF] [default] [: in ] -> [hover] 'Unitest' L19:C23 -> use Unitest
+[2026-10-28 09:02:06.660] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
+[2026-10-28 09:02:08.225] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
+[2026-10-28 09:02:08.892] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
+[2026-10-28 09:02:09.655] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
+[2026-10-28 09:02:10.283] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
+[2026-10-28 09:02:12.272] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
+[2026-10-28 09:02:14.310] [INF] [default] [: in ] -> [hover] 'Cours' L14:C15 -> (rien)
+[2026-10-28 09:02:19.279] [INF] [default] [: in ] -> [hover] 'R3D' L14:C38 -> (rien)
+[2026-10-28 09:02:27.941] [INF] [default] [: in ] -> [hover] 'Ma' L14:C38 -> (rien)
+[2026-10-28 09:02:37.309] [INF] [default] [: in ] -> [hover] 'MaSalle' L14:C38 -> (rien)
+[2026-10-28 09:02:43.085] [INF] [default] [: in ] -> [hover] 'MaSalle' L14:C38 -> (rien)
+[2026-10-28 09:03:18.484] [INF] [default] [: in ] -> [hover] 'exo1' L30:C18 -> (rien)
+[2026-10-28 09:03:19.403] [INF] [default] [: in ] -> [hover] 'l_image_qui_n_existe_pas' L33:C23 -> (rien)
+[2026-10-28 09:03:42.388] [INF] [default] [: in ] -> [lsp] 8 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\formats.cpp
+[2026-10-28 09:03:46.417] [INF] [default] [: in ] -> [lsp] 8 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
+[2026-10-28 09:04:11.866] [INF] [default] [: in ] -> [hover] 'plus' L8:C14 -> le plus
+[2026-10-28 09:05:12.707] [INF] [default] [: in ] -> [hover] 'exo2' L33:C18 -> (rien)
+[2026-10-28 09:05:16.020] [INF] [default] [: in ] -> [hover] 'exo2' L33:C18 -> (rien)
+[2026-10-28 09:05:47.376] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\inexistant.cpp
+[2026-10-28 09:05:55.983] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-28 09:06:08.177] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-28 09:06:08.209] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.225] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1823 points non nuls
+
+[2026-10-28 09:06:08.246] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-28 09:06:08.248] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.265] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1753 points non nuls
+
+[2026-10-28 09:06:08.279] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-28 09:06:08.280] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.295] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1461 points non nuls
+
+[2026-10-28 09:06:08.307] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-28 09:06:08.308] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.323] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1289 points non nuls
+
+[2026-10-28 09:06:08.337] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-28 09:06:08.339] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.358] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 2048x2048, 2169 points non nuls
+
+[2026-10-28 09:06:08.412] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-28 09:06:08.414] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.429] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1561 points non nuls
+
+[2026-10-28 09:06:08.456] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Medium.ttf(342808o)
+
+[2026-10-28 09:06:08.460] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.483] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1848 points non nuls
+
+[2026-10-28 09:06:08.506] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-28 09:06:08.507] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:06:08.525] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1528 points non nuls
+
+[2026-10-28 09:06:25.591] [INF] [default] [: in ] -> [hover] 'texture' L8:C19 -> une texture
+[2026-10-28 09:06:58.723] [INF] [default] [: in ] -> [hover] 'projet' L36:C46 -> (rien)
+[2026-10-28 09:07:03.084] [INF] [default] [: in ] -> [hover] 'exo3' L36:C18 -> (rien)
+[2026-10-28 09:07:24.880] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\mur.cpp
+[2026-10-28 09:07:32.229] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 09:07:50.599] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\consolab.ttf(397896o)
+
+[2026-10-28 09:07:50.601] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:07:50.616] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2214 glyphes rasterises, atlas 1024x1024, 1257 points non nuls
+
+[2026-10-28 09:07:50.739] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Medium.ttf(342808o)
+
+[2026-10-28 09:07:50.740] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:07:50.755] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1494 points non nuls
+
+[2026-10-28 09:07:50.787] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\consola.ttf(459180o)
+
+[2026-10-28 09:07:50.790] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:07:50.803] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2302 glyphes rasterises, atlas 1024x1024, 1288 points non nuls
+
+[2026-10-28 09:07:55.585] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2011.31 ms : porte(s) R(saisie reservee) ; popupDepth 1 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-28 09:08:21.415] [INF] [default] [: in ] -> [hover] 'include' L54:C9 -> with include(")
+[2026-10-28 09:08:49.798] [INF] [default] [: in ] -> [hover] 'exo4' L39:C18 -> (rien)
+[2026-10-28 09:08:52.103] [INF] [default] [: in ] -> [hover] 'exo4' L39:C18 -> (rien)
+[2026-10-28 09:09:09.704] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo4-le_chemin_long_provoque\main.cpp
+[2026-10-28 09:09:17.472] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo4-le_chemin_long_provoque\chemin.cpp
+[2026-10-28 09:10:19.620] [INF] [default] [: in ] -> [hover] 'exo5' L42:C18 -> (rien)
+[2026-10-28 09:10:42.469] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\main.cpp
+[2026-10-28 09:10:53.125] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-28 09:11:56.792] [INF] [default] [: in ] -> [hover] 'exo7' L45:C18 -> (rien)
+[2026-10-28 09:11:58.560] [INF] [default] [: in ] -> [hover] 'exo6' L45:C18 -> (rien)
+[2026-10-28 09:12:02.458] [INF] [default] [: in ] -> [hover] 'exo6' L45:C18 -> (rien)
+[2026-10-28 09:12:17.860] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\main.cpp
+[2026-10-28 09:12:23.856] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-28 09:12:54.468] [INF] [default] [: in ] -> [hover] 'exo10' L51:C18 -> (rien)
+[2026-10-28 09:13:43.698] [INF] [default] [: in ] -> [hover] 'exo7' L48:C18 -> (rien)
+[2026-10-28 09:14:05.130] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo7-la_latence_injectee_et_la_borne\poser.cpp
+[2026-10-28 09:14:11.454] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo7-la_latence_injectee_et_la_borne\latence.cpp
+[2026-10-28 09:14:30.377] [INF] [default] [: in ] -> [hover] 'include' L51:C9 -> with include(")
+[2026-10-28 09:14:56.182] [INF] [default] [: in ] -> [hover] 'exo10' L51:C18 -> (rien)
+[2026-10-28 09:14:57.392] [INF] [default] [: in ] -> [hover] 'exo8' L51:C18 -> (rien)
+[2026-10-28 09:15:19.060] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo8-la_stabilite_mesuree\lumiere.cpp
+[2026-10-28 09:15:30.188] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo8-la_stabilite_mesuree\stabilite.cpp
+[2026-10-28 09:15:44.199] [INF] [default] [: in ] -> [hover] 'activation' L8:C2 -> (rien)
+[2026-10-28 09:16:14.210] [INF] [default] [: in ] -> [hover] 'exo11' L54:C18 -> (rien)
+[2026-10-28 09:16:25.910] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo9-le_verrou_de_demi_cadence\budget.cpp
+[2026-10-28 09:16:32.243] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo9-le_verrou_de_demi_cadence\verrou.cpp
+[2026-10-28 09:17:25.831] [INF] [default] [: in ] -> [hover] 'les_quatre_attenuations' L57:C24 -> (rien)
+[2026-10-28 09:17:30.085] [INF] [default] [: in ] -> [hover] 'exo12' L57:C18 -> (rien)
+[2026-10-28 09:17:31.694] [INF] [default] [: in ] -> [hover] 'exo10' L57:C18 -> (rien)
+[2026-10-28 09:17:53.451] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo10-un_meilleur_modele\main.cpp
+[2026-10-28 09:17:56.659] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo10-un_meilleur_modele\modeles.cpp
+[2026-10-28 09:18:56.318] [INF] [default] [: in ] -> [hover] 'trois_couleurs_identiques' L33:C23 -> (rien)
+[2026-10-28 09:19:03.321] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Bold.ttf(343972o)
+
+[2026-10-28 09:19:03.323] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:19:03.338] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1877 points non nuls
+
+[2026-10-28 09:19:09.423] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-28 09:19:09.425] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:19:09.441] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 2025 points non nuls
+
+[2026-10-28 09:19:27.944] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-28 09:19:27.946] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:19:27.966] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 2048x2048, 3456 points non nuls
+
+[2026-10-28 09:19:28.026] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\consola.ttf(459180o)
+
+[2026-10-28 09:19:28.028] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-28 09:19:28.041] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2302 glyphes rasterises, atlas 1024x1024, 1412 points non nuls
+
+[2026-10-28 09:24:50.147] [INF] [default] [: in ] -> [hover] 'with' L45:C4 -> (rien)
+[2026-10-28 09:25:36.136] [INF] [default] [: in ] -> [hover] 'deux_triangles_deux_couleurs' L45:C23 -> (rien)
+[2026-10-28 09:26:01.070] [INF] [default] [: in ] -> [hover] 'le_triangle_qui_ne_s_affiche_pas' L30:C23 -> (rien)
+[2026-10-28 09:26:06.228] [INF] [default] [: in ] -> [hover] 'exo1' L30:C18 -> (rien)
+[2026-10-28 09:26:25.458] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo1-le_carre_des_deux_facons\maille.cpp
+[2026-10-28 09:27:30.150] [INF] [default] [: in ] -> [hover] 'trois_couleurs_identiques' L33:C23 -> (rien)
+[2026-10-28 09:28:00.420] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo2-l_ordre_des_index\main-uni.cpp
+[2026-10-28 09:28:03.882] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo2-l_ordre_des_index\main-deux.cpp
+[2026-10-28 09:28:05.851] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo2-l_ordre_des_index\main.cpp
+[2026-10-28 09:28:07.158] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo2-l_ordre_des_index\maillage.cpp
+[2026-10-28 09:29:11.738] [INF] [default] [: in ] -> [hover] 'projet' L36:C42 -> (rien)
+[2026-10-28 09:29:17.303] [INF] [default] [: in ] -> [hover] 'exo3' L36:C18 -> (rien)
+[2026-10-28 09:29:37.060] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo3-casser_le_tableau_en_deliant\main.cpp
+[2026-10-28 09:30:32.187] [INF] [default] [: in ] -> [hover] 'projet' L39:C54 -> (rien)
+[2026-10-28 09:30:35.031] [INF] [default] [: in ] -> [hover] 'exo4' L39:C18 -> (rien)
+[2026-10-28 09:30:36.147] [INF] [default] [: in ] -> [hover] 'exo4' L39:C18 -> (rien)
+[2026-10-28 09:30:43.680] [INF] [default] [: in ] -> [hover] 'exo4' L39:C18 -> (rien)
+[2026-10-28 09:31:05.824] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo4-la_grille_calculee_puis_franchie\maillage.cpp
+[2026-10-28 09:32:00.634] [INF] [default] [: in ] -> [hover] 'exo5' L42:C18 -> (rien)
+[2026-10-28 09:32:19.747] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo5-l_uniforme_qui_disparait\main-faute4.cpp
+[2026-10-28 09:32:24.137] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo5-l_uniforme_qui_disparait\main.cpp
+[2026-10-28 09:33:07.370] [INF] [default] [: in ] -> [hover] 'deux_triangles_deux_couleurs' L45:C23 -> (rien)
+[2026-10-28 09:33:15.424] [INF] [default] [: in ] -> [hover] 'exo6' L45:C18 -> (rien)
+[2026-10-28 09:33:35.147] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo6-cent_objets_un_tampon\un-tampon.cpp
+[2026-10-28 09:33:35.328] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo6-cent_objets_un_tampon\deux-tampons.cpp
+[2026-10-28 09:33:38.167] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo6-cent_objets_un_tampon\main.cpp
+[2026-10-28 09:33:38.839] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo6-cent_objets_un_tampon\nuanceur.cpp
+[2026-10-28 09:35:13.088] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo7-le_cache_retire\contextes.cpp
+[2026-10-28 09:35:14.626] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo7-le_cache_retire\main.cpp
+[2026-10-28 09:35:17.176] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo7-le_cache_retire\nuanceur.cpp
+[2026-10-28 09:35:37.081] [INF] [default] [: in ] -> [hover] 'lire_le_tampon_rendu' L54:C23 -> (rien)
+[2026-10-28 09:36:10.612] [INF] [default] [: in ] -> [hover] 'le_nuanceur_qui_coute_cher' L51:C23 -> (rien)
+[2026-10-28 09:36:33.947] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo8-deux_maillages_un_seul_tampon\maillage.cpp
+[2026-10-28 09:36:37.570] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo8-deux_maillages_un_seul_tampon\main.cpp
+[2026-10-28 09:37:45.357] [INF] [default] [: in ] -> [hover] 'exo9' L54:C18 -> (rien)
+[2026-10-28 09:38:07.431] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo9-le_tampon_qui_change_a_chaque_image\maillage.cpp
+[2026-10-28 09:38:58.105] [INF] [default] [: in ] -> [hover] 'exo10' L57:C18 -> (rien)
+[2026-10-28 09:38:59.345] [INF] [default] [: in ] -> [hover] 'votre_classe_de_maillage_eprouvee' L57:C24 -> (rien)
+[2026-10-28 09:39:21.152] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo10-un_tampon_d_uniformes\uniform.cpp
+[2026-10-28 22:24:51.315] [INF] [default] [: in ] -> [lsp] 2 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
+[2026-10-28 22:24:51.315] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
+[2026-10-28 22:25:05.548] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2007.35 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-28 22:25:06.469] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 94 image(s) (2928.86 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-28 22:25:15.328] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-28 22:25:15.469] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-28 22:25:15.671] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
+[2026-10-28 22:25:15.680] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-28 22:25:15.680] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-28 22:25:15.714] [INF] [default] [: in ] -> [term] demarre dans: D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07
+[2026-10-28 22:25:22.832] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2005.73 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-28 22:25:34.622] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-28 22:25:34.624] [INF] [default] [: in ] -> [lsp] compile_commands.json : 10 entree(s)
+[2026-10-28 22:25:34.732] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-28 22:25:34.732] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-28 22:25:36.020] [INF] [default] [: in ] -> [jenga] info (embarque) : 39 ligne(s), 10 projet(s), 8 chaine(s) de compilation
+[2026-10-28 22:25:39.729] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 554 image(s) (16600 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : A(appModal) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : deroulant de la barre
+[2026-10-28 22:31:47.636] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
+[2026-10-28 22:31:47.768] [INF] [default] [: in ] -> [lsp] 2 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
+[2026-10-28 22:31:53.202] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
+[2026-10-28 22:39:02.596] [INF] [default] [: in ] -> [hover] 'mediane' L5:C33 -> (rien)
+[2026-10-28 22:39:21.738] [INF] [default] [: in ] -> [hover] 'sans' L5:C0 -> (rien)
+[2026-10-28 22:39:35.342] [INF] [default] [: in ] -> [hover] 'critique' L8:C336 -> (rien)
+[2026-10-28 22:39:37.475] [INF] [default] [: in ] -> [hover] 'garantir' -> (commentaire/chaine)
+[2026-10-28 22:39:38.072] [INF] [default] [: in ] -> [ui] barre H : clic (maxScrollX=2155, wrap=0)
+[2026-10-28 22:39:41.438] [INF] [default] [: in ] -> [ui] barre H : clic (maxScrollX=2155, wrap=0)
+[2026-10-28 22:41:06.101] [INF] [default] [: in ] -> [hover] 'avec' L8:C44 -> ms avec
+[2026-10-28 22:46:15.827] [INF] [default] [: in ] -> [hover] 'mediane' L5:C33 -> (rien)
+[2026-10-28 22:47:47.890] [INF] [default] [: in ] -> [hover] 'ecran' L7:C0 -> (rien)
+[2026-10-28 22:49:10.583] [INF] [default] [: in ] -> [hover] 'budget' L4:C0 -> (rien)
+[2026-10-28 22:49:30.988] [INF] [default] [: in ] -> [hover] 'attente' L8:C49 -> avec attente
+[2026-10-28 22:50:31.480] [INF] [default] [: in ] -> [hover] 'unique' L8:C300 -> un unique
+[2026-10-28 22:50:37.265] [INF] [default] [: in ] -> [hover] 'frames' L8:C264 -> premieres frames
+[2026-10-28 22:50:38.600] [INF] [default] [: in ] -> [ui] barre H : clic (maxScrollX=1646, wrap=0)

@@ -1,0 +1,7 @@
+# jcdb/1  Jenga Compilation DataBase
+compiler	C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/x86_64-w64-mingw32-clang++.exe
+msvc	0
+project	MaSalle
+dir	D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle
+std	c++17
+inc	D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle\Kits\R3D\include

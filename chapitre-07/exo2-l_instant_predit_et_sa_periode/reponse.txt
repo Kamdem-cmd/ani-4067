@@ -1,0 +1,8 @@
+Ce qui est stable :
+Ce qui est stable, c'est l'écart théorique calculé entre l'instant prédit et l'instant présent (`predit - maintenant`), qui vaut toujours exactement la période de la cadence injectée (13.889 ms à 72 Hz). Ce qui ne l'est pas, c'est l'intervalle réel entre deux images (`maintenant` d'une image à l'autre), car le moteur prend en réalité environ 70 ms à 90 ms par image sous la charge de calcul actuelle. La prédiction linéaire théorique est stable dans sa formule mathématique, mais elle échoue à anticiper le comportement réel de l'affichage si le budget n'est pas tenu.
+
+Un divisé par la cadence :
+Les quatre périodes obtenues par la division 1000 / HZ correspondent rigoureusement aux attentes : 16.667 ms pour 60 Hz, 13.889 ms pour 72 Hz, 11.111 ms pour 90 Hz et 8.333 ms pour 120 Hz. Augmenter la cadence cible réduit mécaniquement la période allouée, resserrant la fenêtre de prédiction.
+
+La période de mon écran :
+Les valeurs positives et élevées de `reel - predit` (variant de 53.047 ms à 90.715 ms) montrent que l'image suivante arrive systématiquement très en retard par rapport à l'instant qui avait été prédit à l'image précédente. L'écart mesuré reflète le temps de rendu réel de la scène sur la machine (entre 70 ms et 90 ms par frame), prouvant que la période réelle de rendu est bien supérieure aux périodes théoriques ciblées par la simulation VR.

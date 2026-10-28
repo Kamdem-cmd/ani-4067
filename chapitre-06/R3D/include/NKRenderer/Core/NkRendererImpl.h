@@ -1,0 +1,298 @@
+#pragma once
+// =============================================================================
+// NkRendererImpl.h  — NKRenderer v4.0
+// AUTEUR : TEUGUIA TADJUIDJE Rodolf Séderis — Rihen
+// Implémentation concrète de NkRenderer.
+// Possède tous les sous-systèmes. Thread-safe sur Init/Shutdown.
+// =============================================================================
+#include "NKRenderer/NkRenderer.h"
+#include "NkRenderGraph.h"
+#include "NkTextureLibrary.h"
+#include "NkResources.h"
+#include "NKRenderer/Shader/NkShaderLibrary.h"
+#include "NKRenderer/Mesh/NkMeshSystem.h"
+#include "NKRenderer/Materials/NkMaterialSystem.h"
+#include "NKRenderer/Materials/NkMaterialLibrary.h"
+#include "NKRenderer/Tools/Render2D/NkRender2D.h"
+#include "NKRenderer/Tools/Render3D/NkRender3D.h"
+#include "NKRenderer/Tools/Text/NkTextRenderer.h"
+#include "NKRenderer/Tools/Shadow/NkShadowSystem.h"
+#include "NKRenderer/Tools/Shadow/NkVirtualShadowMaps.h"
+#include "NKRenderer/Tools/Environment/NkEnvironmentSystem.h"
+#include "NKRenderer/Tools/PostProcess/NkPostProcessStack.h"
+#include "NKRenderer/Tools/Overlay/NkOverlayRenderer.h"
+#include "NKRenderer/Tools/Offscreen/NkOffscreenTarget.h"
+#include "NKRenderer/Tools/VFX/NkVFXSystem.h"
+#include "NKAnima/Clip/NkAnimation.h"
+#include "NKRenderer/Tools/Animation/NkAnimationSystem.h"
+#include "NKRenderer/Tools/Simulation/NkSimulationRenderer.h"
+#include "NKCore/NkAtomic.h"
+#include "NKMemory/NkUniquePtr.h"
+
+namespace nkentseu {
+	namespace renderer {
+
+		class NkRendererImpl final : public NkRenderer {
+			public:
+				NkRendererImpl(NkIDevice *device, const NkRendererConfig &cfg);
+				~NkRendererImpl() override;
+
+				// NkRenderer interface
+				bool Initialize() override;
+				void Shutdown() override;
+
+				bool IsValid() const override {
+					return mInitialized;
+				}
+
+				bool BeginFrame() override;
+				void EndFrame() override;
+				void Present() override;
+
+				void SetFrameRateCap(float32 fps) override {
+					mFrameCapFps = (fps > 0.f) ? fps : 0.f;
+				}
+
+				float32 GetFrameRateCap() const override {
+					return mFrameCapFps;
+				}
+
+				void OnResize(uint32 w, uint32 h) override;
+
+				NkRenderGraph *GetRenderGraph() override {
+					return mRenderGraph.Get();
+				}
+
+				NkTextureLibrary *GetTextures() override {
+					return mTextures.Get();
+				}
+
+				NkShaderLibrary *GetShaders() override {
+					return mShaders.Get();
+				}
+
+				NkMeshSystem *GetMeshSystem() override {
+					return mMeshSystem.Get();
+				}
+
+				NkMaterialSystem *GetMaterials() override {
+					return mMaterials.Get();
+				}
+
+				NkRender2D *GetRender2D() override {
+					return mRender2D.Get();
+				}
+
+				NkRender3D *GetRender3D() override {
+					return mRender3D.Get();
+				}
+
+				class NkMaterialCollection *GetMaterialCollection() override {
+					return mMaterialCollection.Get();
+				}
+
+				NkTextRenderer *GetTextRenderer() override {
+					return mTextRenderer.Get();
+				}
+
+				NkPostProcessStack *GetPostProcess() override {
+					return mPostProcess.Get();
+				}
+
+				NkOverlayRenderer *GetOverlay() override {
+					return mOverlay.Get();
+				}
+
+				NkVirtualShadowMaps *GetShadow() override {
+					return mShadow.Get();
+				}
+
+				NkEnvironmentSystem *GetEnvironment() override {
+					return mEnvironment.Get();
+				}
+
+				NkVFXSystem *GetVFX() override {
+					return mVFX.Get();
+				}
+
+				NkAnimationSystem *GetAnimation() override {
+					return mAnimation.Get();
+				}
+
+				NkSimulationRenderer *GetSimulation() override {
+					return mSimulation.Get();
+				}
+
+				NkOffscreenTarget *CreateOffscreen(const NkOffscreenDesc &desc) override;
+				void DestroyOffscreen(NkOffscreenTarget *&t) override;
+				void SetFinalColorTarget(NkTextureHandle target) override;
+				void SetFinalColorTargetMirror(NkTextureHandle target, bool mirrorToScreen) override;
+				void SetRenderSizeOverride(uint32 w, uint32 h) override;
+				void SetBackgroundColor(NkVec4f rgba) override;
+
+				// Callback UI applicatif (NKUI & co) exécuté en fin de passe
+				// Overlay2D — cf. NkRenderer.h. [AJOUT 2026-07-25]
+				void SetUIOverlayCallback(const NkUIOverlayCallback &cb) override;
+
+				class NkPlanarReflectionSystem *GetPlanarReflection() override {
+					return mPlanarReflection.Get();
+				}
+
+				class NkVoxelAOSystem *GetVoxelAO() override {
+					return mVoxelAO.Get();
+				}
+
+				void SetVSync(bool e) override;
+				void SetPostConfig(const NkPostConfig &pp) override;
+				void SetWireframe(bool e) override;
+				void FlushGraphRebuilds() override;
+
+				// Runtime subsystem toggle
+				bool EnableSubsystem(NkSubsystemFlags flags) override;
+				void DisableSubsystem(NkSubsystemFlags flags) override;
+				bool IsSubsystemActive(NkSubsystemFlags flags) const override;
+				NkSubsystemFlags GetActiveSubsystems() const override;
+
+				const NkRendererStats &GetStats() const override {
+					return mStats;
+				}
+
+				void ResetStats() override {
+					mStats.Reset();
+				}
+
+				NkIDevice *GetDevice() const override {
+					return mDevice;
+				}
+
+				NkICommandBuffer *GetCmd() const override {
+					return mCmd;
+				}
+
+				uint32 GetFrameIndex() const override {
+					return mFrameIndex;
+				}
+
+				uint32 GetWidth() const override {
+					return mCfg.width;
+				}
+
+				uint32 GetHeight() const override {
+					return mCfg.height;
+				}
+
+				const NkRendererConfig &GetConfig() const override {
+					return mCfg;
+				}
+
+			private:
+				NkIDevice *mDevice = nullptr;
+				NkRendererConfig mCfg;
+				NkICommandBuffer *mCmd = nullptr;
+				NkISwapchain *mSwapchain = nullptr;
+				uint32 mFrameIndex = 0;
+				// Cap FPS (pacing haute précision dans Present). 0 = illimité.
+				// Init depuis NK_FPS_CAP dans Initialize. mPaceNs = timestamp (ns) de
+				// fin de la frame précédente pour mesurer la période.
+				float32 mFrameCapFps = 0.f;
+				float64 mPaceNs = 0.0;
+				// Depart de la frame courante (ns) : sert au cpuTimeMs des stats.
+				float64 mCpuFrameStartNs = 0.0;
+				uint32 mFrameCounter = 0; // throttle counter for hot-reload polling
+				NkFrameContext mFrameCtx;
+				bool mInitialized = false;
+				NkRendererStats mStats;
+				// SONDE NK_AGENT_TONELDR=<png> : relecture BRUTE du transient ToneLDR,
+				// l'ENTREE de FXAA, lignes telles que STOCKEES (aucune convention de
+				// relecteur appliquee). Une seule prise par processus.
+				NkBufferHandle mDbgToneBuf;
+				bool mDbgTonePending = false, mDbgToneDone = false;
+				uint32 mDbgToneW = 0, mDbgToneH = 0;
+
+				// ── ETAT DE FRAME — garde G1 (2026-08-27) ────────────────────────
+				// Present() et EndFrame() portent des noms qui disent l'INVERSE de ce
+				// qu'ils font : Present() execute le graphe, ferme le command buffer
+				// et SOUMET ; EndFrame() ne fait que clore la frame device. Appeles
+				// dans l'ordre inverse, la frame device est close alors qu'elle n'a
+				// jamais ete soumise -- sous Vulkan plus rien n'est soumis ni
+				// presente, et AUCUNE erreur pilote n'est levee
+				// (NkVulkanDevice.cpp:2273/2397/2420). GL et DX11 n'ont pas cette
+				// garde : l'inversion y est invisible, ce qui a laisse le defaut
+				// vivre dans 3 fichiers, dont NkApplication.
+				// Cette garde ne CHANGE RIEN au comportement : elle journalise, et
+				// nomme le fautif. Le mode PARTAGE (l'hote possede la frame, cf.
+				// wiki/Runtime/NKRenderer/Frame-Contract.md flux C) n'appelle aucune
+				// de ces trois methodes : l'etat y reste Idle, sans faux positif.
+				enum class NkFrameState : uint8 { Idle, Recording, Submitted };
+				NkFrameState mFrameState = NkFrameState::Idle;
+
+				// Sous-systèmes (ordre d'initialisation = ordre de déclaration)
+				memory::NkUniquePtr<NkResources> mResources;   // toujours actif (default tex/samplers/layouts)
+				memory::NkUniquePtr<NkShaderLibrary> mShaders; // toujours actif (compile/cache des shaders)
+				memory::NkUniquePtr<NkRenderGraph> mRenderGraph;
+				memory::NkUniquePtr<NkTextureLibrary> mTextures;
+				memory::NkUniquePtr<NkMeshSystem> mMeshSystem;
+				memory::NkUniquePtr<NkMaterialSystem> mMaterials;
+				memory::NkUniquePtr<NkMaterialLibrary> mMaterialLibrary;			 // Phase G
+				memory::NkUniquePtr<class NkMaterialCollection> mMaterialCollection; // Phase M.2
+				NkVec4f mClearColor = {0.05f, 0.05f, 0.07f, 1.f}; ///< fond de la passe Geometry
+				memory::NkUniquePtr<NkVirtualShadowMaps> mShadow;
+				memory::NkUniquePtr<NkEnvironmentSystem> mEnvironment;
+				memory::NkUniquePtr<NkRender2D> mRender2D;
+				memory::NkUniquePtr<NkRender3D> mRender3D;
+				memory::NkUniquePtr<NkTextRenderer> mTextRenderer;
+				memory::NkUniquePtr<NkPostProcessStack> mPostProcess;
+				memory::NkUniquePtr<NkOverlayRenderer> mOverlay;
+				memory::NkUniquePtr<NkVFXSystem> mVFX;
+				memory::NkUniquePtr<NkAnimationSystem> mAnimation;
+				memory::NkUniquePtr<NkSimulationRenderer> mSimulation;
+				memory::NkUniquePtr<class NkPlanarReflectionSystem> mPlanarReflection;
+				memory::NkUniquePtr<class NkVoxelAOSystem> mVoxelAO; // Phase H.6
+
+				NkVector<NkOffscreenTarget *> mOffscreenTargets;
+				NkTextureHandle mFinalColorOverride{}; // sortie graph -> RT externe (vide=swapchain)
+				NkUIOverlayCallback mUIOverlayCb{};	   // overlay UI applicatif (Overlay2D)
+				bool mMirrorToScreen = false; // MirrorPresent : recopie la cible redirigee vers le swapchain
+				uint32 mRenderOverrideW = 0, mRenderOverrideH = 0; // 0 = suit la fenetre
+				// TAA (Phase L) : viewProj de la frame PRECEDENTE, conservee ici car
+				// la reprojection a besoin de deux frames consecutives. mTAAHasPrev
+				// vaut false a la premiere frame (et apres un redimensionnement) :
+				// pas d'historique exploitable, la passe se comporte en passe-plat.
+				NkMat4f mTAAPrevViewProj = NkMat4f::Identity();
+				bool mTAAHasPrev = false;
+				// SetPostConfig a change le JEU de passes (SSAO/bloom/FXAA...) :
+				// reconstruire le graphe a l'aplomb de la frame suivante, jamais en
+				// pleine frame (meme patron que l'outline de selection).
+				bool mPostGraphDirty = false;
+				void ApplyRenderSize(uint32 w, uint32 h, bool touchDevice);
+
+				bool InitRHI();
+				void BuildDefaultRenderGraph();
+
+				// Seuil du bright pass, ancre sur le BLANC AFFICHE (donc divise par
+				// l'exposition effective). A APPELER A L'EXECUTION DE LA PASSE, pas
+				// a la construction du graphe : l'exposition s'adapte a chaque
+				// frame alors que le graphe ne se reconstruit presque jamais.
+				// Mesure du 15/08 quand il etait fige : seuil 7,24 applique contre
+				// 144,8 reclame, facteur 20 stable sur 841 frames.
+				float ComputeBloomThreshold() const;
+
+				// ── Helpers d'init/teardown par sous-systeme (utilises a la fois
+				//    par Initialize() et par EnableSubsystem/DisableSubsystem) ────
+				bool InitShadow();
+				bool InitEnvironment();
+				bool InitRender2D();
+				bool InitRender3D();
+				bool InitTextRenderer();
+				bool InitPostProcess();
+				bool InitOverlay();
+				bool InitVFX();
+				bool InitAnimation();
+				bool InitSimulation();
+
+				// Reconstruit le render graph apres changement de sous-systemes
+				void RebuildRenderGraph();
+		};
+
+	} // namespace renderer
+} // namespace nkentseu

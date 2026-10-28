@@ -1,0 +1,84 @@
+[2026-10-27 09:38:01.199] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 21px
+
+[2026-10-27 09:38:01.222] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 2048x2048, 2125 points non nuls
+
+[2026-10-27 09:38:01.239] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 17px
+
+[2026-10-27 09:38:01.260] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 1493 points non nuls
+
+[2026-10-27 09:38:01.274] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 13px
+
+[2026-10-27 09:38:01.292] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 956 points non nuls
+
+[2026-10-27 09:38:01.305] [INF] [default] [NkAppFonts.h:25 in NkLoadFallbackFonts] -> [NKCode] polices de repli : D:/Logiciels/NKCode/data/fonts/
+
+[2026-10-27 09:38:01.333] [WRN] [default] [NkContextFactory.cpp:46 in Create] -> [NkContextFactory][DBG] Create begin api=DirectX 11
+[2026-10-27 09:38:01.334] [INF] [default] [NkGpuPolicy.cpp:114 in ApplyPreContext] -> [NkGpuPolicy] api=DirectX 11 pref=Default vendor=Any adapterIndex=-1
+[2026-10-27 09:38:01.334] [WRN] [default] [NkContextFactory.cpp:95 in Create] -> [NkContextFactory][DBG] Context allocated ptr=0x1d89b3632e8
+[2026-10-27 09:38:01.334] [WRN] [default] [NkContextFactory.cpp:97 in Create] -> [NkContextFactory][DBG] Initialize begin
+[2026-10-27 09:38:01.593] [INF] [default] [NkDX11Context.cpp:208 in CreateDeviceAndSwapchain] -> [NkDX11] D3D11CreateDevice OK with 11_1+ (chosen FL=0xB100)
+
+[2026-10-27 09:38:01.593] [INF] [default] [NkDX11Context.cpp:242 in CreateDeviceAndSwapchain] -> [NkDX11] Using adapter #0 vendor=0x8086 device=0x5916
+
+[2026-10-27 09:38:01.597] [INF] [default] [NkDX11Context.cpp:269 in CreateDeviceAndSwapchain] -> [NkDX11] Device+Swapchain OK (feature level B100, VRAM 128 MB)
+
+[2026-10-27 09:38:01.602] [INF] [default] [NkDX11Context.cpp:144 in Initialize] -> [NkDX11] Ready a?" DirectX 11 | VRAM 128 MB
+
+[2026-10-27 09:38:01.602] [WRN] [default] [NkContextFactory.cpp:103 in Create] -> [NkContextFactory][DBG] Initialize success
+[2026-10-27 09:38:01.602] [INF] [default] [NkContextFactory.cpp:105 in Create] -> [NkContextFactory] Context created: DirectX 11
+
+[2026-10-27 09:38:01.602] [INF] [default] [NkRenderer2DFactory.cpp:39 in Create] -> [NkRenderer2DFactory] Creating 2D renderer for API: DirectX 11
+[2026-10-27 09:38:01.648] [INF] [default] [NkDX11Renderer2D.cpp:317 in Initialize] -> [NkDX11-2D] Initialized
+[2026-10-27 09:38:01.648] [INF] [default] [NkRenderer2DFactory.cpp:102 in Create] -> [NkRenderer2DFactory] 2D renderer created: DirectX 11
+[2026-10-27 09:38:01.664] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 16px
+
+[2026-10-27 09:38:01.666] [INF] [default] [NkFontAtlas.cpp:253 in AddFontFromFile] -> [NkFontAtlas] TTF lu:D:/Logiciels/NKCode/data/fonts/NotoSans-Regular.ttf(569208o)
+
+[2026-10-27 09:38:01.678] [INF] [default] [NkFontAtlas.cpp:253 in AddFontFromFile] -> [NkFontAtlas] TTF lu:D:/Logiciels/NKCode/data/fonts/NotoSansSC-Regular.ttf(10559284o)
+
+[2026-10-27 09:38:02.302] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():31862 glyphes rasterises, atlas 4096x4096, 50912 points non nuls
+
+[2026-10-27 09:38:03.627] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 09:38:03.639] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 09:38:03.697] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 09:38:03.708] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 09:38:03.752] [INF] [default] [: in ] -> [nkcode] dossier de l'executable : D:/Logiciels/NKCode
+[2026-10-27 09:38:03.752] [INF] [default] [: in ] -> [nkcode] Jenga EMBARQUE actif (aucun Python systeme requis)
+[2026-10-27 09:38:03.761] [INF] [default] [: in ] -> [nkcode] constructions : Jenga embarque, dans NKCode (aucun Python a installer)
+[2026-10-27 09:38:03.769] [INF] [default] [NkAppIcons.h:238 in NkChargerJeuIcones] -> [NKCode] textures (logo, icones) : D:/Logiciels/NKCode/data/textures/
+
+[2026-10-27 09:38:03.773] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? actuel ? (Actuel) catalogue : D:/Logiciels/NKCode/data/textures/icon/
+
+[2026-10-27 09:38:03.773] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? pastilles ? (Pastilles) integre : D:/Logiciels/NKCode/data/extensions/pastilles/
+
+[2026-10-27 09:38:03.773] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? trait ? (Trait) catalogue : D:/Logiciels/NKCode/data/extensions/trait/
+
+[2026-10-27 09:38:52.965] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
+[2026-10-27 09:38:52.974] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 09:38:52.983] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 09:38:53.002] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-27 09:38:53.002] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-27 09:38:53.002] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-27 09:38:53.038] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 15px
+
+[2026-10-27 09:38:53.038] [INF] [default] [NkFontAtlas.cpp:253 in AddFontFromFile] -> [NkFontAtlas] TTF lu:D:/Logiciels/NKCode/data/fonts/NotoSans-Regular.ttf(569208o)
+
+[2026-10-27 09:38:53.047] [INF] [default] [NkFontAtlas.cpp:253 in AddFontFromFile] -> [NkFontAtlas] TTF lu:D:/Logiciels/NKCode/data/fonts/NotoSansSC-Regular.ttf(10559284o)
+
+[2026-10-27 09:38:53.757] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():31862 glyphes rasterises, atlas 4096x4096, 45728 points non nuls
+
+[2026-10-27 09:38:55.857] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-27 09:38:55.892] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (D:/Logiciels/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-27 09:38:55.950] [INF] [default] [: in ] -> [term] demarre dans: D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle
+[2026-10-27 09:38:56.273] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-27 09:38:57.702] [INF] [default] [: in ] -> [jenga-embed] NKCode est lance sans console : flux standard absents a la creation de l'interpreteur : stdout stderr stdin
+[2026-10-27 09:38:57.702] [INF] [default] [: in ] -> [jenga] info (embarque) : 30 ligne(s), 1 projet(s), 8 chaine(s) de compilation
+[2026-10-27 09:38:59.696] [INF] [default] [: in ] -> [ac] index projet PRET: 3659 types, 56137 membres, 4462 fonctions
+[2026-10-27 09:43:01.032] [INF] [default] [: in ] -> [hover] 'R3D' L53:C40 -> kit R3D
+[2026-10-27 14:58:09.126] [INF] [default] [: in ] -> [lsp] clangd s'est arrete - repli compile-first seul

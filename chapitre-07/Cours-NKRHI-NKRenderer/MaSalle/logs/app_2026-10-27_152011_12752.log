@@ -1,0 +1,68 @@
+[2026-10-27 15:20:11.773] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 21px
+
+[2026-10-27 15:20:11.792] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 2048x2048, 2125 points non nuls
+
+[2026-10-27 15:20:11.808] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 17px
+
+[2026-10-27 15:20:11.826] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 1493 points non nuls
+
+[2026-10-27 15:20:11.836] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 13px
+
+[2026-10-27 15:20:11.851] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1381 glyphes rasterises, atlas 1024x1024, 956 points non nuls
+
+[2026-10-27 15:20:11.860] [INF] [default] [NkAppFonts.h:25 in NkLoadFallbackFonts] -> [NKCode] polices de repli : C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/
+
+[2026-10-27 15:20:11.877] [WRN] [default] [NkContextFactory.cpp:46 in Create] -> [NkContextFactory][DBG] Create begin api=DirectX 11
+[2026-10-27 15:20:11.877] [INF] [default] [NkGpuPolicy.cpp:114 in ApplyPreContext] -> [NkGpuPolicy] api=DirectX 11 pref=Default vendor=Any adapterIndex=-1
+[2026-10-27 15:20:11.877] [WRN] [default] [NkContextFactory.cpp:95 in Create] -> [NkContextFactory][DBG] Context allocated ptr=0x2773adcea38
+[2026-10-27 15:20:11.877] [WRN] [default] [NkContextFactory.cpp:97 in Create] -> [NkContextFactory][DBG] Initialize begin
+[2026-10-27 15:20:12.069] [INF] [default] [NkDX11Context.cpp:208 in CreateDeviceAndSwapchain] -> [NkDX11] D3D11CreateDevice OK with 11_1+ (chosen FL=0xB100)
+
+[2026-10-27 15:20:12.070] [INF] [default] [NkDX11Context.cpp:242 in CreateDeviceAndSwapchain] -> [NkDX11] Using adapter #0 vendor=0x8086 device=0x5916
+
+[2026-10-27 15:20:12.072] [INF] [default] [NkDX11Context.cpp:269 in CreateDeviceAndSwapchain] -> [NkDX11] Device+Swapchain OK (feature level B100, VRAM 128 MB)
+
+[2026-10-27 15:20:12.074] [INF] [default] [NkDX11Context.cpp:144 in Initialize] -> [NkDX11] Ready a?" DirectX 11 | VRAM 128 MB
+
+[2026-10-27 15:20:12.074] [WRN] [default] [NkContextFactory.cpp:103 in Create] -> [NkContextFactory][DBG] Initialize success
+[2026-10-27 15:20:12.074] [INF] [default] [NkContextFactory.cpp:105 in Create] -> [NkContextFactory] Context created: DirectX 11
+
+[2026-10-27 15:20:12.074] [INF] [default] [NkRenderer2DFactory.cpp:39 in Create] -> [NkRenderer2DFactory] Creating 2D renderer for API: DirectX 11
+[2026-10-27 15:20:12.103] [INF] [default] [NkDX11Renderer2D.cpp:317 in Initialize] -> [NkDX11-2D] Initialized
+[2026-10-27 15:20:12.103] [INF] [default] [NkRenderer2DFactory.cpp:102 in Create] -> [NkRenderer2DFactory] 2D renderer created: DirectX 11
+[2026-10-27 15:20:12.115] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'Inter' chargee : 16px
+
+[2026-10-27 15:20:12.124] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'DejaVuSansMono' chargee : 16px
+
+[2026-10-27 15:20:12.125] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSans-Regular.ttf(569208o)
+
+[2026-10-27 15:20:12.137] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/NotoSansSC-Regular.ttf(10559284o)
+
+[2026-10-27 15:20:12.634] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():32023 glyphes rasterises, atlas 4096x4096, 51198 points non nuls
+
+[2026-10-27 15:20:13.037] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 15:20:13.046] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 15:20:13.067] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'SourceCodePro' chargee : 15px
+
+[2026-10-27 15:20:13.073] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():1077 glyphes rasterises, atlas 1024x1024, 686 points non nuls
+
+[2026-10-27 15:20:13.092] [INF] [default] [: in ] -> [nkcode] dossier de l'executable : C:/Users/SMART/AppData/Local/Programs/NKCode
+[2026-10-27 15:20:13.092] [INF] [default] [: in ] -> [nkcode] emplacement : C:\Users\SMART\AppData\Local\NKCode\emplacement.cfg (deja a jour)
+[2026-10-27 15:20:13.092] [INF] [default] [: in ] -> [nkcode] Jenga EMBARQUE actif (aucun Python systeme requis)
+[2026-10-27 15:20:13.095] [INF] [default] [: in ] -> [nkcode] constructions : Jenga embarque, dans NKCode (aucun Python a installer)
+[2026-10-27 15:20:13.098] [INF] [default] [NkAppIcons.h:238 in NkChargerJeuIcones] -> [NKCode] textures (logo, icones) : C:/Users/SMART/AppData/Local/Programs/NKCode/data/textures/
+
+[2026-10-27 15:20:13.114] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? actuel ? (Actuel) catalogue : C:/Users/SMART/AppData/Local/Programs/NKCode/data/textures/icon/
+
+[2026-10-27 15:20:13.114] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? pastilles ? (Pastilles) integre : C:/Users/SMART/AppData/Local/Programs/NKCode/data/extensions/pastilles/
+
+[2026-10-27 15:20:13.114] [INF] [default] [NkAppIcons.h:252 in NkChargerJeuIcones] -> [NKCode] jeu d'icones ? trait ? (Trait) catalogue : C:/Users/SMART/AppData/Local/Programs/NKCode/data/extensions/trait/
+
+[2026-10-27 15:20:40.835] [INF] [default] [NkEditorShell.cpp:227 in NkGelBilanSession] -> [gel] NKCode - IDE (Jenga) : 0 episode(s) signale(s) ; pire masquage continu de la session 117 image(s) (1928.53 ms), porte(s) O(souris sur popup)+R(saisie reservee)
+[2026-10-27 15:20:40.835] [INF] [default] [NkEditorShell.cpp:1335 in Run] -> [entree] NKCode - IDE (Jenga) : 1 transition(s) de bouton arrivee(s) entre deux images et rendue(s) a l'image suivante (aucune perdue)
+[2026-10-27 15:20:40.835] [INF] [default] [NkEditorShell.cpp:1342 in Run] -> [repos] NKCode - IDE (Jenga) : 467 image(s) a pleine cadence, 214 image(s) de repos en 27.5296 s
+[2026-10-27 15:20:40.848] [INF] [default] [NkDX11Renderer2D.cpp:520 in Shutdown] -> [NkDX11-2D] Shutdown
+[2026-10-27 15:20:40.915] [INF] [default] [NkDX11Context.cpp:363 in Shutdown] -> [NkDX11] Shutdown OK
+

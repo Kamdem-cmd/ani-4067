@@ -1,0 +1,365 @@
+[2026-10-28 22:33:01.401] [INF] [default] [NkGpuPolicy.cpp:112 in ApplyPreContext] -> [NkRHI_GpuPolicy] api=Vulkan pref=Default vendor=Any adapterIndex=-1
+
+[2026-10-28 22:33:01.512] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_surface
+[2026-10-28 22:33:01.520] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_win32_surface
+[2026-10-28 22:33:01.522] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_external_memory_capabilities
+[2026-10-28 22:33:01.524] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_external_semaphore_capabilities
+[2026-10-28 22:33:01.528] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_external_fence_capabilities
+[2026-10-28 22:33:01.544] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_get_physical_device_properties2
+[2026-10-28 22:33:01.552] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_get_surface_capabilities2
+[2026-10-28 22:33:01.553] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_device_group_creation
+[2026-10-28 22:33:01.556] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_EXT_swapchain_colorspace
+[2026-10-28 22:33:01.557] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_EXT_debug_report
+[2026-10-28 22:33:01.558] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_EXT_debug_utils
+[2026-10-28 22:33:01.559] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_KHR_portability_enumeration
+[2026-10-28 22:33:01.560] [INF] [default] [NkVulkanDevice.cpp:181 in Initialize] -> VK_LUNARG_direct_driver_loading
+[2026-10-28 22:33:01.857] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_OBS_HOOK
+[2026-10-28 22:33:01.858] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_api_dump
+[2026-10-28 22:33:01.858] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_gfxreconstruct
+[2026-10-28 22:33:01.859] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_synchronization2
+[2026-10-28 22:33:01.859] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_validation
+[2026-10-28 22:33:01.860] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_monitor
+[2026-10-28 22:33:01.860] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_screenshot
+[2026-10-28 22:33:01.861] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_profiles
+[2026-10-28 22:33:01.861] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_KHRONOS_shader_object
+[2026-10-28 22:33:01.862] [INF] [default] [NkVulkanDevice.cpp:223 in Initialize] -> VK_LAYER_LUNARG_crash_diagnostic
+[2026-10-28 22:33:02.478] [INF] [default] [NkVulkanDevice.cpp:536 in Initialize] -> [NkRHI_VK] Initialise (1280?720, 3 frames in flight)
+
+[2026-10-28 22:33:02.485] [INF] [default] [NkDeviceFactory.cpp:133 in CreateForApi] -> [NkDeviceFactory] Device RHI cree: Vulkan | OK
+
+[2026-10-28 22:33:02.488] [INF] [default] [NkDeviceFactory.cpp:335 in CreateAutoDetect] -> [NkDeviceFactory] CreateAutoDetect: API selectionnee = Vulkan
+
+[2026-10-28 22:33:02.492] [INF] [default] [NkRendererImpl.cpp:78 in Initialize] -> [NkRendererImpl] Initialize start (api=3)
+
+[2026-10-28 22:33:02.494] [INF] [default] [NkRendererImpl.cpp:123 in Initialize] -> [NkRendererImpl] framesInFlight config=2 -> 3 (profondeur REELLE du device : les rings doivent la suivre, sinon deux frames consecutives partagent un slot)
+
+[2026-10-28 22:33:02.499] [INF] [default] [NkRendererImpl.cpp:145 in Initialize] -> [NkRendererImpl] FPS cap = 0 (0=vsync gere le rythme, env NK_FPS_CAP)
+
+[2026-10-28 22:33:02.501] [INF] [default] [NkRendererImpl.cpp:152 in Initialize] -> [NkRendererImpl]  step 0: InitRHI
+
+[2026-10-28 22:33:02.502] [INF] [default] [NkRendererImpl.cpp:157 in Initialize] -> [NkRendererImpl]  step 1: NkResources::Init
+
+[2026-10-28 22:33:02.503] [INF] [default] [NkResources.cpp:27 in Init] -> [NkResources]   1.a CreateDefaultTextures...
+
+[2026-10-28 22:33:02.504] [INF] [default] [NkResources.cpp:122 in CreateDefaultTextures] -> [NkResources]      White1x1...
+
+[2026-10-28 22:33:02.532] [INF] [default] [NkResources.cpp:124 in CreateDefaultTextures] -> [NkResources]      Black1x1...
+
+[2026-10-28 22:33:02.537] [INF] [default] [NkResources.cpp:126 in CreateDefaultTextures] -> [NkResources]      Normal1x1...
+
+[2026-10-28 22:33:02.553] [INF] [default] [NkResources.cpp:128 in CreateDefaultTextures] -> [NkResources]      Magenta1x1...
+
+[2026-10-28 22:33:02.574] [INF] [default] [NkResources.cpp:130 in CreateDefaultTextures] -> [NkResources]      Gray1x1...
+
+[2026-10-28 22:33:02.577] [INF] [default] [NkResources.cpp:132 in CreateDefaultTextures] -> [NkResources]      defaults done
+
+[2026-10-28 22:33:02.582] [INF] [default] [NkResources.cpp:32 in Init] -> [NkResources]   1.b CreateDefaultSamplers...
+
+[2026-10-28 22:33:02.583] [INF] [default] [NkResources.cpp:37 in Init] -> [NkResources]   1.c CreateStandardLayouts...
+
+[2026-10-28 22:33:02.584] [INF] [default] [NkResources.cpp:44 in Init] -> [NkResources]   1.d Init done
+
+[2026-10-28 22:33:02.585] [INF] [default] [NkRendererImpl.cpp:163 in Initialize] -> [NkRendererImpl]  step 2: NkShaderLibrary::Init
+
+[2026-10-28 22:33:02.586] [INF] [default] [NkRendererImpl.cpp:171 in Initialize] -> [NkRendererImpl]  step 3: NkRenderGraph::ctor
+
+[2026-10-28 22:33:02.587] [INF] [default] [NkRendererImpl.cpp:175 in Initialize] -> [NkRendererImpl]  step 4: NkTextureLibrary::Init
+
+[2026-10-28 22:33:02.588] [INF] [default] [NkRendererImpl.cpp:181 in Initialize] -> [NkRendererImpl]  step 5: NkMeshSystem::Init
+
+[2026-10-28 22:33:02.611] [INF] [default] [NkRendererImpl.cpp:187 in Initialize] -> [NkRendererImpl]  step 6: NkMaterialSystem::Init
+
+[2026-10-28 22:33:02.615] [INF] [default] [NkMaterialCollection.cpp:25 in Init] -> [NkMaterialCollection] Initialized (64 slots max, 1024 bytes UBO, 4 preset slots)
+
+[2026-10-28 22:33:02.618] [INF] [default] [NkMaterialLibrary.cpp:33 in Init] -> [NkMaterialLibrary] Initialized
+
+[2026-10-28 22:33:02.645] [WRN] [default] [NkShaderLibrary.cpp:855 in LoadOrCompileVF] -> [NkShaderLibrary] 'Render2D' : fichier absent (Resources/NKRenderer/Shaders/Render2D/VK/render2d.vert.vk.glsl), repli sur la source EMBARQUEE. Elle peut etre ecrite pour un autre backend que le tien -- si la compilation echoue juste apres, la cause est ICI, pas dans le fichier du disque.
+
+[2026-10-28 22:33:02.649] [INF] [default] [NkShaderBackend.cpp:434 in Compile] -> [NkShaderBackendVK] Compile VS start (src=960 bytes)
+
+[2026-10-28 22:33:03.689] [ERR] [default] [NkGLSLCompiler.cpp:105 in NkGLSLToSPIRV] -> [GLSL COMPILER] NkGLSLToSPIRV parse error:
+ERROR: 0:13: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:03.691] [ERR] [default] [NkShaderBackend.cpp:444 in Compile] -> [NkShaderBackendVK] Compile VS FAIL: ERROR: 0:13: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:03.692] [INF] [default] [NkShaderBackend.cpp:434 in Compile] -> [NkShaderBackendVK] Compile FS start (src=10709 bytes)
+
+[2026-10-28 22:33:03.749] [INF] [default] [NkShaderBackend.cpp:453 in Compile] -> [NkShaderBackendVK] Compile FS OK (5250 SPIR-V words)
+
+[2026-10-28 22:33:03.751] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Render2D' vsGlsl=960 fsGlsl=10709 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:03.755] [ERR] [default] [NkGLSLCompiler.cpp:105 in NkGLSLToSPIRV] -> [GLSL COMPILER] NkGLSLToSPIRV parse error:
+ERROR: 0:13: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:03.756] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): ERROR: 0:13: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:03.759] [ERR] [default] [NkVulkanDevice.cpp:1648 in CreateGraphicsPipeline] -> [NkRHI_VK][ERR] CreateGraphicsPipeline '2D_Alpha': shader handle id=0 introuvable
+
+[2026-10-28 22:33:03.763] [ERR] [default] [NkVulkanDevice.cpp:1648 in CreateGraphicsPipeline] -> [NkRHI_VK][ERR] CreateGraphicsPipeline '2D_Add': shader handle id=0 introuvable
+
+[2026-10-28 22:33:03.764] [ERR] [default] [NkVulkanDevice.cpp:1648 in CreateGraphicsPipeline] -> [NkRHI_VK][ERR] CreateGraphicsPipeline '2D_Opaque': shader handle id=0 introuvable
+
+[2026-10-28 22:33:03.766] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'Glow2D' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/Glow2D/VK/glow2d.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/Glow2D/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:03.766] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Glow2D' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:03.767] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:03.770] [INF] [default] [NkRendererImpl.cpp:267 in Initialize] -> [NkRendererImpl]  step10: InitTextRenderer
+
+[2026-10-28 22:33:03.775] [INF] [default] [NkFontEmbedded.cpp:20475 in AddToAtlas] -> [NkFontEmbedded] Police 'ProggyClean' chargee : 13px
+
+[2026-10-28 22:33:03.781] [INF] [default] [NkFontAtlas.cpp:610 in Build] -> [NkFontAtlas] Build():215 glyphes rasterises, atlas 512x512, 37 points non nuls
+
+[2026-10-28 22:33:03.799] [INF] [default] [NkRendererImpl.cpp:277 in Initialize] -> [NkRendererImpl]  step12: InitOverlay
+
+[2026-10-28 22:33:03.800] [INF] [default] [NkRendererImpl.cpp:298 in Initialize] -> [NkRendererImpl]  step16: BuildDefaultRenderGraph
+
+[2026-10-28 22:33:03.801] [INF] [default] [NkRendererImpl.cpp:302 in Initialize] -> [NkRendererImpl] Initialize done
+
+[2026-10-28 22:33:03.936] [INF] [default] [NkRendererImpl.cpp:78 in Initialize] -> [NkRendererImpl] Initialize start (api=3)
+
+[2026-10-28 22:33:03.939] [INF] [default] [NkRendererImpl.cpp:123 in Initialize] -> [NkRendererImpl] framesInFlight config=2 -> 3 (profondeur REELLE du device : les rings doivent la suivre, sinon deux frames consecutives partagent un slot)
+
+[2026-10-28 22:33:03.941] [INF] [default] [NkRendererImpl.cpp:145 in Initialize] -> [NkRendererImpl] FPS cap = 0 (0=vsync gere le rythme, env NK_FPS_CAP)
+
+[2026-10-28 22:33:03.942] [INF] [default] [NkRendererImpl.cpp:152 in Initialize] -> [NkRendererImpl]  step 0: InitRHI
+
+[2026-10-28 22:33:03.944] [INF] [default] [NkRendererImpl.cpp:157 in Initialize] -> [NkRendererImpl]  step 1: NkResources::Init
+
+[2026-10-28 22:33:03.945] [INF] [default] [NkResources.cpp:27 in Init] -> [NkResources]   1.a CreateDefaultTextures...
+
+[2026-10-28 22:33:03.949] [INF] [default] [NkResources.cpp:122 in CreateDefaultTextures] -> [NkResources]      White1x1...
+
+[2026-10-28 22:33:03.960] [INF] [default] [NkResources.cpp:124 in CreateDefaultTextures] -> [NkResources]      Black1x1...
+
+[2026-10-28 22:33:03.963] [INF] [default] [NkResources.cpp:126 in CreateDefaultTextures] -> [NkResources]      Normal1x1...
+
+[2026-10-28 22:33:03.966] [INF] [default] [NkResources.cpp:128 in CreateDefaultTextures] -> [NkResources]      Magenta1x1...
+
+[2026-10-28 22:33:03.969] [INF] [default] [NkResources.cpp:130 in CreateDefaultTextures] -> [NkResources]      Gray1x1...
+
+[2026-10-28 22:33:03.970] [INF] [default] [NkResources.cpp:132 in CreateDefaultTextures] -> [NkResources]      defaults done
+
+[2026-10-28 22:33:03.970] [INF] [default] [NkResources.cpp:32 in Init] -> [NkResources]   1.b CreateDefaultSamplers...
+
+[2026-10-28 22:33:03.971] [INF] [default] [NkResources.cpp:37 in Init] -> [NkResources]   1.c CreateStandardLayouts...
+
+[2026-10-28 22:33:03.972] [INF] [default] [NkResources.cpp:44 in Init] -> [NkResources]   1.d Init done
+
+[2026-10-28 22:33:03.972] [INF] [default] [NkRendererImpl.cpp:163 in Initialize] -> [NkRendererImpl]  step 2: NkShaderLibrary::Init
+
+[2026-10-28 22:33:03.973] [INF] [default] [NkRendererImpl.cpp:171 in Initialize] -> [NkRendererImpl]  step 3: NkRenderGraph::ctor
+
+[2026-10-28 22:33:03.975] [INF] [default] [NkRendererImpl.cpp:175 in Initialize] -> [NkRendererImpl]  step 4: NkTextureLibrary::Init
+
+[2026-10-28 22:33:03.976] [INF] [default] [NkRendererImpl.cpp:181 in Initialize] -> [NkRendererImpl]  step 5: NkMeshSystem::Init
+
+[2026-10-28 22:33:04.003] [INF] [default] [NkRendererImpl.cpp:187 in Initialize] -> [NkRendererImpl]  step 6: NkMaterialSystem::Init
+
+[2026-10-28 22:33:04.004] [INF] [default] [NkMaterialCollection.cpp:25 in Init] -> [NkMaterialCollection] Initialized (64 slots max, 1024 bytes UBO, 4 preset slots)
+
+[2026-10-28 22:33:04.005] [INF] [default] [NkMaterialLibrary.cpp:33 in Init] -> [NkMaterialLibrary] Initialized
+
+[2026-10-28 22:33:04.006] [INF] [default] [NkRendererImpl.cpp:227 in Initialize] -> [NkRendererImpl]  step 7: InitShadow
+
+[2026-10-28 22:33:04.583] [INF] [default] [NkRendererImpl.cpp:232 in Initialize] -> [NkRendererImpl]  step 8: InitEnvironment
+
+[2026-10-28 22:33:04.691] [INF] [default] [NkEnvironmentSystem.cpp:125 in TryLoadIBLCache] -> [IBL] Cache miss (fichier absent) : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1/cache/ibl/nk_ibl_29c9855a.bin
+
+[2026-10-28 22:33:05.651] [INF] [default] [NkEnvironmentSystem.cpp:199 in SaveIBLCache] -> [IBL] Cache sauvegarde : D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1/cache/ibl/nk_ibl_29c9855a.bin
+
+[2026-10-28 22:33:05.683] [INF] [default] [NkRendererImpl.cpp:237 in Initialize] -> [NkRendererImpl]  step 9: InitRender3D
+
+[2026-10-28 22:33:06.280] [WRN] [default] [NkRender3D.cpp:260 in operator()] -> [NkRender3D] Table LTC absente ou invalide : Resources/NKRenderer/LUT/ltc1.bin (0 octets) - repli point representatif
+
+[2026-10-28 22:33:06.282] [WRN] [default] [NkRender3D.cpp:260 in operator()] -> [NkRender3D] Table LTC absente ou invalide : Resources/NKRenderer/LUT/ltc2.bin (0 octets) - repli point representatif
+
+[2026-10-28 22:33:06.283] [INF] [default] [NkRender3D.cpp:277 in Init] -> [NkRender3D] Tables LTC : ltc1=0 ltc2=0
+
+[2026-10-28 22:33:06.302] [WRN] [default] [NkShaderLibrary.cpp:855 in LoadOrCompileVF] -> [NkShaderLibrary] 'PBR' : fichier absent (Resources/NKRenderer/Shaders/PBR/VK/pbr.vert.vk.glsl), repli sur la source EMBARQUEE. Elle peut etre ecrite pour un autre backend que le tien -- si la compilation echoue juste apres, la cause est ICI, pas dans le fichier du disque.
+
+[2026-10-28 22:33:06.304] [INF] [default] [NkShaderBackend.cpp:434 in Compile] -> [NkShaderBackendVK] Compile VS start (src=2771 bytes)
+
+[2026-10-28 22:33:06.315] [INF] [default] [NkShaderBackend.cpp:453 in Compile] -> [NkShaderBackendVK] Compile VS OK (1518 SPIR-V words)
+
+[2026-10-28 22:33:06.343] [INF] [default] [NkShaderBackend.cpp:434 in Compile] -> [NkShaderBackendVK] Compile FS start (src=15572 bytes)
+
+[2026-10-28 22:33:06.368] [ERR] [default] [NkGLSLCompiler.cpp:105 in NkGLSLToSPIRV] -> [GLSL COMPILER] NkGLSLToSPIRV parse error:
+ERROR: 0:183: 'softness' : no such field in structure 'uShadow'
+ERROR: 0:183: '' : compilation terminated 
+ERROR: 2 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.370] [ERR] [default] [NkShaderBackend.cpp:444 in Compile] -> [NkShaderBackendVK] Compile FS FAIL: ERROR: 0:183: 'softness' : no such field in structure 'uShadow'
+ERROR: 0:183: '' : compilation terminated 
+ERROR: 2 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.371] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'PBR' vsGlsl=2771 fsGlsl=15572 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.385] [ERR] [default] [NkGLSLCompiler.cpp:105 in NkGLSLToSPIRV] -> [GLSL COMPILER] NkGLSLToSPIRV parse error:
+ERROR: 0:183: 'softness' : no such field in structure 'uShadow'
+ERROR: 0:183: '' : compilation terminated 
+ERROR: 2 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.387] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 1): ERROR: 0:183: 'softness' : no such field in structure 'uShadow'
+ERROR: 0:183: '' : compilation terminated 
+ERROR: 2 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.392] [ERR] [default] [NkRender3D.cpp:533 in Init] -> [NkRender3D] PBR shader handle INVALID after LoadOrCompileVF
+
+[2026-10-28 22:33:06.396] [WRN] [default] [NkShaderLibrary.cpp:855 in LoadOrCompileVF] -> [NkShaderLibrary] 'Shadow' : fichier absent (Resources/NKRenderer/Shaders/Shadow/VK/shadow.vert.vk.glsl), repli sur la source EMBARQUEE. Elle peut etre ecrite pour un autre backend que le tien -- si la compilation echoue juste apres, la cause est ICI, pas dans le fichier du disque.
+
+[2026-10-28 22:33:06.396] [INF] [default] [NkShaderBackend.cpp:434 in Compile] -> [NkShaderBackendVK] Compile VS start (src=595 bytes)
+
+[2026-10-28 22:33:06.405] [ERR] [default] [NkGLSLCompiler.cpp:105 in NkGLSLToSPIRV] -> [GLSL COMPILER] NkGLSLToSPIRV parse error:
+ERROR: 0:14: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.406] [ERR] [default] [NkShaderBackend.cpp:444 in Compile] -> [NkShaderBackendVK] Compile VS FAIL: ERROR: 0:14: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.407] [INF] [default] [NkShaderBackend.cpp:434 in Compile] -> [NkShaderBackendVK] Compile FS start (src=103 bytes)
+
+[2026-10-28 22:33:06.417] [INF] [default] [NkShaderBackend.cpp:453 in Compile] -> [NkShaderBackendVK] Compile FS OK (45 SPIR-V words)
+
+[2026-10-28 22:33:06.419] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Shadow' vsGlsl=595 fsGlsl=103 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.425] [ERR] [default] [NkGLSLCompiler.cpp:105 in NkGLSLToSPIRV] -> [GLSL COMPILER] NkGLSLToSPIRV parse error:
+ERROR: 0:14: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.427] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): ERROR: 0:14: 'non-opaque uniforms outside a block' : not allowed when using GLSL for Vulkan 
+ERROR: 1 compilation errors.  No code generated.
+
+
+
+[2026-10-28 22:33:06.440] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowLinear' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/ShadowLinear/VK/shadowlinear.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/ShadowLinear/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.441] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowLinear' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.442] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.450] [INF] [default] [NkRender3D.cpp:659 in Init] -> [NkRender3D] ShadowLinear shader compile: valid=0
+
+[2026-10-28 22:33:06.454] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowInstanced' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/ShadowInstanced/VK/shadowinstanced.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/ShadowInstanced/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.455] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowInstanced' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.457] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.468] [INF] [default] [NkRender3D.cpp:691 in Init] -> [NkRender3D] ShadowInstanced shader compile: valid=0
+
+[2026-10-28 22:33:06.471] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowSkinned' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/ShadowSkinned/VK/shadowskinned.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/ShadowSkinned/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.474] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowSkinned' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.475] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.487] [INF] [default] [NkRender3D.cpp:723 in Init] -> [NkRender3D] ShadowSkinned shader compile: valid=0
+
+[2026-10-28 22:33:06.499] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'Skin' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/Skin/VK/skin.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/Skin/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.512] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Skin' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.531] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.539] [INF] [default] [NkRender3D.cpp:763 in Init] -> [NkRender3D] Skin shader compile: valid=0
+
+[2026-10-28 22:33:06.546] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'Instanced' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/Instanced/VK/instanced.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/Instanced/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.549] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Instanced' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.550] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.564] [INF] [default] [NkRender3D.cpp:775 in Init] -> [NkRender3D] Instanced shader compile: valid=0
+
+[2026-10-28 22:33:06.568] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'Skybox' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/Skybox/VK/skybox.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/Skybox/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.571] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'Skybox' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.574] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.587] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'InfiniteGrid' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/InfiniteGrid/VK/infinitegrid.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/InfiniteGrid/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.588] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'InfiniteGrid' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.589] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.602] [INF] [default] [NkRender3D.cpp:792 in Init] -> [NkRender3D] InfiniteGrid shader compile: valid=0
+
+[2026-10-28 22:33:06.604] [ERR] [default] [NkShaderLibrary.cpp:845 in LoadOrCompileVF] -> [NkShaderLibrary] 'ShadowAlpha' INTROUVABLE -- ce n'est PAS un shader invalide, c'est un FICHIER ABSENT, et aucune source embarquee ne le remplace.
+    cherche (1) Resources/NKRenderer/Shaders/ShadowAlpha/VK/shadowalpha.vert.vk.glsl   [repertoire courant, ou racine ci-dessous]
+    cherche (2) <dossier de l'executable>/Resources/NKRenderer/Shaders/ShadowAlpha/VK/
+    cherche (3) aucun dossier contenant Resources/NKRenderer (NkPath::LocateResource : dossier courant, executable et parents) depuis D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Build/Bin/Debug-Windows/exo1
+    -> deployer 'Resources/NKRenderer' a cote du binaire ou dans un dossier parent.
+
+[2026-10-28 22:33:06.605] [INF] [default] [NkShaderLibrary.cpp:591 in CompileVF] -> [CompileVF] 'ShadowAlpha' vsGlsl=0 fsGlsl=0 hlsl(vs=0,fs=0)
+
+[2026-10-28 22:33:06.606] [ERR] [default] [NkVulkanDevice.cpp:1589 in CreateShader] -> [NkRHI_VK][ERR] GLSL?SPIR-V echoue (stage 0): NkGLSLToSPIRV: source GLSL vide
+
+[2026-10-28 22:33:06.609] [INF] [default] [NkRender3D.cpp:844 in Init] -> [NkRender3D] Init final: ringValid=1 pbrShader.valid=0 (PBR pipeline: lazy create at 1st flush)
+
+[2026-10-28 22:33:07.273] [INF] [default] [NkMaterialLibrary.cpp:45 in Shutdown] -> [NkMaterialLibrary] Shutdown
+
+[2026-10-28 22:33:07.285] [INF] [default] [NkMaterialLibrary.cpp:45 in Shutdown] -> [NkMaterialLibrary] Shutdown
+
+[2026-10-28 22:33:07.369] [INF] [default] [NkVulkanDevice.cpp:741 in Shutdown] -> [NkRHI_VK] Shutdown
+

@@ -1,0 +1,802 @@
+#pragma once
+// =============================================================================
+// NkRendererConfig.h  — NKRenderer v5.0  (Core/)
+//
+// Configuration du renderer. Trois axes orthogonaux :
+//
+//  1. NkSubsystemFlags  : QUELS sous-systemes activer (opt-in granulaire)
+//  2. NkPipelineMode    : COMMENT le scene 3D est rasterisee (Forward / Forward+ / Deferred)
+//  3. NkRenderQuality   : combien de samples/casc/passes (Mobile..Cinematic)
+//
+// + presets prets a l'emploi : ForGame / ForFilm / ForArchviz / For2D / ForEditor / ForMinimal
+// =============================================================================
+#include "NKCore/NkTypes.h"
+#include "NKPlatform/NkCGXDetect.h"
+#include "NKCore/NkPlatform.h" // NkGetPlatformInfo : etage RUNTIME de ForTarget
+#include "NKContainers/String/NkString.h"
+#include "NKMath/NkVec.h"
+
+namespace nkentseu {
+	namespace renderer {
+
+		using NkGraphicsApi = graphics::NkGraphicsApi;
+
+		// =====================================================================
+		// SubsystemFlags — opt-in granulaire
+		// L'utilisateur peut activer SEULEMENT ce qu'il consomme :
+		//   ex. un jeu 2D : NK_SS_RENDER2D | NK_SS_TEXT
+		//   ex. un viewer model 3D : NK_SS_RENDER3D | NK_SS_SHADOW | NK_SS_POST_PROCESS
+		//   ex. tout : NK_SS_ALL
+		// =====================================================================
+		enum NkSubsystemFlags : uint32 {
+			NK_SS_NONE = 0,
+			NK_SS_RENDER2D = 1u << 0,	  // batched sprites/shapes/lines
+			NK_SS_RENDER3D = 1u << 1,	  // mesh draw 3D
+			NK_SS_TEXT = 1u << 2,		  // NKFont bridge (depend de RENDER2D)
+			NK_SS_UI = 1u << 3,			  // NKUI bridge (depend de RENDER2D + TEXT)
+			NK_SS_SHADOW = 1u << 4,		  // CSM + PCSS (depend de RENDER3D)
+			NK_SS_POST_PROCESS = 1u << 5, // tonemap/bloom/fxaa/ssao
+			NK_SS_VFX = 1u << 6,		  // particles + trails + decals
+			NK_SS_ANIMATION = 1u << 7,	  // skeletal + skinning + blendshapes
+			NK_SS_OVERLAY = 1u << 8,	  // debug overlay (stats, gizmos) (depend de RENDER2D + TEXT)
+			NK_SS_SIMULATION = 1u << 9,	  // physics debug viz
+			NK_SS_OFFSCREEN = 1u << 10,	  // render-to-texture targets
+			NK_SS_RAYTRACING = 1u << 11,  // RT/path tracing (require RT-capable backend)
+			NK_SS_GPU_CULLING = 1u << 12, // compute-based frustum/occlusion culling
+
+			// Bundles courants
+			NK_SS_2D_ESSENTIALS = NK_SS_RENDER2D | NK_SS_TEXT,
+			NK_SS_3D_BASE = NK_SS_RENDER3D | NK_SS_SHADOW | NK_SS_POST_PROCESS,
+			NK_SS_DEBUG = NK_SS_OVERLAY | NK_SS_SIMULATION,
+			NK_SS_ALL = 0xFFFFFFFFu,
+		};
+
+		inline NkSubsystemFlags operator|(NkSubsystemFlags a, NkSubsystemFlags b) noexcept {
+			return static_cast<NkSubsystemFlags>(static_cast<uint32>(a) | static_cast<uint32>(b));
+		}
+
+		inline NkSubsystemFlags operator&(NkSubsystemFlags a, NkSubsystemFlags b) noexcept {
+			return static_cast<NkSubsystemFlags>(static_cast<uint32>(a) & static_cast<uint32>(b));
+		}
+
+		inline bool NkHasFlag(NkSubsystemFlags set, NkSubsystemFlags f) noexcept {
+			return (static_cast<uint32>(set) & static_cast<uint32>(f)) != 0;
+		}
+
+		// =====================================================================
+		// Quality / Pipeline
+		// =====================================================================
+		enum class NkRenderQuality : uint8 {
+			NK_MOBILE = 0,
+			NK_LOW = 1,
+			NK_MEDIUM = 2,
+			NK_HIGH = 3,
+			NK_ULTRA = 4,
+			NK_CINEMATIC = 5,
+		};
+
+		enum class NkPipelineMode : uint8 {
+			NK_FORWARD = 0,		 // simple, mobile-friendly
+			NK_DEFERRED = 1,	 // many lights, no forward MSAA
+			NK_FORWARD_PLUS = 2, // clustered light culling, MSAA-friendly (default desktop)
+			NK_TILED_DEFERRED = 3,
+		};
+
+		// =====================================================================
+		// Sub-configs
+		// =====================================================================
+		struct NkShadowConfig {
+				// NB: pour ne PAS allouer le sous-systeme shadow, retirer NK_SS_SHADOW
+				// des subsystems flags. Ce `enabled` est un toggle runtime (active/desactive
+				// les passes shadow sans liberer les ressources).
+				bool enabled = true;
+				uint32 cascadeCount = 4;  // CSM split count (UE5 utilise 4)
+				uint32 resolution = 2048; // par cascade
+				float32 maxDistance = 200.f;
+				float32 cascadeLambda = 0.85f; // 0=lineaire, 1=logarithmique
+				bool softShadows = true; // PCF 3x3
+				// PCSS PAR DEFAUT (decision de Rihen, 10 aout) : contact net,
+				// penombre qui grandit — le comportement d'une vraie source.
+				bool pcss = true;
+				float32 normalBias = 0.005f;
+				float32 depthBias = 1.25f;
+				uint32 poissonSamples = 16;
+				// ── Reglages REELLEMENT transmis aux shadow maps (2026-08) ──────
+				// Les deux champs de biais ci-dessus datent d'une autre
+				// implementation et n'atteignaient JAMAIS les shadow maps
+				// virtuelles : on croyait regler le biais, rien ne bougeait.
+				// Ceux-ci leur sont passes a l'initialisation et se modifient a
+				// chaud.
+				//   slopeBias        : anti-acne fin, en profondeur.
+				//   normalBiasTexels : decale le point le long de sa normale, en
+				//                      TEXELS du tile echantillonne. C'est LUI qui
+				//                      empeche un objet de projeter son ombre sur
+				//                      lui-meme. En texels et non en metres : une
+				//                      constante monde (5 cm) etait juste pour la
+				//                      cascade lointaine et 10 a 100 fois trop
+				//                      grande pour la proche -- l'ombre ne touchait
+				//                      plus le pied des objets.
+				//   softness         : rayon du filtre, donc la douceur de la
+				//                      penombre.
+				// Defauts identiques a ceux des shadow maps : rien ne change tant
+				// qu'on n'y touche pas.
+				// ZERO PAR DEFAUT (Rihen, 10 aout) : l'anti-acne est porte par le
+				// biais rasterizer du caster et le plan recepteur — ce biais-ci
+				// reste un levier de secours du panneau.
+				float32 slopeBias = 0.f;
+				// ZERO PAR DEFAUT (meme decision) : le plan recepteur du PCF tient
+				// les taps, le biais rasterizer tient le tap central. (Le culling
+				// des faces avant a ete essaye et REJETE : il eclairait l'interieur
+				// des objets fermes — dans un modeleur la camera y entre.)
+				float32 normalBiasTexels = 0.f;
+				// 0.005 PAR DEFAUT (Rihen, 10 aout — corrige de 0.05) : en PCSS
+				// c'est la TAILLE DE SOURCE (penombre max ~5 texels sur 4096), le
+				// contact reste net par construction.
+				float32 softness = 0.005f;
+		};
+
+		// ── LE POINT BLANC DE LA COURBE ACES ────────────────────────────────
+		// Valeur HDR (apres exposition) a partir de laquelle ACESFilm() rend
+		// exactement 1.0 — le blanc affiche. Tout ce qui depasse est ecrete.
+		//
+		// Ce n'est pas un reglage : c'est la racine de la courbe employee dans
+		// pp_tonemap. En posant mapped = 1 dans
+		//     (x(2.51x + 0.03)) / (x(2.43x + 0.59) + 0.14)
+		// il vient 0.08x^2 - 0.56x - 0.14 = 0, soit x = 7.24.
+		//
+		// A QUOI CA SERT : les nombres que l'utilisateur regle (seuil de bloom,
+		// intensite d'emission) etaient exprimes en unites-SCENE alors qu'il
+		// raisonne en unites-ECRAN. Un seuil a 0.85 se lisait « juste sous le
+		// blanc » alors qu'il etait 3,1 diaphragmes EN DESSOUS : toute surface
+		// diffuse bien eclairee entrait dans le bloom, et flouter une grande
+		// zone diffuse sur un grand rayon donne une bouillie, pas un halo.
+		// (Rihen, 14 aout : « pourquoi le halo ressemble-t-il a une eponge ? »)
+		//
+		// Le blanc en unites HDR depend de l'exposition : blanc = 7.24 / exposition.
+		static constexpr float32 kNkAcesWhitePoint = 7.24f;
+
+		struct NkPostConfig {
+				// Tone mapping
+				bool toneMapping = true;
+				bool aces = true; // ACES Filmic ; sinon Reinhard
+				float32 exposure = 1.f;
+				float32 gamma = 2.2f;
+				// Garde-fou HDR : borne max des valeurs HDR AVANT bloom + tonemap. Protege
+				// le materiel d'un emballement (valeurs HDR pathologiques -> bloom geant ->
+				// surcharge GPU -> extinction PC, cf. scenes sur-exposees facon Blender/UE).
+				// Inoffensif pour un rendu sain (un HDR normal de scene reste < ~16).
+				//  > 0  : clamp actif a cette valeur (defaut 64, securite).
+				//  <= 0 : DESACTIVE (aucun clamp) — pour machines capables.
+				// Override runtime : variable d'env NK_HDR_CLAMP (ex. NK_HDR_CLAMP=0 off).
+				float32 hdrSafetyClamp = 64.f;
+				// Bloom (inline 13-sample cross dans tonemap ; dual-Kawase multi-pass a venir)
+				bool bloom = true;
+				// SEUIL EN FRACTION DU BLANC AFFICHE, depuis le 15 aout — plus en
+				// HDR absolu. 1.0 = « seules les sources plus brillantes que le
+				// blanc irradient », qui est la definition meme d'un bloom.
+				// L'ancien defaut valait 0.85 en unites HDR, soit 3,1 diaphragmes
+				// SOUS le blanc : un sol d'albedo 0.8 sous une lumiere a 1.1 y
+				// entrait, d'ou l'eponge. La conversion en HDR se fait au montage
+				// de la passe (x kNkAcesWhitePoint / exposition resolue).
+				float32 bloomThreshold = 1.f;
+				float32 bloomStrength = 1.5f;	// intensite de la halo
+				uint32 bloomPasses = 6;
+				// SSAO (ground-truth ambient occlusion)
+				bool ssao = true;
+				float32 ssaoRadius = 0.5f; // en METRES depuis la v1 (rayon monde projete)
+				float32 ssaoBias = 0.025f;
+				// Poids de l'obscurance dans le tonemap. 0 = AO nulle meme si la
+				// passe tourne — le reglage honnete pour « attenuer sans couper ».
+				float32 ssaoIntensity = 1.f;
+				uint32 ssaoSamples = 32;
+				bool hbao = false; // upgrade vers HBAO (qualite > SSAO)
+				// DOF
+				bool dof = false;
+				float32 dofFocusDist = 10.f;
+				float32 dofAperture = 0.1f;
+				// Motion blur
+				bool motionBlur = false;
+				float32 motionBlurShutter = 0.5f;
+				// AA
+				bool fxaa = true;
+				bool taa = false; // necessite history buffer + jittered proj
+				// Color grading
+				bool colorGrading = false;
+				float32 contrast = 1.f;
+				float32 saturation = 1.f;
+				// Phase L : 3D LUT cinema (16^3 par defaut identity).
+				// Si lutStrength > 0, le tonemap blend la mapped color avec LUT(mapped).
+				// User peut uploader son LUT custom via NkRenderer::SetColorGradingLUT().
+				float32 lutStrength = 0.f; // 0 = no grading, 1 = full LUT applied
+				uint32 lutSize = 16;	   // resolution du LUT 3D (16/32/64)
+				// Phase L : Auto-exposure V1 (2026-07-30) — la passe PP_AutoExposure
+				// mesure la luminance moyenne LOGARITHMIQUE de la scene (256
+				// echantillons, ponderee vers le centre) dans une cible 1x1, avec
+				// adaptation temporelle facon accommodation de l'oeil ; le tonemap
+				// adapte l'exposure pour que cette moyenne tombe sur `autoExposureKey`.
+				// (La V0 echantillonnait UN pixel — le centre du bloom — d'ou une
+				// exposition pilotee par ce qui se trouvait au milieu de l'ecran.)
+				// 0 = no auto, 1 = full auto-exp (override user exposure).
+				// Override runtime pour test : NK_AUTOEXP=<0..1>, NK_AUTOEXP_SPEED=<v>.
+				float32 autoExposureStrength = 0.f;
+				// SEUIL D'ACTIVATION, ECRIT UNE SEULE FOIS. Deux endroits doivent
+				// repondre la MEME chose : celui qui decide si la passe tourne
+				// (IsAutoExposureEnabled) et celui qui decide si le graphe doit
+				// etre reconstruit (SetPostConfig). Les separer, c'est cocher une
+				// case sans obtenir la passe qu'elle demande.
+				static constexpr float32 kAutoExposureOn = 0.001f;
+				// L'auto est-elle DEMANDEE par cette config ? (L'override
+				// d'environnement NK_AUTOEXP, lui, ne varie pas en cours de route :
+				// il ne peut donc pas provoquer un changement de jeu de passes.)
+				bool AutoExposureRequested() const {
+					return autoExposureStrength > kAutoExposureOn;
+				}
+				float32 autoExposureKey = 0.18f; // mid-gray target (Reinhard standard)
+				// Vitesse d'adaptation (unites par seconde) : la valeur converge en
+				// 1 - exp(-dt * vitesse), donc independante du framerate. 2 = ~0.5 s
+				// pour 63 % du chemin, 0 = figee sur la premiere mesure.
+				float32 autoExposureSpeed = 2.f;
+				// Bornes de la LUMINANCE mesuree : evitent qu'une scene quasi noire
+				// (luma ~1e-5) fasse exploser l'exposure, ou qu'un flash la tue.
+				float32 autoExposureMinLuma = 0.002f;
+				float32 autoExposureMaxLuma = 8.f;
+				// Bornes de l'EXPOSURE resultante (key / luma), appliquees dans le tonemap.
+				float32 autoExposureMinExp = 0.05f;
+				float32 autoExposureMaxExp = 40.f;
+				// SSR
+				bool ssr = false;
+				// Vignette / grain
+				bool vignette = false;
+				float32 vignetteIntens = 0.4f;
+				bool filmGrain = false;
+				float32 filmGrainStr = 0.3f;
+		};
+
+		struct NkIBLConfig {
+				bool enabled = true;
+				// AMBIANCE : c'est CETTE valeur qui fait foi. Elle est reappliquee
+				// a l'initialisation et ecrasait donc le defaut pose dans
+				// NkRender3D -- l'ambiance restait a 0.3 malgre le changement. A
+				// 0.3, une scene sans aucune lumiere reste grise et plate.
+				float32 iblStrength = 0.05f;   // [0..1] multiplicateur du terme ambient IBL
+				uint32 irradianceMapSize = 32; // diffuse env (32x32 cubemap suffit)
+				uint32 specularMapSize = 256;  // GGX prefiltered (mips = roughness)
+				uint32 brdfLUTSize = 512;	   // 2D R16G16
+				uint32 prefilterMipCount = 6;  // mips de la specular map
+
+				// ── Phase N v0 : source IBL parametrable par l'application ──────
+				// useHDR=false (default) -> gradient sky procedural avec les
+				//   couleurs skyTop / horizon / ground ci-dessous.
+				// useHDR=true + hdrPath non vide -> charge un .hdr equirect 360
+				//   et l'utilise comme source pour les convolutions IBL CPU.
+				//   Cache disque automatique (cf. NkEnvironmentSystem).
+				bool useHDR = false;
+				NkString hdrPath = "";
+
+				// Couleurs du gradient procedural (si useHDR=false).
+				math::NkVec3f skyTop = {0.40f, 0.55f, 0.80f};
+				math::NkVec3f horizon = {0.45f, 0.48f, 0.52f};
+				math::NkVec3f ground = {0.10f, 0.08f, 0.06f};
+
+				// Phase N v0.5 : afficher le cubemap d'environnement en arriere-plan
+				// (skybox). Sinon le fond reste celui du clear color du framebuffer.
+				// Recommande : true quand useHDR=true pour voir l'environnement HDR
+				// entier (pas juste son reflet sur les objets).
+				bool drawSkybox = false;
+		};
+
+		struct NkClusterConfig {
+				uint32 tilesX = 16;
+				uint32 tilesY = 9;
+				uint32 sliceCount = 24; // depth slices (logarithmique)
+				uint32 maxLightsPerCluster = 256;
+		};
+
+		// =====================================================================
+		// NkUnitSystem — Echelle spatiale globale (style Blender).
+		//
+		// Convention : 1 unite world-space = `metersPerUnit` metres reels.
+		//   metersPerUnit = 1.f    -> 1 unit = 1 metre (defaut, style Blender/
+		//                              Godot/Unity).
+		//   metersPerUnit = 0.001f -> 1 unit = 1 millimetre (micro-scenes,
+		//                              molecules, microscopie).
+		//   metersPerUnit = 1000.f -> 1 unit = 1 kilometre (planetes, espace,
+		//                              terrain immense).
+		//
+		// Cette echelle affecte les conversions "mesure physique reelle <->
+		// coordonnees world" : triplanar tile size (m), distance attenuation
+		// lights (m), camera near/far par defaut, vitesse caracteres, audio
+		// 3D, etc.
+		//
+		// Le shader recoit metersPerUnit via les UBOs concernes (ex. ObjectUBO
+		// .triplanarParams.y). Convertir une distance metres -> units :
+		//   units = metres / metersPerUnit.
+		//
+		// ⚠ Unreal Engine utilise 1 unit = 1 cm (legacy Quake-era). On suit
+		// Blender (1 unit = 1 m) car c'est le standard moderne et plus
+		// intuitif pour les artistes.
+		// =====================================================================
+		struct NkUnitSystem {
+				float32 metersPerUnit = 1.f;
+
+				// m -> units : pratique pour ecrire "MetersToUnits(0.5f)" et que
+				// ca donne le scale correct quelle que soit l'echelle globale.
+				float32 MetersToUnits(float32 meters) const noexcept {
+					return metersPerUnit > 0.f ? meters / metersPerUnit : meters;
+				}
+
+				float32 UnitsToMeters(float32 units) const noexcept {
+					return units * metersPerUnit;
+				}
+		};
+
+		// Accesseurs globaux. Initial : metersPerUnit = 1.0f (1 unit = 1 m).
+		// Modifier via NkSetUnits() AVANT de creer la scene si tu veux
+		// travailler en mm ou en km — apres coup, tous les materials, lights,
+		// cameras, etc. devraient idealement etre re-scales (TODO V1).
+		//
+		// Inline pour zero setup : pas de .cpp dedie a NkRendererConfig.
+		// Storage Meyers singleton — initialise lazy au premier appel,
+		// thread-safe C++11.
+		inline NkUnitSystem &NkUnitsMutable() noexcept {
+			static NkUnitSystem sUnits;
+			return sUnits;
+		}
+
+		inline const NkUnitSystem &NkUnits() noexcept {
+			return NkUnitsMutable();
+		}
+
+		inline void NkSetUnits(const NkUnitSystem &u) noexcept {
+			NkUnitsMutable() = u;
+		}
+
+		// =====================================================================
+		// NkRendererConfig — la config globale
+		// =====================================================================
+		struct NkRendererConfig {
+				// Backend & resolution
+				NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_OPENGL;
+				uint32 width = 1280;
+				uint32 height = 720;
+
+				// Sous-systemes actifs (opt-in granulaire)
+				NkSubsystemFlags subsystems = NK_SS_ALL;
+
+				// Pipeline & qualite
+				NkPipelineMode pipeline = NkPipelineMode::NK_FORWARD_PLUS;
+				NkRenderQuality quality = NkRenderQuality::NK_HIGH;
+				bool hdr = true;
+				bool vsync = true;
+				uint32 msaaSamples = 1;
+
+				// Limites
+				uint32 maxLights = 256;
+				uint32 maxParticles = 100000;
+				uint32 maxMeshes = 65536;
+
+				// ─── Frames in flight (ring buffer per-frame UBO) ───────────────
+				// Combien de copies des UBOs per-frame (camera, lights, object) le
+				// renderer maintient pour eviter que le CPU stalle quand il ecrit
+				// un buffer encore lu par le GPU.
+				//   1 = pas de ring (un seul buffer partage)
+				//         -> WriteBuffer peut stall si GPU lit encore. Plus
+				//            economique en VRAM mais cap typique ~60-80 fps.
+				//   2 = double buffering (defaut)
+				//         -> CPU ecrit slot[(N+1)%2] pendant que GPU lit slot[N%2].
+				//            Coût VRAM : 2x les UBOs per-frame. Recommande.
+				//   3 = triple buffering
+				//         -> Marge supplementaire pour smooth-out les frames lourdes
+				//            (utile en VR ou cinematic). Coût : 3x VRAM.
+				// Clampe a [1,3] dans NkRendererImpl::Initialize().
+				uint32 framesInFlight = 2;
+
+				// Sous-configs (consultees seulement si le sous-systeme est actif)
+				NkShadowConfig shadow;
+				NkPostConfig postProcess;
+				NkIBLConfig ibl;
+				NkClusterConfig cluster;
+
+				// Voxel Ambient Occlusion (occlusion de proximite via voxelisation 3D).
+				// Cout non negligeable (texture 3D + compute) ; opt-in / desactive par
+				// defaut. L'app enregistre ses occluders via
+				// GetVoxelAO()->RegisterOccluder() puis Build(). false = sous-systeme
+				// NON alloue (gratuit) et GetVoxelAO() renvoie nullptr.
+				bool voxelAOEnabled = false;
+
+				// DEFERRED v1 (opt-in) : G-buffer MRT + lighting fullscreen a la
+				// place du forward pour les opaques simples ; skybox/instancies/
+				// skins/transparents/debug restent forward par-dessus. Necessite
+				// le post-process actif (cible HDR transiente).
+				bool deferred = false;
+
+				// Debug
+				bool debugOverlay = false;
+				bool wireframe = false;
+				bool validation = false; // active validation layer (Vulkan)
+
+				// ─── Helpers ────────────────────────────────────────────────────
+				bool Has(NkSubsystemFlags f) const noexcept {
+					return NkHasFlag(subsystems, f);
+				}
+
+				void Enable(NkSubsystemFlags f) noexcept {
+					subsystems = subsystems | f;
+				}
+
+				void Disable(NkSubsystemFlags f) noexcept {
+					subsystems =
+						static_cast<NkSubsystemFlags>(static_cast<uint32>(subsystems) & ~static_cast<uint32>(f));
+				}
+
+				// =================================================================
+				// Presets
+				// =================================================================
+				static NkRendererConfig ForGame(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_OPENGL, uint32 w = 1920,
+												uint32 h = 1080) {
+					NkRendererConfig c;
+					c.api = api;
+					c.width = w;
+					c.height = h;
+
+					// `quality` est la SOURCE ; ce preset l'EXPRIME. Les lignes qui
+					// suivent sont posterieures, donc elles ecrasent -- c'est le contrat
+					// arbitre par Rodolf le 2026-09-02.
+					c.quality = NkRenderQuality::NK_HIGH;
+					c.ApplyQuality();
+					c.pipeline = NkPipelineMode::NK_FORWARD_PLUS;
+					c.quality = NkRenderQuality::NK_HIGH;
+					c.subsystems = NK_SS_RENDER2D | NK_SS_RENDER3D | NK_SS_TEXT | NK_SS_SHADOW | NK_SS_POST_PROCESS |
+								   NK_SS_VFX | NK_SS_ANIMATION | NK_SS_OVERLAY;
+					c.shadow.resolution = 2048;
+					c.shadow.cascadeCount = 4;
+					c.postProcess.bloom = true;
+					c.postProcess.ssao = true;
+					c.postProcess.fxaa = true;
+					c.postProcess.aces = true;
+					return c;
+				}
+
+				static NkRendererConfig ForFilm(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_VULKAN, uint32 w = 3840,
+												uint32 h = 2160) {
+					NkRendererConfig c;
+					c.api = api;
+					c.width = w;
+					c.height = h;
+
+					// `quality` est la SOURCE ; ce preset l'EXPRIME. Les lignes qui
+					// suivent sont posterieures, donc elles ecrasent -- c'est le contrat
+					// arbitre par Rodolf le 2026-09-02.
+					c.quality = NkRenderQuality::NK_CINEMATIC;
+					c.ApplyQuality();
+					c.pipeline = NkPipelineMode::NK_DEFERRED;
+					c.quality = NkRenderQuality::NK_CINEMATIC;
+					c.subsystems = NK_SS_RENDER3D | NK_SS_SHADOW | NK_SS_POST_PROCESS | NK_SS_VFX | NK_SS_ANIMATION |
+								   NK_SS_OFFSCREEN;
+					c.shadow.resolution = 4096;
+					c.shadow.cascadeCount = 4;
+					c.shadow.softShadows = true;
+					c.shadow.pcss = true;
+					c.postProcess.bloom = true;
+					c.postProcess.hbao = true;
+					c.postProcess.dof = true;
+					c.postProcess.motionBlur = true;
+					c.postProcess.taa = true;
+					c.postProcess.ssr = true;
+					c.postProcess.colorGrading = true;
+					c.vsync = false;
+					return c;
+				}
+
+				static NkRendererConfig ForArchviz(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_VULKAN,
+												   uint32 w = 2560, uint32 h = 1440) {
+					NkRendererConfig c;
+					c.api = api;
+					c.width = w;
+					c.height = h;
+
+					// `quality` est la SOURCE ; ce preset l'EXPRIME. Les lignes qui
+					// suivent sont posterieures, donc elles ecrasent -- c'est le contrat
+					// arbitre par Rodolf le 2026-09-02.
+					c.quality = NkRenderQuality::NK_ULTRA;
+					c.ApplyQuality();
+					c.pipeline = NkPipelineMode::NK_DEFERRED;
+					c.quality = NkRenderQuality::NK_ULTRA;
+					c.subsystems = NK_SS_RENDER3D | NK_SS_SHADOW | NK_SS_POST_PROCESS | NK_SS_OVERLAY;
+					c.shadow.resolution = 4096;
+					c.postProcess.hbao = true;
+					c.postProcess.ssr = true;
+					c.postProcess.bloom = false;
+					c.postProcess.colorGrading = true;
+					c.postProcess.taa = true;
+					// ⚠️ DEVIATION ASSUMEE du palier ci-dessus : declaree, donc VISIBLE.
+					c.OverrideAfterQuality("archviz : bloom eteint volontairement (une image d'architecture ne halote pas)");
+					return c;
+				}
+
+				static NkRendererConfig ForMobile(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_OPENGLES,
+												  uint32 w = 1280, uint32 h = 720) {
+					NkRendererConfig c;
+					c.api = api;
+					c.width = w;
+					c.height = h;
+
+					// `quality` est la SOURCE ; ce preset l'EXPRIME. Les lignes qui
+					// suivent sont posterieures, donc elles ecrasent -- c'est le contrat
+					// arbitre par Rodolf le 2026-09-02.
+					c.quality = NkRenderQuality::NK_MOBILE;
+					c.ApplyQuality();
+					c.pipeline = NkPipelineMode::NK_FORWARD;
+					c.quality = NkRenderQuality::NK_MOBILE;
+					c.subsystems = NK_SS_RENDER2D | NK_SS_RENDER3D | NK_SS_TEXT;
+					c.hdr = false;
+					c.postProcess.bloom = false;
+					c.postProcess.ssao = false;
+					c.postProcess.fxaa = false;
+					return c;
+				}
+
+				static NkRendererConfig For2D(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_OPENGL, uint32 w = 1920,
+											  uint32 h = 1080) {
+					NkRendererConfig c;
+					c.api = api;
+					c.width = w;
+					c.height = h;
+
+					// `quality` est la SOURCE ; ce preset l'EXPRIME. Les lignes qui
+					// suivent sont posterieures, donc elles ecrasent -- c'est le contrat
+					// arbitre par Rodolf le 2026-09-02.
+					c.quality = NkRenderQuality::NK_LOW;
+					c.ApplyQuality();
+					c.pipeline = NkPipelineMode::NK_FORWARD;
+					c.quality = NkRenderQuality::NK_LOW;
+					c.subsystems = NK_SS_RENDER2D | NK_SS_TEXT | NK_SS_UI | NK_SS_OVERLAY;
+					c.hdr = false;
+					return c;
+				}
+
+				static NkRendererConfig ForEditor(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_OPENGL, uint32 w = 2560,
+												  uint32 h = 1440) {
+					NkRendererConfig c;
+					c.api = api;
+					c.width = w;
+					c.height = h;
+
+					// `quality` est la SOURCE ; ce preset l'EXPRIME. Les lignes qui
+					// suivent sont posterieures, donc elles ecrasent -- c'est le contrat
+					// arbitre par Rodolf le 2026-09-02.
+					c.quality = NkRenderQuality::NK_HIGH;
+					c.ApplyQuality();
+					c.pipeline = NkPipelineMode::NK_FORWARD_PLUS;
+					c.quality = NkRenderQuality::NK_HIGH;
+					c.subsystems = NK_SS_ALL; // editor : tout activer
+					c.debugOverlay = true;
+					c.shadow.resolution = 1024;
+					c.postProcess.fxaa = true;
+					// ⚠️ DEVIATION ASSUMEE du palier ci-dessus : declaree, donc VISIBLE.
+					c.OverrideAfterQuality("editeur : ombre 1024 au lieu de 2048 -- latence et lisibilite priment sur la richesse");
+					return c;
+				}
+
+				// Minimal : juste un device + un command buffer, rien d'autre.
+				// Utile pour tests ou pour batir son propre pipeline custom.
+				static NkRendererConfig ForMinimal(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_OPENGL, uint32 w = 800,
+												   uint32 h = 600) {
+					NkRendererConfig c;
+					c.api = api;
+					c.width = w;
+					c.height = h;
+
+					// `quality` est la SOURCE ; ce preset l'EXPRIME. Les lignes qui
+					// suivent sont posterieures, donc elles ecrasent -- c'est le contrat
+					// arbitre par Rodolf le 2026-09-02.
+					c.quality = NkRenderQuality::NK_LOW;
+					c.ApplyQuality();
+					c.subsystems = NK_SS_NONE;
+					c.hdr = false;
+					return c;
+				}
+
+				static NkRendererConfig ForOffscreen(NkGraphicsApi api = NkGraphicsApi::NK_GFX_API_VULKAN,
+													 uint32 w = 3840, uint32 h = 2160) {
+					NkRendererConfig c = ForFilm(api, w, h);
+					c.subsystems = c.subsystems | NK_SS_OFFSCREEN;
+					c.vsync = false;
+					return c;
+				}
+
+				// =================================================================
+				// QUALITE OPERANTE + SELECTEUR DE PROFIL  (2026-09-02)
+				// =================================================================
+				// Regle gravee : LE MOTEUR PORTE LA QUALITE, L'APPLICATION LA SUBIT.
+				// Le jeu declare une INTENTION, jamais un REGLAGE.
+				//
+				// ⚠️ POURQUOI CE BLOC EXISTE, mesure du 2026-09-02 : `quality` etait
+				// ECRIT 7 fois (les 6 presets + 1 application) et LU 0 fois dans le
+				// depot entier. L'axe sur lequel la regle repose etait un mot que rien
+				// n'executait. `ApplyQuality()` est la premiere lecture reelle.
+				//
+				// ⚠️ CE BLOC EST ADDITIF. Les six presets publics (ForGame, ForFilm,
+				// ForArchviz, ForMobile, For2D, ForEditor) gardent EXACTEMENT leur
+				// semantique : ils ecrivent leurs champs directement, et ils sont
+				// honores. Decider qui gagne entre `quality` et un champ explicite est
+				// un CHANGEMENT DE CONTRAT, pas un correctif : il attend Rodolf.
+
+				// Trace d'un ecrasement explicite pose APRES ApplyQuality().
+				// ⚠️ C'est la porte de sortie par laquelle la regle peut fuir : si
+				// ecraser un reglage est silencieux et gratuit, `si (mobile) ->
+				// shadowRes = 512` revient par la fenetre et redevient le chemin
+				// normal. On la rend donc NOMMEE et VISIBLE -- jamais confondable avec
+				// un reglage ordinaire.
+				uint32 qualityOverrideCount = 0;
+				const char *qualityOverrideLast = nullptr;
+				bool qualityAuto = false; // vrai si le profil vient de ForTarget()
+
+				// =================================================================
+				// PALIER « UNITES DE TEXTURE »  (2026-09-02)
+				// =================================================================
+				// ⚠️ POURQUOI CE PALIER EXISTE : le 2026-09-02, le Web est tombe sur
+				// une VRAIE carte -- `PBR` demandait 17 echantillonneurs au fragment,
+				// WebGL2 en accorde 16, glLinkProgram refuse, ecran vide. Le defaut
+				// datait du 11/08 00h01 et personne ne l'avait vu, parce que le seul
+				// web jamais execute (SwiftShader) en accorde plus de 16.
+				//
+				// 🔴 CE PALIER N'EST PAS UN TEST DE PLATEFORME. Il ne nomme ni le Web,
+				// ni le mobile : il lit une LIMITE MESUREE sur le device
+				// (`NkDeviceCaps::maxFragmentTextureUnits`). Un shader ne doit jamais
+				// savoir OU il tourne ; il connait un BUDGET que le moteur lui donne.
+
+				// Ce que l'etage fragment de PBR demande en version COMPLETE.
+				// Constante NOMMEE, pas un 17 dans une comparaison : le jour ou le
+				// shader grossit, c'est ICI que ca se voit -- et le banc
+				// `Tools/verif_budget_samplers.py` le dit le jour meme.
+				static constexpr uint32 kPbrFullFragmentSamplers = 17;
+
+				// Budget accorde par le device. DEFAUT = 16, et c'est une valeur
+				// DECIDEE, pas un zero par defaut : 16 est le minimum garanti par
+				// WebGL2/GLES 3.0. Tant que le device n'a pas parle, on suppose donc
+				// la cible la PLUS CONTRAIGNANTE.
+				// ⚠️ Le sens de l'erreur est choisi exprès : un defaut trop genereux
+				// rend un ECRAN VIDE, un defaut trop prudent rend une image
+				// legerement simplifiee. On se trompe du cote qui laisse voir.
+				uint32 fragmentTextureUnits = 16;
+
+				// Vrai quand le budget ne suffit pas a la version complete.
+				[[nodiscard]] bool PbrNeedsCompact() const noexcept {
+					return fragmentTextureUnits < kPbrFullFragmentSamplers;
+				}
+
+				// ⭐ Le moteur appelle ceci UNE FOIS, le device cree, avec
+				// `dev->GetCaps().maxFragmentTextureUnits`.
+				// ⚠️ On MONTE ici depuis une mesure, alors que `ForTarget()` ne fait
+				// que DESCENDRE -- et la difference est nette : ForTarget descend sur
+				// une heuristique de PERFORMANCE (RAM, coeurs), qui ne dit jamais de
+				// quoi la machine est capable. Ici on lit une LIMITE DURE rapportee
+				// par le pilote lui-meme. Une limite se croit ; une estimation, non.
+				void ApplyDeviceLimits(uint32 maxFragmentTextureUnits) noexcept {
+					if (maxFragmentTextureUnits > 0)
+						fragmentTextureUnits = maxFragmentTextureUnits;
+				}
+
+				// Derive de `quality` TOUS les champs qui en dependent.
+				// C'est LA lecture de l'enum : la clause (3) du critere de reussite dit
+				// qu'un banc doit ECHOUER si on force `quality` a une autre valeur.
+				void ApplyQuality() noexcept {
+					switch (quality) {
+						case NkRenderQuality::NK_MOBILE:
+							shadow.resolution = 512;  shadow.cascadeCount = 1;
+							shadow.pcss = false;      shadow.softShadows = false;
+							shadow.poissonSamples = 4;
+							hdr = false;    maxLights = 16;
+							postProcess.bloom = false;  postProcess.ssao = false;
+							postProcess.hbao = false;
+							postProcess.taa = false;    postProcess.ssr = false;
+							break;
+						case NkRenderQuality::NK_LOW:
+							shadow.resolution = 1024; shadow.cascadeCount = 2;
+							shadow.pcss = false;      shadow.softShadows = true;
+							shadow.poissonSamples = 8;
+							hdr = false;    maxLights = 32;
+							postProcess.bloom = false;  postProcess.ssao = false;
+							postProcess.hbao = false;
+							postProcess.taa = false;    postProcess.ssr = false;
+							break;
+						case NkRenderQuality::NK_MEDIUM:
+							shadow.resolution = 1024; shadow.cascadeCount = 3;
+							shadow.pcss = false;      shadow.softShadows = true;
+							shadow.poissonSamples = 12;
+							hdr = true;     maxLights = 64;
+							postProcess.bloom = true;   postProcess.ssao = true;
+							postProcess.hbao = false;
+							postProcess.taa = false;    postProcess.ssr = false;
+							break;
+						case NkRenderQuality::NK_HIGH:
+							shadow.resolution = 2048; shadow.cascadeCount = 4;
+							shadow.pcss = true;       shadow.softShadows = true;
+							shadow.poissonSamples = 16;
+							hdr = true;     maxLights = 256;
+							postProcess.bloom = true;   postProcess.ssao = true;
+							postProcess.hbao = false;
+							postProcess.taa = false;    postProcess.ssr = false;
+							break;
+						case NkRenderQuality::NK_ULTRA:
+							shadow.resolution = 4096; shadow.cascadeCount = 4;
+							shadow.pcss = true;       shadow.softShadows = true;
+							shadow.poissonSamples = 24;
+							hdr = true;     maxLights = 512;
+							postProcess.bloom = true;   postProcess.ssao = true;
+							postProcess.hbao = true;
+							postProcess.taa = true;     postProcess.ssr = true;
+							break;
+						case NkRenderQuality::NK_CINEMATIC:
+							shadow.resolution = 4096; shadow.cascadeCount = 4;
+							shadow.pcss = true;       shadow.softShadows = true;
+							shadow.poissonSamples = 32;
+							hdr = true;     maxLights = 1024;
+							postProcess.bloom = true;   postProcess.ssao = true;
+							postProcess.hbao = true;
+							postProcess.taa = true;     postProcess.ssr = true;
+							postProcess.dof = true;     postProcess.motionBlur = true;
+							break;
+					}
+				}
+
+				// Ecrasement explicite APRES ApplyQuality() : acte NOMME et TRACE.
+				// L'appelant DOIT dire quel champ et pourquoi. Le compte et la derniere
+				// raison sont lisibles par le moteur, donc journalisables -- une porte
+				// de sortie qui ne se voit pas devient le chemin normal.
+				void OverrideAfterQuality(const char *pourquoi) noexcept {
+					++qualityOverrideCount;
+					qualityOverrideLast = pourquoi;
+				}
+
+				// ⭐ LA FABRIQUE QUE LE JEU APPELLE. Aucun argument de plateforme,
+				// aucun nom de preset : c'est ce qui supprime le `si (mobile)`.
+				// DEUX ETAGES, et aucun des deux n'etait a ecrire :
+				//   1. la CIBLE, connue a la compilation (NKENTSEU_PLATFORM_*) ;
+				//   2. la MACHINE, connue a l'execution (NkGetPlatformInfo()).
+				// ⚠️ NkCGXDetect ne sert PAS ici : mesure du 2026-09-02, son .cpp fait
+				// 3 lignes et ne contient aucune fonction -- c'est un fichier de macros,
+				// pas un detecteur.
+				static NkRendererConfig ForTarget(uint32 w = 0, uint32 h = 0) {
+					NkRendererConfig c;
+
+					// ── Etage 1 : la cible (compilation) ─────────────────────────
+#if defined(NKENTSEU_PLATFORM_ANDROID) || defined(NKENTSEU_PLATFORM_IOS) || defined(NKENTSEU_PLATFORM_HARMONYOS) || defined(NKENTSEU_PLATFORM_EMSCRIPTEN)
+					c.api = NkGraphicsApi::NK_GFX_API_OPENGLES;
+					c.quality = NkRenderQuality::NK_MOBILE;
+					c.width = w ? w : 1280;
+					c.height = h ? h : 720;
+#else
+					c.api = NkGraphicsApi::NK_GFX_API_OPENGL;
+					c.quality = NkRenderQuality::NK_HIGH;
+					c.width = w ? w : 1920;
+					c.height = h ? h : 1080;
+#endif
+
+					// ── Etage 2 : la machine (execution) ─────────────────────────
+					// On ne MONTE jamais depuis ce qu'on a mesure -- on ne fait que
+					// DESCENDRE quand la machine ne suit pas. Monter demanderait de
+					// connaitre le GPU, et rien dans le depot ne le mesure aujourd'hui.
+					if (const auto *info = NkGetPlatformInfo()) {
+						const nk_uint64 kGio = 1024ull * 1024ull * 1024ull;
+						if (info->totalMemory > 0 && info->totalMemory < 2 * kGio)
+							c.quality = NkRenderQuality::NK_MOBILE;
+						else if (info->totalMemory > 0 && info->totalMemory < 4 * kGio &&
+							 c.quality > NkRenderQuality::NK_LOW)
+							c.quality = NkRenderQuality::NK_LOW;
+						else if (info->cpuCoreCount > 0 && info->cpuCoreCount <= 2 &&
+							 c.quality > NkRenderQuality::NK_MEDIUM)
+							c.quality = NkRenderQuality::NK_MEDIUM;
+					}
+
+					c.subsystems = NK_SS_RENDER2D | NK_SS_RENDER3D | NK_SS_TEXT | NK_SS_SHADOW |
+						   NK_SS_POST_PROCESS | NK_SS_ANIMATION | NK_SS_OVERLAY;
+					c.ApplyQuality(); // <- la qualite decide, PAS l'appelant
+					c.qualityAuto = true;
+					return c;
+				}
+		};
+
+	} // namespace renderer
+} // namespace nkentseu

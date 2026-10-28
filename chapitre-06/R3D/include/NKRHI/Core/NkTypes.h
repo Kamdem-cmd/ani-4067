@@ -1,0 +1,640 @@
+#pragma once
+// =============================================================================
+// NkTypes.h
+// Types fondamentaux du RHI — formats, états, enums, handles opaques.
+// Ce fichier est l'unique source de vérité pour tout le RHI.
+// Aucune dépendance vers une API native (pas de VkFormat, DXGI_FORMAT, etc.)
+// =============================================================================
+#include "NKCore/NkTypes.h"
+#include "NKMath/NkRectangle.h"
+#include "NKMath/NkColor.h"
+#include "NKSL/Core/NkSLTypes.h" // enum NkSLStage (possédé par NKSL) -> NkShaderStage
+#include <cstddef>
+
+namespace nkentseu {
+
+	// =============================================================================
+	// Handle opaque — identifiant GPU (64-bit, 0 = invalide)
+	// Chaque ressource GPU est identifiée par un NkRhiHandle<Tag> typé.
+	// =============================================================================
+	template <typename Tag> struct NkRhiHandle {
+			uint64 id = 0;
+
+			bool IsValid() const {
+				return id != 0;
+			}
+
+			bool operator==(const NkRhiHandle &o) const {
+				return id == o.id;
+			}
+
+			bool operator!=(const NkRhiHandle &o) const {
+				return id != o.id;
+			}
+
+			static NkRhiHandle Null() {
+				return {0};
+			}
+	};
+
+	// Tags pour les handles
+	struct NkTagBuffer {};
+
+	struct NkTagTexture {};
+
+	struct NkTagSampler {};
+
+	struct NkTagShader {};
+
+	struct NkTagPipeline {};
+
+	struct NkTagRenderPass {};
+
+	struct NkTagFramebuffer {};
+
+	struct NkTagFence {};
+
+	struct NkTagSemaphore {};
+
+	struct NkTagDescSet {};
+
+	struct NkTagBindlessHeap {};
+
+	using NkBufferHandle = NkRhiHandle<NkTagBuffer>;
+	using NkTextureHandle = NkRhiHandle<NkTagTexture>;
+	using NkSamplerHandle = NkRhiHandle<NkTagSampler>;
+	using NkShaderHandle = NkRhiHandle<NkTagShader>;
+	using NkPipelineHandle = NkRhiHandle<NkTagPipeline>;
+	using NkRenderPassHandle = NkRhiHandle<NkTagRenderPass>;
+	using NkFramebufferHandle = NkRhiHandle<NkTagFramebuffer>;
+	using NkFenceHandle = NkRhiHandle<NkTagFence>;
+	using NkDescSetHandle = NkRhiHandle<NkTagDescSet>;
+	using NkSemaphoreHandle = NkRhiHandle<NkTagSemaphore>;
+	using NkBindlessHeapHandle = NkRhiHandle<NkTagBindlessHeap>;
+
+	// =============================================================================
+	// Formats pixel / vertex
+	// =============================================================================
+	enum class NkGPUFormat : uint32 {
+		NK_UNDEFINED = 0,
+
+		// ── Couleur 8 bits par canal ──
+		NK_R8_UNORM,
+		NK_R8_SNORM,
+		NK_R8_UINT,
+		NK_R8_SINT,
+		NK_RG8_UNORM,
+		NK_RG8_SNORM,
+		NK_RGBA8_UNORM,
+		NK_RGB8_UNORM,
+		NK_RGBA8_SNORM,
+		NK_RGBA8_UINT,
+		NK_RGBA8_SINT,
+		NK_RGBA8_SRGB,
+		NK_BGRA8_UNORM,
+		NK_BGRA8_SRGB,
+
+		// ── Couleur 16 bits ──
+		NK_R16_FLOAT,
+		NK_RG16_FLOAT,
+		NK_RGBA16_FLOAT,
+		NK_R16_UINT,
+		NK_R16_SINT,
+		NK_RG16_UINT,
+		NK_RGBA16_UINT,
+
+		// ── Couleur 32 bits ──
+		NK_R32_FLOAT,
+		NK_RG32_FLOAT,
+		NK_RGB32_FLOAT,
+		NK_RGBA32_FLOAT,
+		NK_R32_UINT,
+		NK_RG32_UINT,
+		NK_RGB32_UINT,
+		NK_RGBA32_UINT,
+		NK_R32_SINT,
+		NK_RG32_SINT,
+		NK_RGBA32_SINT,
+
+		// ── Formats vertex spéciaux ──
+		NK_R8G8B8A8_UNORM_PACKED, // vertex color compact
+		NK_A2B10G10R10_UNORM,	  // normal packed
+		NK_R11G11B10_FLOAT,		  // HDR color compact
+
+		// ── Depth / Stencil ──
+		NK_D16_UNORM,
+		NK_D24_UNORM_S8_UINT,
+		NK_D32_FLOAT,
+		NK_D32_FLOAT_S8_UINT,
+
+		// ── Formats compressés (textures) ──
+		NK_BC1_RGB_UNORM,
+		NK_BC1_RGB_SRGB,
+		NK_BC3_UNORM,
+		NK_BC3_SRGB,
+		NK_BC5_UNORM,
+		NK_BC5_SNORM,
+		NK_BC7_UNORM,
+		NK_BC7_SRGB,
+		NK_ETC2_RGB_UNORM,
+		NK_ETC2_RGBA_UNORM, // mobile
+		NK_ASTC_4X4_UNORM,
+		NK_ASTC_4X4_SRGB, // mobile
+
+		NK_COUNT
+	};
+
+	// Utilitaires format
+	inline bool NkFormatIsDepth(NkGPUFormat f) {
+		return f == NkGPUFormat::NK_D16_UNORM || f == NkGPUFormat::NK_D24_UNORM_S8_UINT ||
+			   f == NkGPUFormat::NK_D32_FLOAT || f == NkGPUFormat::NK_D32_FLOAT_S8_UINT;
+	}
+
+	inline bool NkFormatHasStencil(NkGPUFormat f) {
+		return f == NkGPUFormat::NK_D24_UNORM_S8_UINT || f == NkGPUFormat::NK_D32_FLOAT_S8_UINT;
+	}
+
+	inline bool NkFormatIsSrgb(NkGPUFormat f) {
+		return f == NkGPUFormat::NK_RGBA8_SRGB || f == NkGPUFormat::NK_BGRA8_SRGB ||
+			   f == NkGPUFormat::NK_BC1_RGB_SRGB || f == NkGPUFormat::NK_BC3_SRGB || f == NkGPUFormat::NK_BC7_SRGB ||
+			   f == NkGPUFormat::NK_ASTC_4X4_SRGB || f == NkGPUFormat::NK_ETC2_RGB_UNORM; // approximation
+	}
+
+	// =============================================================================
+	// ARITHMETIQUE DES FORMATS — blocs compris
+	//
+	// 🔴 LE DEFAUT QUE CES FONCTIONS REPARENT, mesure le 2026-09-05.
+	// `NkFormatBytesPerPixel` rendait 0 pour BC1, BC3, BC5, BC7, ETC2 et ASTC —
+	// ils tombaient dans son `default`. Or les quatre dorsaux s'en servaient pour
+	// calculer le pas de ligne : `rowPitch = width * NkFormatBytesPerPixel(fmt)`
+	// (NkVulkanDevice.cpp:1317 et ses freres). Un BC7 donnait donc
+	// `rowPitch = 0`, puis `imgSz = 0` : un televersement de zero octet, sans
+	// erreur. Trois capacites (`textureCompressionBC/ETC2/ASTC`) etaient
+	// annoncees `true` et personne ne les lisait — declare, pas livre.
+	//
+	// ⚠️ ET VOICI POURQUOI `NkFormatBytesPerPixel` REND ENCORE 0 SUR CES FORMATS,
+	// DELIBEREMENT : **un octet-par-pixel ne peut pas exister pour un format par
+	// blocs.** BC1 code 16 pixels dans 8 octets — ça fait un demi-octet par
+	// pixel, qui n'est pas representable en entier. Lui faire rendre 1 « pour
+	// arrondir » recreerait le meme defaut en pire (une taille trop grande, donc
+	// une lecture hors des donnees). La fonction REFUSE, et les deux fonctions
+	// ci-dessous sont celles que les dorsaux doivent appeler :
+	//
+	//     NkFormatRowPitch(f, w)      octets d'UNE RANGEE (de blocs si bloc)
+	//     NkFormatImageSize(f, w, h)  octets de l'image entiere
+	//
+	// Les deux traitent les formats lineaires ET les formats par blocs. Un
+	// appelant qui multiplie encore par `NkFormatBytesPerPixel` se trahit sur un
+	// format compresse en rendant 0 — bruyamment, puisque plus rien n'est
+	// televerse.
+	// =============================================================================
+
+	inline bool NkFormatIsBlockCompressed(NkGPUFormat f) {
+		switch (f) {
+			case NkGPUFormat::NK_BC1_RGB_UNORM:
+			case NkGPUFormat::NK_BC1_RGB_SRGB:
+			case NkGPUFormat::NK_BC3_UNORM:
+			case NkGPUFormat::NK_BC3_SRGB:
+			case NkGPUFormat::NK_BC5_UNORM:
+			case NkGPUFormat::NK_BC5_SNORM:
+			case NkGPUFormat::NK_BC7_UNORM:
+			case NkGPUFormat::NK_BC7_SRGB:
+			case NkGPUFormat::NK_ETC2_RGB_UNORM:
+			case NkGPUFormat::NK_ETC2_RGBA_UNORM:
+			case NkGPUFormat::NK_ASTC_4X4_UNORM:
+			case NkGPUFormat::NK_ASTC_4X4_SRGB:
+				return true;
+			default:
+				return false;
+		}
+	}
+
+	// Dimensions du bloc. Tous les formats ci-dessus sont en 4x4 ; la fonction
+	// existe quand meme parce qu'ASTC a d'autres tailles (5x5, 8x8...) et que le
+	// jour ou on les ajoutera, c'est ICI que ça se passera, pas dans un dorsal.
+	inline void NkFormatBlockDim(NkGPUFormat f, uint32 &bw, uint32 &bh) {
+		if (NkFormatIsBlockCompressed(f)) {
+			bw = 4u;
+			bh = 4u;
+		} else {
+			bw = 1u;
+			bh = 1u;
+		}
+	}
+
+	// Octets d'UN bloc. Pour un format lineaire, c'est l'octet-par-pixel.
+	inline uint32 NkFormatBytesPerBlock(NkGPUFormat f) {
+		switch (f) {
+			// 8 octets pour 16 pixels
+			case NkGPUFormat::NK_BC1_RGB_UNORM:
+			case NkGPUFormat::NK_BC1_RGB_SRGB:
+			case NkGPUFormat::NK_ETC2_RGB_UNORM:
+				return 8u;
+			// 16 octets pour 16 pixels
+			case NkGPUFormat::NK_BC3_UNORM:
+			case NkGPUFormat::NK_BC3_SRGB:
+			case NkGPUFormat::NK_BC5_UNORM:
+			case NkGPUFormat::NK_BC5_SNORM:
+			case NkGPUFormat::NK_BC7_UNORM:
+			case NkGPUFormat::NK_BC7_SRGB:
+			case NkGPUFormat::NK_ETC2_RGBA_UNORM:
+			case NkGPUFormat::NK_ASTC_4X4_UNORM:
+			case NkGPUFormat::NK_ASTC_4X4_SRGB:
+				return 16u;
+			default:
+				return 0u; // rempli plus bas par l'octet-par-pixel
+		}
+	}
+
+	inline uint32 NkFormatBytesPerPixel(NkGPUFormat f);
+
+	// Pas de ligne : octets d'une rangee de pixels, ou d'une rangee de BLOCS.
+	// C'est la fonction que les dorsaux doivent appeler.
+	inline uint32 NkFormatRowPitch(NkGPUFormat f, uint32 width) {
+		if (NkFormatIsBlockCompressed(f)) {
+			uint32 bw = 4u, bh = 4u;
+			NkFormatBlockDim(f, bw, bh);
+			const uint32 blocsX = (width + bw - 1u) / bw; // arrondi AU BLOC SUPERIEUR
+			return blocsX * NkFormatBytesPerBlock(f);
+		}
+		return width * NkFormatBytesPerPixel(f);
+	}
+
+	// Taille totale d'un niveau. Pour un format par blocs, la HAUTEUR aussi
+	// s'arrondit au bloc superieur : une texture 6x6 en BC1 occupe 2x2 blocs,
+	// pas 2x1,5.
+	inline uint64 NkFormatImageSize(NkGPUFormat f, uint32 width, uint32 height) {
+		if (NkFormatIsBlockCompressed(f)) {
+			uint32 bw = 4u, bh = 4u;
+			NkFormatBlockDim(f, bw, bh);
+			const uint64 blocsX = (width + bw - 1u) / bw;
+			const uint64 blocsY = (height + bh - 1u) / bh;
+			return blocsX * blocsY * NkFormatBytesPerBlock(f);
+		}
+		return uint64(NkFormatRowPitch(f, width)) * uint64(height);
+	}
+
+	// Nombre de RANGEES a copier pour un niveau : des rangees de blocs quand le
+	// format est compresse. Un dorsal qui boucle sur `height` au lieu de ça
+	// ecrirait quatre fois trop.
+	inline uint32 NkFormatRowCount(NkGPUFormat f, uint32 height) {
+		if (NkFormatIsBlockCompressed(f)) {
+			uint32 bw = 4u, bh = 4u;
+			NkFormatBlockDim(f, bw, bh);
+			return (height + bh - 1u) / bh;
+		}
+		return height;
+	}
+
+	// ⚠️ REND 0 POUR TOUT FORMAT PAR BLOCS, ET C'EST VOULU — voir le pave
+	// ci-dessus. Utiliser `NkFormatRowPitch` / `NkFormatImageSize`.
+	inline uint32 NkFormatBytesPerPixel(NkGPUFormat f) {
+		switch (f) {
+			case NkGPUFormat::NK_R8_UNORM:
+				return 1;
+			case NkGPUFormat::NK_RG8_UNORM:
+				return 2;
+			case NkGPUFormat::NK_RGBA8_UNORM:
+			case NkGPUFormat::NK_BGRA8_UNORM:
+			case NkGPUFormat::NK_RGBA8_SRGB:
+			case NkGPUFormat::NK_R32_FLOAT:
+			case NkGPUFormat::NK_D32_FLOAT:
+				return 4;
+			case NkGPUFormat::NK_RG16_FLOAT:
+				return 4;
+			case NkGPUFormat::NK_RGBA16_FLOAT:
+				return 8;
+			case NkGPUFormat::NK_RG32_FLOAT:
+				return 8;
+			case NkGPUFormat::NK_RGBA32_FLOAT:
+				return 16;
+			case NkGPUFormat::NK_RGB32_FLOAT:
+				return 12;
+			default:
+				return 0;
+		}
+	}
+
+	// =============================================================================
+	// Vertex format pour VertexAttribute
+	// Défini par l'utilisateur via NkGPUFormat — le RHI ne préjuge pas de la structure
+	// des vertices. Utiliser NkGPUFormat pour décrire chaque attribut.
+	// =============================================================================
+	using NkVertexFormat = NkGPUFormat;
+
+	inline uint32 NkVertexFormatSize(NkVertexFormat f) {
+		return NkFormatBytesPerPixel(f);
+	}
+
+	// =============================================================================
+	// Index format
+	// =============================================================================
+	enum class NkIndexFormat : uint32 { NK_UINT16, NK_UINT32 };
+
+	// =============================================================================
+	// Usage des ressources (buffers, textures)
+	// =============================================================================
+	enum class NkResourceUsage : uint32 {
+		NK_DEFAULT = 0,	  // GPU read/write, pas d'accès CPU direct
+		NK_UPLOAD = 1,	  // CPU write → GPU read (staging, uniforms dynamiques)
+		NK_READBACK = 2,  // GPU write → CPU read (screenshots, readbacks)
+		NK_IMMUTABLE = 3, // Init une fois, jamais modifié (géométrie statique)
+	};
+
+	// =============================================================================
+	// Flags de bind (utilisation de la ressource dans le pipeline)
+	// =============================================================================
+	enum class NkBindFlags : uint32 {
+		NK_NONE = 0,
+		NK_VERTEX_BUFFER = 1 << 0,
+		NK_INDEX_BUFFER = 1 << 1,
+		NK_UNIFORM_BUFFER = 1 << 2,	  // Constant Buffer
+		NK_STORAGE_BUFFER = 1 << 3,	  // SSBO / UAV Buffer
+		NK_SHADER_RESOURCE = 1 << 4,  // Texture SRV / Buffer SRV
+		NK_UNORDERED_ACCESS = 1 << 5, // UAV / Storage Image
+		NK_RENDER_TARGET = 1 << 6,
+		NK_DEPTH_STENCIL = 1 << 7,
+		NK_INDIRECT_ARGS = 1 << 8, // Draw/Dispatch indirect
+		NK_TRANSFER_SRC = 1 << 9,
+		NK_TRANSFER_DST = 1 << 10,
+	};
+
+	inline NkBindFlags operator|(NkBindFlags a, NkBindFlags b) {
+		return (NkBindFlags)((uint32)a | (uint32)b);
+	}
+
+	inline NkBindFlags operator&(NkBindFlags a, NkBindFlags b) {
+		return (NkBindFlags)((uint32)a & (uint32)b);
+	}
+
+	inline NkBindFlags operator~(NkBindFlags a) {
+		return (NkBindFlags)(~(uint32)a);
+	}
+
+	// inline operator bool(NkBindFlags f) {
+	//     return ((uint32)f) != 0;
+	// }
+
+	inline bool NkHasFlag(NkBindFlags flags, NkBindFlags bit) {
+		return ((uint32)flags & (uint32)bit) != 0;
+	}
+
+	// =============================================================================
+	// Type de buffer
+	// =============================================================================
+	enum class NkBufferType : uint32 { NK_VERTEX, NK_INDEX, NK_UNIFORM, NK_STORAGE, NK_INDIRECT, NK_STAGING };
+
+	// =============================================================================
+	// Type de texture
+	// =============================================================================
+	enum class NkTextureType : uint32 { NK_TEX1D, NK_TEX2D, NK_TEX3D, NK_CUBE, NK_TEX2D_ARRAY, NK_CUBE_ARRAY };
+
+	// =============================================================================
+	// Sample count (MSAA)
+	// =============================================================================
+	enum class NkSampleCount : uint32 {
+		NK_S1 = 1,
+		NK_S2 = 2,
+		NK_S4 = 4,
+		NK_S8 = 8,
+		NK_S16 = 16,
+		NK_S32 = 32,
+		NK_S64 = 64
+	};
+
+	// =============================================================================
+	// Shader stage
+	// =============================================================================
+
+	// NkShaderStage = nom historique RHI de l'étage de shader. L'enum unique est
+	// NkSLStage (possédé par NKSL, NkSLShaderStage.h) ; on en porte le nom ici.
+	// Les opérateurs |, &, ~ et NkSLStageToString viennent de NkSLShaderStage.h.
+	using NkShaderStage = NkSLStage;
+
+	// =============================================================================
+	// Push Constant Range
+	// =============================================================================
+	struct NkPushConstantRange {
+			NkShaderStage stages = NkShaderStage::NK_ALL_GRAPHICS;
+			uint32 offset = 0;
+			uint32 size = 0;
+	};
+
+	// =============================================================================
+	// Topology primitive
+	// =============================================================================
+	enum class NkPrimitiveTopology : uint32 {
+		NK_TRIANGLE_LIST,
+		NK_TRIANGLE_STRIP,
+		NK_TRIANGLE_FAN,
+		NK_LINE_LIST,
+		NK_LINE_STRIP,
+		NK_POINT_LIST,
+		NK_PATCH_LIST
+	};
+
+	// =============================================================================
+	// Fill / Cull mode
+	// =============================================================================
+	enum class NkFillMode : uint32 { NK_SOLID, NK_WIREFRAME, NK_POINT };
+	enum class NkCullMode : uint32 { NK_NONE, NK_FRONT, NK_BACK };
+	enum class NkFrontFace : uint32 { NK_CCW, NK_CW };
+
+	// =============================================================================
+	// Depth / Stencil ops
+	// =============================================================================
+	enum class NkCompareOp : uint32 {
+		NK_NEVER,
+		NK_LESS,
+		NK_EQUAL,
+		NK_LESS_EQUAL,
+		NK_GREATER,
+		NK_NOT_EQUAL,
+		NK_GREATER_EQUAL,
+		NK_ALWAYS
+	};
+
+	enum class NkStencilOp : uint32 {
+		NK_KEEP,
+		NK_ZERO,
+		NK_REPLACE,
+		NK_INCR_CLAMP,
+		NK_DECR_CLAMP,
+		NK_INVERT,
+		NK_INCR_WRAP,
+		NK_DECR_WRAP
+	};
+
+	// =============================================================================
+	// Blend
+	// =============================================================================
+	enum class NkBlendFactor : uint32 {
+		NK_ZERO,
+		NK_ONE,
+		NK_SRC_COLOR,
+		NK_ONE_MINUS_SRC_COLOR,
+		NK_DST_COLOR,
+		NK_ONE_MINUS_DST_COLOR,
+		NK_SRC_ALPHA,
+		NK_ONE_MINUS_SRC_ALPHA,
+		NK_DST_ALPHA,
+		NK_ONE_MINUS_DST_ALPHA,
+		NK_CONSTANT_COLOR,
+		NK_ONE_MINUS_CONSTANT_COLOR,
+		NK_SRC_ALPHA_SATURATE
+	};
+
+	enum class NkBlendOp : uint32 { NK_ADD, NK_SUB, NK_REV_SUB, NK_MIN, NK_MAX };
+
+	// =============================================================================
+	// Filter / Address mode (samplers)
+	// =============================================================================
+	enum class NkFilter : uint32 { NK_NEAREST, NK_LINEAR, NK_CUBIC };
+
+	enum class NkMipFilter : uint32 { NK_NONE, NK_NEAREST, NK_LINEAR };
+
+	enum class NkAddressMode : uint32 {
+		NK_REPEAT,
+		NK_MIRRORED_REPEAT,
+		NK_CLAMP_TO_EDGE,
+		NK_CLAMP_TO_BORDER,
+		NK_MIRROR_CLAMP_TO_EDGE
+	};
+
+	enum class NkBorderColor : uint32 { NK_TRANSPARENT_BLACK, NK_OPAQUE_BLACK, NK_OPAQUE_WHITE };
+
+	// =============================================================================
+	// Attachment load / store
+	// =============================================================================
+	enum class NkLoadOp : uint32 { NK_LOAD, NK_CLEAR, NK_DONT_CARE };
+	enum class NkStoreOp : uint32 { NK_STORE, NK_DONT_CARE, NK_RESOLVE };
+
+	// =============================================================================
+	// Pipeline stage (pour les barrières)
+	// =============================================================================
+	enum class NkPipelineStage : uint32 {
+		NK_NONE = 0,
+		NK_TOP_OF_PIPE = 1 << 0,
+		NK_VERTEX_INPUT = 1 << 1,
+		NK_VERTEX_SHADER = 1 << 2,
+		NK_FRAGMENT_SHADER = 1 << 3,
+		NK_EARLY_FRAGMENT = 1 << 4,
+		NK_LATE_FRAGMENT = 1 << 5,
+		NK_COLOR_ATTACHMENT = 1 << 6,
+		NK_COMPUTE_SHADER = 1 << 7,
+		NK_TRANSFER = 1 << 8,
+		NK_BOTTOM_OF_PIPE = 1 << 9,
+		NK_ALL_GRAPHICS = 1 << 10,
+		NK_ALL_COMMANDS = 1 << 11
+	};
+
+	inline NkPipelineStage operator|(NkPipelineStage a, NkPipelineStage b) {
+		return (NkPipelineStage)((uint32)a | (uint32)b);
+	}
+
+	// =============================================================================
+	// Resource state (état courant d'une ressource)
+	// =============================================================================
+	enum class NkResourceState : uint32 {
+		NK_UNDEFINED,
+		NK_COMMON,
+		NK_VERTEX_BUFFER,
+		NK_INDEX_BUFFER,
+		NK_UNIFORM_BUFFER,
+		NK_SHADER_READ,
+		NK_SHADER_WRITE,
+		NK_RENDER_TARGET,
+		NK_DEPTH_READ,
+		NK_DEPTH_WRITE,
+		NK_PRESENT,
+		NK_TRANSFER_SRC,
+		NK_TRANSFER_DST,
+		NK_UNORDERED_ACCESS,
+		NK_INDIRECT_ARG
+	};
+
+	// =============================================================================
+	// Queue type — pour le multi-queue submit
+	// =============================================================================
+	enum class NkQueueType : uint32 {
+		NK_GRAPHICS = 0, // graphics + compute + copy (queue principale)
+		NK_COMPUTE = 1,	 // compute + copy (async compute queue)
+		NK_TRANSFER = 2, // copy uniquement (DMA engine dédié)
+		NK_PRESENT = 3	 // présentation (peut être identique à NK_GRAPHICS)
+	};
+
+	// =============================================================================
+	// Viewport et scissor
+	// =============================================================================
+	struct NkViewport {
+			float32 x = 0, y = 0;
+			float32 width = 0, height = 0;
+			float32 minDepth = 0.f, maxDepth = 1.f;
+			bool flipY = true; ///< Vulkan : inverse Y pour passer en convention OpenGL. Mettre false pour shadow pass.
+
+			NkViewport() = default;
+
+			NkViewport(float32 x, float32 y, float32 w, float32 h, float32 minD = 0.f, float32 maxD = 1.f,
+					   bool flipY = true)
+				: x(x), y(y), width(w), height(h), minDepth(minD), maxDepth(maxD), flipY(flipY) {
+			}
+	};
+
+	using NkRect2D = math::NkIntRect;
+
+	using NkScissor = NkRect2D;
+
+	// =============================================================================
+	// Clear values
+	// =============================================================================
+	using NkClearColor = math::NkColorF;
+
+	struct NkClearDepth {
+			float32 depth = 1.f;
+			uint32 stencil = 0;
+	};
+
+	union NkClearValue {
+			NkClearColor color;
+			NkClearDepth depthStencil;
+
+			NkClearValue() : color{0, 0, 0, 1} {
+			}
+	};
+
+	// =============================================================================
+	// Résultat d'opération RHI
+	// =============================================================================
+	enum class NkRHIResult : uint32 {
+		NK_OK = 0,
+		NK_OUT_OF_MEMORY,
+		NK_DEVICE_LOST,
+		NK_INVALID_PARAM,
+		NK_NOT_SUPPORTED,
+		NK_ALREADY_EXISTS,
+		NK_TIMEOUT,
+		NK_UNKNOWN,
+	};
+
+	inline bool NkSucceeded(NkRHIResult r) {
+		return r == NkRHIResult::NK_OK;
+	}
+
+	inline const char *NkRHIResultName(NkRHIResult r) {
+		switch (r) {
+			case NkRHIResult::NK_OK:
+				return "Ok";
+			case NkRHIResult::NK_OUT_OF_MEMORY:
+				return "OutOfMemory";
+			case NkRHIResult::NK_DEVICE_LOST:
+				return "DeviceLost";
+			case NkRHIResult::NK_INVALID_PARAM:
+				return "InvalidParam";
+			case NkRHIResult::NK_NOT_SUPPORTED:
+				return "NotSupported";
+			default:
+				return "Unknown";
+		}
+	}
+
+} // namespace nkentseu

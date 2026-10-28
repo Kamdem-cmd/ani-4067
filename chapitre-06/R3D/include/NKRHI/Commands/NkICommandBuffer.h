@@ -1,0 +1,335 @@
+#pragma once
+// =============================================================================
+// NkICommandBuffer.h
+// Interface abstraite du command buffer RHI.
+//
+// Le command buffer est l'objet central du RHI :
+//   - Enregistre toutes les commandes GPU (draw, dispatch, copy, barriers)
+//   - Thread-safe à l'enregistrement : plusieurs threads peuvent enregistrer
+//     des command buffers différents en parallèle
+//   - Soumis au device via NkIDevice::Submit()
+//
+// Cycle de vie :
+//   Begin() → [commandes] → End() → Submit() → [WaitFence si besoin]
+//   Reset() → Begin() → ...
+//
+// Types :
+//   Graphics   — draw calls, render passes, copy
+//   Compute    — dispatch compute, copy, barriers
+//   Transfer   — copy uniquement (DMA engine dédié sur certains GPU)
+// =============================================================================
+#include "NKRHI/Core/NkTypes.h"
+#include "NKRHI/Core/NkDescs.h"
+
+namespace nkentseu {
+
+	enum class NkCommandBufferType : uint32 {
+		NK_GRAPHICS, // peut aussi faire compute et copy
+		NK_COMPUTE,	 // compute + copy uniquement (queue dédiée)
+		NK_TRANSFER, // copy uniquement (DMA engine)
+	};
+
+	class NkICommandBuffer {
+		public:
+			virtual ~NkICommandBuffer() = default;
+
+			// ── Cycle de vie ─────────────────────────────────────────────────────────
+			virtual bool Begin() = 0;
+			virtual void End() = 0;
+			virtual void Reset() = 0;
+			virtual bool IsValid() const = 0;
+			virtual NkCommandBufferType GetType() const = 0;
+
+			// =========================================================================
+			// Render Pass
+			// =========================================================================
+			virtual bool BeginRenderPass(NkRenderPassHandle rp, NkFramebufferHandle fb, const NkRect2D &area) = 0;
+			virtual void EndRenderPass() = 0;
+
+			// ── Sous-passes (Vulkan subpasses / Metal render encoder chains) ──
+			virtual void NextSubpass() {
+			} // optionnel — no-op sur DX/GL
+
+			// =========================================================================
+			// Compute Pass
+			// Délimite une région de travail compute dans le command buffer.
+			// Sur les backends qui le supportent (Vulkan, Metal, DX12), insère des
+			// debug markers et des timestamps GPU autour des dispatches.
+			// Sur OpenGL / DX11, les implémentations par défaut (no-op) sont suffisantes.
+			//
+			// Usage :
+			//   cmd->BeginComputePass({"Particles"});
+			//     cmd->BindComputePipeline(pipe);
+			//     cmd->BindDescriptorSet(set, 0);
+			//     cmd->Dispatch(groups, 1, 1);
+			//     cmd->UAVBarrier(outputBuf);
+			//   cmd->EndComputePass();
+			// =========================================================================
+			virtual void BeginComputePass(const NkComputePassDesc &desc) {
+				// Défaut : debug marker si disponible
+				if (desc.debugName && desc.debugName[0])
+					BeginDebugGroup(desc.debugName, 0.4f, 0.8f, 1.f);
+				if (desc.enableTimestamp)
+					WriteTimestamp(0); // les backends avancés surchargeront ceci
+			}
+
+			virtual void EndComputePass() {
+				EndDebugGroup();
+			}
+
+			// =========================================================================
+			// Viewport & Scissor
+			// =========================================================================
+			virtual void SetViewport(const NkViewport &vp) = 0;
+			virtual void SetViewports(const NkViewport *vps, uint32 n) = 0;
+			virtual void SetScissor(const NkRect2D &rect) = 0;
+			virtual void SetScissors(const NkRect2D *rects, uint32 n) = 0;
+
+			// =========================================================================
+			// Clear dynamique (analogues à glClearColor + glClearDepth + glClear)
+			// À appeler avant BeginRenderPass pour surcharger la couleur/profondeur
+			// de clear définie dans le NkRenderPassDesc.
+			// La valeur reste active jusqu'au prochain appel (persistante par frame).
+			//   SetClearColor(0.1f, 0.2f, 0.4f) → fond bleu nuit
+			//   SetClearDepth(1.0f)             → buffer depth remis à 1.0 (loin)
+			// =========================================================================
+			virtual void SetClearColor(float32 r, float32 g, float32 b, float32 a = 1.f) {
+			}
+
+			void SetClearColor(const math::NkColorF &color) {
+				SetClearColor(color.r, color.g, color.b, color.a);
+			}
+
+			void SetClearColor(const math::NkColor &color) {
+				SetClearColor(color.ToColorF());
+			}
+
+			virtual void SetClearDepth(float32 depth = 1.f, uint32 stencil = 0) {
+			}
+
+			// =========================================================================
+			// Pipeline & Descriptors
+			// =========================================================================
+			virtual void BindGraphicsPipeline(NkPipelineHandle pipeline) = 0;
+			virtual void BindComputePipeline(NkPipelineHandle pipeline) = 0;
+
+			// Descriptor sets — binding uniforms, textures, storage buffers
+			// set     : numéro de set (0=par frame, 1=par pass, 2=par material, 3=par objet)
+			// offsets : pour les descriptors dynamiques (UniformBufferDynamic)
+			virtual void BindDescriptorSet(NkDescSetHandle set, uint32 setIndex, uint32 *dynamicOffsets = nullptr,
+										   uint32 dynamicOffsetCount = 0) = 0;
+
+			// Push constants — données petites passées directement dans le command buffer
+			// Plus rapide que les uniform buffers pour les données qui changent par draw call
+			virtual void PushConstants(NkShaderStage stages, uint32 offset, uint32 size, const void *data) = 0;
+
+			// Update buffer enqueued — copie 'data' (de taille size) dans 'buf' a l'offset
+			// 'dstOffset', mais l'ecriture est differee jusqu'a Execute() du command buffer.
+			// Utile pour les UBOs per-draw : on capture la valeur courante par copie, et le
+			// WriteBuffer s'execute dans l'ordre avec les BindDescriptorSet/Draw qui suivent
+			// (sinon l'ecriture immediate ecrase pour tous les drawcalls de la frame).
+			virtual void UpdateBuffer(NkBufferHandle buf, uint64 dstOffset, uint64 size, const void *data) = 0;
+
+			// =========================================================================
+			// Vertex & Index Buffers
+			// =========================================================================
+			virtual void BindVertexBuffer(uint32 binding, NkBufferHandle buf, uint64 offset = 0) = 0;
+			virtual void BindVertexBuffers(uint32 firstBinding, const NkBufferHandle *bufs, const uint64 *offsets,
+										   uint32 count) = 0;
+			virtual void BindIndexBuffer(NkBufferHandle buf, NkIndexFormat fmt, uint64 offset = 0) = 0;
+
+			// =========================================================================
+			// Draw calls
+			// =========================================================================
+			// POINT DE PASSAGE UNIQUE DES STATISTIQUES. Chaque appel de dessin
+			// du moteur, quel que soit le backend, passe par ces quatre
+			// methodes : c'est donc ICI qu'on compte, et nulle part ailleurs.
+			// Les compteurs de NkRendererStats etaient affiches depuis toujours
+			// mais jamais alimentes -- les poser dans chaque backend les aurait
+			// fait diverger, les poser a chaque site d'appel en aurait oublie.
+			// Patron NVI : Draw() compte puis delegue a DrawImpl(), virtuelle,
+			// que les backends implementent. Les triangles sont ESTIMES en
+			// supposant des listes de triangles -- c'est ce que le moteur
+			// soumet ; des lignes ou des points gonfleraient un peu le compte.
+			void Draw(uint32 vertexCount, uint32 instanceCount = 1, uint32 firstVertex = 0,
+					  uint32 firstInstance = 0) {
+				++mCbStats.drawCalls;
+				mCbStats.vertices += vertexCount * instanceCount;
+				mCbStats.triangles += (vertexCount / 3u) * instanceCount;
+				DrawImpl(vertexCount, instanceCount, firstVertex, firstInstance);
+			}
+
+			void DrawIndexed(uint32 indexCount, uint32 instanceCount = 1, uint32 firstIndex = 0,
+							 int32 vertexOffset = 0, uint32 firstInstance = 0) {
+				++mCbStats.drawCalls;
+				mCbStats.vertices += indexCount * instanceCount;
+				mCbStats.triangles += (indexCount / 3u) * instanceCount;
+				DrawIndexedImpl(indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
+			}
+
+			// Indirect — args dans un buffer GPU (occlusion culling, etc.).
+			// Les arguments vivent sur le GPU : le CPU ne connait ni les
+			// sommets ni les triangles, on ne compte que les appels.
+			void DrawIndirect(NkBufferHandle argsBuffer, uint64 offset, uint32 drawCount,
+							  uint32 stride = sizeof(NkDrawIndirectArgs)) {
+				mCbStats.drawCalls += drawCount;
+				DrawIndirectImpl(argsBuffer, offset, drawCount, stride);
+			}
+
+			void DrawIndexedIndirect(NkBufferHandle argsBuffer, uint64 offset, uint32 drawCount,
+									 uint32 stride = sizeof(NkDrawIndexedIndirectArgs)) {
+				mCbStats.drawCalls += drawCount;
+				DrawIndexedIndirectImpl(argsBuffer, offset, drawCount, stride);
+			}
+
+			// Compteurs de la frame en cours d'enregistrement. Remis a zero par
+			// le proprietaire du command buffer (NkRendererImpl::BeginFrame),
+			// lus a la fin de la frame pour remplir NkRendererStats.
+			struct NkCbStats {
+					uint32 drawCalls = 0;
+					uint32 triangles = 0;
+					uint32 vertices = 0;
+					void Reset() {
+						drawCalls = triangles = vertices = 0;
+					}
+			};
+			const NkCbStats &Stats() const {
+				return mCbStats;
+			}
+			void ResetStats() {
+				mCbStats.Reset();
+			}
+
+			// Multi-draw indirect avec count GPU (DX12/Vulkan/Metal)
+			virtual void DrawIndirectCount(NkBufferHandle argsBuffer, uint64 argsOffset, NkBufferHandle countBuffer,
+										   uint64 countOffset, uint32 maxDrawCount) {
+			}
+
+			// =========================================================================
+			// Compute dispatch
+			// =========================================================================
+			virtual void Dispatch(uint32 groupsX, uint32 groupsY = 1, uint32 groupsZ = 1) = 0;
+
+			virtual void DispatchIndirect(NkBufferHandle argsBuffer, uint64 offset) = 0;
+
+			// =========================================================================
+			// Copies
+			// =========================================================================
+			virtual void CopyBuffer(NkBufferHandle src, NkBufferHandle dst, const NkBufferCopyRegion &region) = 0;
+
+			virtual void CopyBufferToTexture(NkBufferHandle src, NkTextureHandle dst,
+											 const NkBufferTextureCopyRegion &region) = 0;
+
+			virtual void CopyTextureToBuffer(NkTextureHandle src, NkBufferHandle dst,
+											 const NkBufferTextureCopyRegion &region) = 0;
+
+			virtual void CopyTexture(NkTextureHandle src, NkTextureHandle dst, const NkTextureCopyRegion &region) = 0;
+
+			// Blit avec filtrage (resize, mip generation)
+			virtual void BlitTexture(NkTextureHandle src, NkTextureHandle dst, const NkTextureCopyRegion &region,
+									 NkFilter filter = NkFilter::NK_LINEAR) = 0;
+
+			// =========================================================================
+			// Resource barriers (transitions d'état)
+			// =========================================================================
+			virtual void Barrier(const NkBufferBarrier *bufBarriers, uint32 bufCount,
+								 const NkTextureBarrier *texBarriers, uint32 texCount) = 0;
+
+			// Shortcut : une seule texture
+			void TextureBarrier(NkTextureHandle tex, NkResourceState before, NkResourceState after,
+								NkPipelineStage src = NkPipelineStage::NK_ALL_COMMANDS,
+								NkPipelineStage dst = NkPipelineStage::NK_ALL_COMMANDS) {
+				NkTextureBarrier b{tex, before, after, src, dst};
+				Barrier(nullptr, 0, &b, 1);
+			}
+
+			// Shortcut : une seule barrière UAV (après compute write)
+			void UAVBarrier(NkBufferHandle buf) {
+				NkBufferBarrier b{buf, NkResourceState::NK_UNORDERED_ACCESS, NkResourceState::NK_UNORDERED_ACCESS};
+				Barrier(&b, 1, nullptr, 0);
+			}
+
+			// =========================================================================
+			// Génération de mip-maps GPU
+			// =========================================================================
+			virtual void GenerateMipmaps(NkTextureHandle texture, NkFilter filter = NkFilter::NK_LINEAR) = 0;
+
+			// =========================================================================
+			// Debug markers (RenderDoc, PIX, Xcode GPU Frame Capture)
+			// =========================================================================
+			virtual void BeginDebugGroup(const nk_char *name, float32 r = 1, float32 g = 1, float32 b = 1) {
+			}
+
+			virtual void EndDebugGroup() {
+			}
+
+			virtual void InsertDebugLabel(const nk_char *name) {
+			}
+
+			// =========================================================================
+			// Clear explicite (hors render pass — pour les textures storage)
+			// =========================================================================
+			// ⚠️ MEME MALADIE QUE `ClearBuffer`, DESAMORCEE AVANT SA PREMIERE VICTIME
+			// (2026-08-16). Corps VIDE, **0 surcharge sur les six backends**, et — a la
+			// difference de `ClearBuffer` — **0 appelant a ce jour** : c'etait un piege
+			// arme, pas encore un defaut actif. Mesure faite avant correction :
+			// `ClearTexture` n'apparaissait qu'UNE fois dans tout le depot, ici meme.
+			//
+			// C'est le seul cas ou la reparation est gratuite : le prochain appelant
+			// croira mettre une texture a zero et verra un avertissement au lieu de
+			// devenir une victime silencieuse. Le corps est defini hors ligne
+			// (NkICommandBuffer.cpp), comme celui de `ClearBuffer`, pour ne pas tirer
+			// NKLogger dans un en-tete inclus par une trentaine d'applications.
+			virtual void ClearTexture(NkTextureHandle texture, const NkClearValue &value, uint32 baseMip = 0,
+									  uint32 mipCount = UINT32_MAX, uint32 baseLayer = 0,
+									  uint32 layerCount = UINT32_MAX);
+
+			// ⚠️ CORPS DE BASE NON SILENCIEUX (2026-08-16). Ce virtuel avait un corps
+			// VIDE, et AUCUN des six backends ne le surchargeait : tout appel etait
+			// un no-op *silencieux*, sur toutes les plateformes. `Core/NkML.cpp:77`
+			// (commentaire « Init gradient a zero ») et `:106` comptaient dessus —
+			// ces tampons n'etaient mis a zero nulle part. Un virtuel a corps vide ne
+			// se distingue pas d'un virtuel implemente, ni au point d'appel ni a la
+			// lecture ; la seule protection est qu'il PARLE. Le corps par defaut est
+			// donc defini hors ligne (NkICommandBuffer.cpp) et journalise « non
+			// implemente sur ce backend » au lieu de ne rien faire.
+			//
+			// Surcharge existante a ce jour : **Vulkan seul** (vkCmdFillBuffer).
+			// DX11, DX12, OpenGL, Metal, Software tombent sur l'avertissement — c'est
+			// le comportement voulu : bruyamment incomplet plutot que silencieusement
+			// faux. Un appelant qui a besoin de la garantie doit VERIFIER (temoin
+			// ecriture/relecture), pas se fier a la presence de la signature.
+			virtual void ClearBuffer(NkBufferHandle buffer, uint32 value = 0, uint64 offset = 0,
+									 uint64 size = UINT64_MAX);
+
+			// =========================================================================
+			// Timestamp queries (GPU timing)
+			// =========================================================================
+			virtual void WriteTimestamp(uint32 queryIndex) {
+			}
+
+			virtual void ResetQueryPool(uint32 firstQuery, uint32 count) {
+			}
+
+		protected:
+			// =========================================================================
+			// Implementations des draw calls (cf. le patron NVI en tete de la
+			// section « Draw calls » : les publiques comptent, celles-ci font).
+			// =========================================================================
+			virtual void DrawImpl(uint32 vertexCount, uint32 instanceCount, uint32 firstVertex,
+								  uint32 firstInstance) = 0;
+
+			virtual void DrawIndexedImpl(uint32 indexCount, uint32 instanceCount, uint32 firstIndex,
+										 int32 vertexOffset, uint32 firstInstance) = 0;
+
+			virtual void DrawIndirectImpl(NkBufferHandle argsBuffer, uint64 offset, uint32 drawCount,
+										  uint32 stride) = 0;
+
+			virtual void DrawIndexedIndirectImpl(NkBufferHandle argsBuffer, uint64 offset,
+												 uint32 drawCount, uint32 stride) = 0;
+
+		private:
+			NkCbStats mCbStats;
+	};
+
+} // namespace nkentseu

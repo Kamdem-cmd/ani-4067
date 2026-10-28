@@ -1,0 +1,52 @@
+$ jenga build --target exo1 --config Debug --platform Windows-x86_64 --jenga-file "D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/chapitre-07.jenga"
+
+Configuration: Debug
+Target:        Windows x86_64
+Toolchain:     clang-mingw
+
+Build Order (1 projects):
+  1. exo1 [WINDOWED_APP]
+
+
+╔══════════════════════════════════════════════════════════════════════════════════════════════╗
+║  Project: exo1                                                           Kind: WINDOWED_APP  ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+ℹ Found 1 source file(s)
+
+╔══════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                Compilation Error: budget.cpp                                 ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════╣
+║ D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp:162:19:   ║
+║ error: member access into incomplete type 'class NkMaterialCollection'                       ║
+║   162 |                 mc->Upload();                                                        ║
+║       |                   ^                                                                  ║
+║ D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle\Kits\R3D\includ ║
+║ e/NKRenderer/NkRenderer.h:89:19: note: forward declaration of                                ║
+║ 'nkentseu::renderer::NkMaterialCollection'                                                   ║
+║ 89 |                                 virtual class NkMaterialCollection                      ║
+║ *GetMaterialCollection() = 0;                                                                ║
+║       |                                               ^                                      ║
+║ 1 error generated.                                                                           ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+✗ ✗ Compilation failed: D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ✗ Build Failed                                                                Time: 35.41s  │
+│ Errors: 2  | Failed files: 1                                                                 │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+
+════════════════════════════════════════════════════════════════════════════════
+                                  BUILD FAILED                                  
+════════════════════════════════════════════════════════════════════════════════
+Projects Built:  0/1
+Failed:         1
+Errors:         2
+Time:           35.41s
+Status:         ✗ FAILURE
+════════════════════════════════════════════════════════════════════════════════
+
+Echecs (1) — a corriger :
+  ✗ exo1
+

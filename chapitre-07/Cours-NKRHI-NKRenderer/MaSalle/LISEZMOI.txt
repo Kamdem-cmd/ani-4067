@@ -1,0 +1,55 @@
+MaSalle - projet de depart du cours « NKRHI et NKRenderer » (volume III, chapitre 5)
+====================================================================================
+
+1. INSTALLER LE KIT
+   Telechargez le kit R3D du 22 octobre 2026 :
+   https://github.com/Rihen-Universe/Nkentseu-Kits/releases/download/kits-cours-2026-10-22/R3D-kit-Windows.zip
+   et decompressez-le DANS le dossier Kits/ de ce projet.
+   Vous devez obtenir :
+
+       MaSalle/
+         MaSalle.jenga
+         src/main.cpp
+         etapes/
+         Kits/
+           R3D/
+             R3D.jenga
+             include/
+             lib/
+             Resources/
+
+   Rien d'autre a installer : ni le moteur, ni un SDK.
+
+2. CONSTRUIRE ET LANCER
+   Dans NKCode : ouvrez le dossier MaSalle, puis Construire (Ctrl+B) et
+   Demarrer (Ctrl+R).
+   Dans un terminal, depuis le dossier MaSalle :
+
+       jenga build
+       ./Build/Bin/Debug-Windows/MaSalle/MaSalle.exe
+
+   LANCEZ LE PROGRAMME DEPUIS LE DOSSIER MaSalle. NKRenderer lit ses
+   nuanceurs dans Resources/NKRenderer/Shaders, relativement au dossier
+   courant ; la construction les y copie depuis le kit.
+
+3. LES ETAPES
+   src/main.cpp est l'etape 1. Pour passer a l'etape suivante, remplacez
+   TOUT le contenu de src/main.cpp par celui du fichier de l'etape, puis
+   reconstruisez :
+
+       etapes/etape1_fenetre.cpp        une fenetre, la pompe a evenements
+       etapes/etape2_peripherique.cpp   NKRHI : le peripherique graphique
+       etapes/etape3_renderer_2d.cpp    NKRenderer : le plan de la salle, en 2D
+       etapes/etape4_cube.cpp           la 3D : un sol, un cube, une camera, une lumiere
+       etapes/etape5_salle.cpp          la salle entiere
+
+4. SI WINDOWS REFUSE DE LANCER LE PROGRAMME
+   Sur un Windows 11 ou « Smart App Control » est actif, un programme tout
+   juste compile peut etre refuse (« Acces refuse », « bloque par votre
+   organisation »). Ce n'est pas votre code : Windows ne connait pas encore
+   ce fichier. Modifiez une ligne (un commentaire suffit), reconstruisez, et
+   relancez : c'est un autre fichier, et il est juge a nouveau.
+
+Projet repris le 2026-10-25 pour le kit R3D du 22 octobre 2026 (kits-cours-2026-10-22) : construit et lance avec
+le Jenga de NKCode 1.5.6. Construisez depuis NKCode, ou avec son tools\jenga.cmd : un kit construit avec un autre
+compilateur ne se lie pas (« undefined symbol std::__cxx11... »).

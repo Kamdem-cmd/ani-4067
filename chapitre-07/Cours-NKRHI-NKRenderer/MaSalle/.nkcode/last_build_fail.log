@@ -1,0 +1,30 @@
+$ jenga rebuild --target MaSalle --config Debug --platform Windows-x86_64 --jenga-file "D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle/MaSalle.jenga"
+
+Configuration: Debug
+Target:        Windows x86_64
+Toolchain:     clang-mingw
+
+Build Order (1 projects):
+  1. MaSalle [CONSOLE_APP]
+
+
+╔══════════════════════════════════════════════════════════════════════════════════════════════╗
+║  Project: MaSalle                                                         Kind: CONSOLE_APP  ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════╝
+
+ℹ Found 1 source file(s)
+✓ All files up to date
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ✓ Build Successful                                                             Time: 0.12s  │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+✗ MaSalle: postbuild command failed (exit 1): "C:\Users\SMART\AppData\Local\Programs\NKCode\NKCode.exe" -c "import shutil, sys; shutil.copytree(sys.argv[1], sys.argv[2], dirs_exist_ok=True)" "D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle/Kits/R3D/Resources/NKRenderer/Shaders" "D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle/Build/Bin/Debug-Windows/MaSalle/Resources/NKRenderer/Shaders"
+
+════════════════════════════════════════════════════════════════════════════════
+                                BUILD COMPLETED                                 
+════════════════════════════════════════════════════════════════════════════════
+Projects Built:  1/1
+Time:           38.47s
+Status:         ✓ SUCCESS
+════════════════════════════════════════════════════════════════════════════════
+
