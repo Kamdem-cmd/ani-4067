@@ -1,0 +1,11 @@
+L'image fautive :
+L'image fautive est l'image 302 (atteignant un lacet de 270.55 degrés). Elle se caractérise par une rupture instantanée dans le calcul de la vitesse angulaire (qui bascule brièvement à -20.00 deg/s), signalant visuellement le point de discontinuité mathématique de la représentation par quaternions lors du franchissement de l'hémisphère.
+
+Le rapport :
+Le rapport de la vitesse mesurée à l'image fautive par rapport à l'image précédente est de -1. Cette inversion de signe montre que la valeur scalaire de la vitesse reste correcte en amplitude, mais que sa direction vectorielle est totalement opposée à la réalité du mouvement programmé.
+
+Pourquoi à ce lacet :
+Ce comportement critique apparaît à cet angle précis car les quaternions décrivent un revêtement double de l'espace tridimensionnel : une rotation et son opposé (obtenue en inversant tous les termes du quaternion) décrivent exactement la même orientation spatiale. Lorsque la rotation franchit le seuil où la composante scalaire w change de signe, l'absence ou la présence de la correction du chemin court redéfinit l'angle orienté calculé par la fonction d'extraction, provoquant une bascule mathématique brutale de l'axe de rotation.
+
+Ce qu'aurait vu le casque :
+Si ce type de calcul erroné était exploité en production pour la prédiction de mouvement ou la reprojection en réalité virtuelle, le système estimerait de manière erronée que la vue subit une inversion instantanée de direction. Cela générerait des saccades visuelles extrêmement violentes et un décrochage optique total, provoquant quasi instantanément des nausées et une forte désorientation chez l'utilisateur.

@@ -104,7 +104,7 @@ namespace {
         NkQuatf delta = (to * from.Conjugate()).Normalized();
 
         // TEST RETIRÉ EXPRÈS : 
-        // if (delta.w < 0.f) { delta = NkQuatf(-delta.x, -delta.y, -delta.z, -delta.w); }
+        if (delta.w < 0.f) { delta = NkQuatf(-delta.x, -delta.y, -delta.z, -delta.w); }
 
         const float32 angleRad = delta.Angle().Rad();
         if (angleRad <= 1e-6f) {
