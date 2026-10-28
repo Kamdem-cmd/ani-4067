@@ -1,13 +1,21 @@
 nksession/2
-active 9
+active 3
 ui 0 1
 F 280 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.cpp
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.txt
 F 7 340 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/reponse.txt
-F 109 50 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo2-l_instant_predit_et_sa_periode/instants.cpp
+F 109 50 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo2-l_instant_predit_et_sa_periode/instant.cpp
 F 23 55 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo2-l_instant_predit_et_sa_periode/instants.txt
 F 7 466 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo2-l_instant_predit_et_sa_periode/reponse.txt
 F 132 60 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo3-mesurer_une_vitesse/vitesse.cpp
 F 39 59 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo3-mesurer_une_vitesse/vitesses.txt
 F 13 12 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo3-mesurer_une_vitesse/projet.jenga
 F 7 516 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo3-mesurer_une_vitesse/reponse.txt
+F 300 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo4-le_chemin_long_provoque/chemin.cpp
+F 7 18 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo4-le_chemin_long_provoque/projet.jenga
+F 7 18 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo5-predire_et_comparer/projet.jenga
+F 7 18 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/projet.jenga
+F 7 18 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo7-la_latence_injectee_et_la_borne/projet.jenga
+F 7 18 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo8-la_stabilite_mesuree/projet.jenga
+F 7 18 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo9-le_verrou_de_demi_cadence/projet.jenga
+F 7 19 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo10-un_meilleur_modele/projet.jenga

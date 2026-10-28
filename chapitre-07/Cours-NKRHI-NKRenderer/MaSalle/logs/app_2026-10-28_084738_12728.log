@@ -354,3 +354,24 @@
 [2026-10-28 23:29:47.617] [INF] [default] [: in ] -> [hover] 'predit' L91:C37 -> (rien)
 [2026-10-28 23:29:56.223] [INF] [default] [: in ] -> [hover] 'predit' L91:C37 -> (rien)
 [2026-10-28 23:32:00.394] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2011.66 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-28 23:38:09.917] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2701.74 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-28 23:38:12.313] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 23:38:16.083] [INF] [default] [: in ] -> [lsp] 2 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 23:38:16.121] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 23:38:26.503] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2013.01 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-28 23:38:39.083] [INF] [default] [: in ] -> [jenga] info (embarque) : 78 ligne(s), 20 projet(s), 16 chaine(s) de compilation
+[2026-10-28 23:38:42.145] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2017.75 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-28 23:38:44.003] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-28 23:38:44.005] [INF] [default] [: in ] -> [lsp] compile_commands.json : 10 entree(s)
+[2026-10-28 23:38:44.120] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-28 23:38:44.225] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-28 23:38:45.162] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 197 image(s) (4639.49 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : A(appModal) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : deroulant de la barre
+[2026-10-28 23:44:21.575] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 23:44:30.679] [INF] [default] [: in ] -> [hover] 'long' -> (mot-cle)
+[2026-10-28 23:44:32.305] [INF] [default] [: in ] -> [hover] 'seconde' -> (commentaire/chaine)
+[2026-10-28 23:45:42.968] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 23:45:44.031] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 23:45:50.508] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\vitesse.cpp
+[2026-10-28 23:48:32.242] [INF] [default] [: in ] -> [hover] 'image' L1:C0 -> ~ NkImage image
+[2026-10-28 23:48:32.786] [INF] [default] [: in ] -> [hover] 'image' L1:C0 -> ~ NkImage image
+[2026-10-28 23:50:34.467] [INF] [default] [: in ] -> [hover] 'coups' L8:C351 -> (rien)

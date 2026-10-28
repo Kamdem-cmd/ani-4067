@@ -5,7 +5,7 @@
 
 from Jenga import *
 
-with project("exo12"):
+with project("exo10"):
     windowedapp()
     language("C++")
     cppdialect("C++17")
