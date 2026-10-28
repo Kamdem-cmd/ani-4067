@@ -1,0 +1,8 @@
+Le gain :
+Le gain apporté par la prédiction de pose se traduit par une réduction de l'erreur moyenne en anticipant le déplacement de la tête. En estimant l'orientation future en fonction de la vitesse angulaire instantanée, le système compense la latence d'affichage entre le calcul et la présentation de l'image sur l'écran.
+
+D'où vient l'erreur qui reste :
+L'erreur résiduelle provient principalement de l'hypothèse de vitesse constante du modèle d'extrapolation linéaire, ainsi que de la nature erratique et discontinue des mouvements de la souris (micro-saccades et changements constants d'accélération), qui font que la vitesse mesurée à l'instant t prédit imparfaitement l'instant suivant.
+
+Le facteur dix :
+L'affirmation d'un gain d'un facteur dix ou plus se vérifie essentiellement lors de mouvements de rotation amples, fluides et continus à vitesse stable. Lors de tests basés sur des mouvements de curseur de souris rapides et désordonnés, les changements fréquents d'accélération réduisent l'écart, rendant les erreurs avec et sans prédiction plus proches.

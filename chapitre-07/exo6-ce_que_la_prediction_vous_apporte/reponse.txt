@@ -1,0 +1,8 @@
+Mes deux gestes :
+Le geste lent a été choisi avec une amplitude de 45 degrés sur une durée de 1,0 seconde, et le demi-tour brusque avec une amplitude de 180 degrés sur une durée de 0,3 seconde. Ces mouvements permettent de tester les limites de l'extrapolation en opposant la fluidité d'une rotation lente à la vivacité d'un changement de direction très rapide.
+
+Où elle aide le moins :
+La prédiction aide le moins lors du demi-tour brusque. Bien que l'erreur absolue sans prédiction y soit la plus élevée (~8.53°), le rapport de réduction avec prédiction descend à environ 7,2, ce qui montre une efficacité relative plus faible face à la violence des variations d'accélération.
+
+Pourquoi là :
+Le modèle de prédiction suppose une vitesse angulaire constante entre deux trames successives. Lors d'un demi-tour très rapide, l'accélération et le jerk (variation de l'accélération) sont extrêmement élevés. La vitesse mesurée à l'instant t est déjà obsolète pour anticiper fidèlement l'orientation de l'instant suivant, générant une erreur résiduelle plus importante.

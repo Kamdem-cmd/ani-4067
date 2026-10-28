@@ -419,3 +419,53 @@
 [2026-10-28 23:57:57.619] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 107 image(s) (2096.56 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : A(appModal) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : deroulant de la barre
 [2026-10-28 23:58:38.801] [INF] [default] [: in ] -> [ui] barre H : clic (maxScrollX=78, wrap=0)
 [2026-10-29 00:00:04.085] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo4-le_chemin_long_provoque\chemin.cpp
+[2026-10-29 00:02:49.501] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
+[2026-10-29 00:02:52.712] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instant.cpp
+[2026-10-29 00:08:18.487] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo4-le_chemin_long_provoque\chemin.cpp
+[2026-10-29 00:15:22.134] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:21:07.321] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2015.34 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 00:21:08.415] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:21:10.334] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:25:18.135] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\consolab.ttf(397896o)
+
+[2026-10-29 00:25:18.137] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 00:25:18.153] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2214 glyphes rasterises, atlas 1024x1024, 1539 points non nuls
+
+[2026-10-29 00:25:18.192] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-29 00:25:18.193] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 00:25:18.209] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1346 points non nuls
+
+[2026-10-29 00:25:18.251] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-29 00:25:18.253] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 00:25:18.271] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1429 points non nuls
+
+[2026-10-29 00:25:18.302] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\consola.ttf(459180o)
+
+[2026-10-29 00:25:18.304] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 00:25:18.320] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2302 glyphes rasterises, atlas 1024x1024, 1467 points non nuls
+
+[2026-10-29 00:25:18.358] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Medium.ttf(342808o)
+
+[2026-10-29 00:25:18.361] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 00:25:18.376] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1690 points non nuls
+
+[2026-10-29 00:25:30.113] [INF] [default] [: in ] -> [hover] '????????????????????????????????????????????????????????????????????????????????????????????????' L15:C0 -> (rien)
+[2026-10-29 00:26:38.129] [INF] [default] [: in ] -> [hover] 'prediction' L2:C5 -> sans prediction
+[2026-10-29 00:30:24.731] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2043.95 ms : porte(s) R(saisie reservee) ; popupDepth 1 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 00:33:52.360] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:33:58.471] [INF] [default] [: in ] -> [hover] 'while' -> (mot-cle)
+[2026-10-29 00:33:59.730] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:33:59.747] [INF] [default] [: in ] -> [hover] 'while' -> (mot-cle)
+[2026-10-29 00:34:03.611] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:38:28.034] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:38:28.035] [INF] [default] [: in ] -> [hover] 'if' -> (mot-cle)
+[2026-10-29 00:38:33.625] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:38:34.301] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
+[2026-10-29 00:44:30.169] [INF] [default] [: in ] -> [hover] 'curseur' L8:C198 -> (rien)

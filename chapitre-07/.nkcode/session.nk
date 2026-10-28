@@ -1,5 +1,5 @@
 nksession/2
-active 19
+active 28
 ui 0 1
 F 280 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.cpp
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.txt
@@ -21,3 +21,12 @@ F 7 18 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo9-le_verrou_de_dem
 F 7 19 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo10-un_meilleur_modele/projet.jenga
 F 7 87 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo4-le_chemin_long_provoque/chemin.txt
 F 10 429 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo4-le_chemin_long_provoque/reponse.txt
+F 227 9 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo5-predire_et_comparer/prediction.cpp
+F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo5-predire_et_comparer/erreurs.txt
+F 2 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/erreurs.txt
+F 7 365 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo5-predire_et_comparer/reponse.txt
+F 119 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/geste.cpp
+F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle/Kits/R3D/include/NKMath/NkAngle.h
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/geste.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/gestes.txt
+F 7 388 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/reponse.txt
