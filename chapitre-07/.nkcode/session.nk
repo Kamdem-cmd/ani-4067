@@ -1,5 +1,5 @@
 nksession/2
-active 32
+active 24
 ui 0 1
 F 280 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.cpp
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.txt
@@ -25,12 +25,13 @@ F 227 9 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo5-predire_et_comp
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo5-predire_et_comparer/erreurs.txt
 F 2 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/erreurs.txt
 F 7 365 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo5-predire_et_comparer/reponse.txt
-F 119 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/geste.cpp
+F 119 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/gestes.cpp
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/Cours-NKRHI-NKRenderer/MaSalle/Kits/R3D/include/NKMath/NkAngle.h
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/geste.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/geste.txt
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/gestes.txt
 F 7 388 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/reponse.txt
 F 271 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo7-la_latence_injectee_et_la_borne/latence.cpp
 F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo7-la_latence_injectee_et_la_borne/latences.txt
 F 7 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/latences.txt
 F 7 382 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo7-la_latence_injectee_et_la_borne/reponse.txt
+F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/gestes.txt

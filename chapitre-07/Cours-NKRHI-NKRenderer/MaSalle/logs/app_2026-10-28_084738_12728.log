@@ -493,3 +493,18 @@
 [2026-10-29 00:53:27.031] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
 [2026-10-29 00:54:36.002] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
 [2026-10-29 00:56:51.055] [INF] [default] [: in ] -> [hover] 'eleves' L8:C209 -> (rien)
+[2026-10-29 00:57:30.787] [INF] [default] [: in ] -> [hover] 'La' L8:C219 -> (rien)
+[2026-10-29 00:57:41.616] [INF] [default] [: in ] -> [hover] 'La' L8:C219 -> (rien)
+[2026-10-29 00:57:43.137] [INF] [default] [: in ] -> [ui] barre H : clic (maxScrollX=1439, wrap=0)
+[2026-10-29 01:01:55.923] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo7-la_latence_injectee_et_la_borne\latence.cpp
+[2026-10-29 01:02:01.657] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo7-la_latence_injectee_et_la_borne\latence.cpp
+[2026-10-29 01:02:03.357] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2022.89 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 01:02:05.138] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo7-la_latence_injectee_et_la_borne\latence.cpp
+[2026-10-29 01:03:26.202] [INF] [default] [: in ] -> [hover] 'user3d' L14:C4 -> (rien)
+[2026-10-29 01:03:34.319] [INF] [default] [: in ] -> [jenga] info (embarque) : 78 ligne(s), 20 projet(s), 16 chaine(s) de compilation
+[2026-10-29 01:03:38.793] [INF] [default] [: in ] -> [jenga] info (embarque) : 78 ligne(s), 20 projet(s), 16 chaine(s) de compilation
+[2026-10-29 01:03:51.376] [INF] [default] [: in ] -> [hover] 'user3d' L14:C4 -> (rien)
+[2026-10-29 01:03:58.804] [INF] [default] [: in ] -> [jenga] info (embarque) : 78 ligne(s), 20 projet(s), 16 chaine(s) de compilation
+[2026-10-29 01:06:09.495] [INF] [default] [: in ] -> [hover] 'confusion' L8:C36 -> (rien)
+[2026-10-29 01:06:12.094] [INF] [default] [: in ] -> [hover] 'principale' L8:C9 -> (rien)
+[2026-10-29 01:06:12.827] [INF] [default] [: in ] -> [hover] 'principale' L8:C9 -> (rien)
