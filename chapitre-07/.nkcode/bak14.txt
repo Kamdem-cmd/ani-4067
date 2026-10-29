@@ -10,5 +10,5 @@ with project("exo7"):
     language("C++")
     cppdialect("C++17")
     location(".")
-    files(["src/**.cpp", "include/**.hpp"])
+    files(["**.cpp", "/**.hpp"])
     user3d()

@@ -469,3 +469,27 @@
 [2026-10-29 00:38:33.625] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
 [2026-10-29 00:38:34.301] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo5-predire_et_comparer\prediction.cpp
 [2026-10-29 00:44:30.169] [INF] [default] [: in ] -> [hover] 'curseur' L8:C198 -> (rien)
+[2026-10-29 00:46:49.444] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2012.33 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 00:46:50.374] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:46:54.927] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:46:56.621] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:48:10.195] [INF] [default] [: in ] -> [hover] 'NkVec3' L12:C17 -> type NkVec3
+[2026-10-29 00:48:21.174] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle\Kits\R3D\include\NKMath\NkAngle.h
+[2026-10-29 00:48:47.744] [INF] [default] [: in ] -> [hover] 'h' L12:C24 -> ~ uint32 h
+[2026-10-29 00:48:50.368] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:48:54.212] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:48:59.575] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:04.569] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:10.752] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:16.068] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:30.733] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:37.068] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:48.759] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:49.803] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:49:56.939] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:50:10.102] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:51:28.628] [INF] [default] [: in ] -> [lsp] 20 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:51:37.873] [INF] [default] [: in ] -> [lsp] 20 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:53:27.031] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:54:36.002] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\geste.cpp
+[2026-10-29 00:56:51.055] [INF] [default] [: in ] -> [hover] 'eleves' L8:C209 -> (rien)
