@@ -1,18 +1,18 @@
 Images paires et impaires :
-Lorsque le mode de lecture de l'index alterne ou lit une trame de retard (comme en mode D alterné avec P), la chaîne soumet alternativement une image fraîche et une image précédente. Cela provoque une alternance des sauts de position (0 mm puis 20 mm), créant un mouvement saccadé visible à l'écran.
+Lorsque le mode de lecture de l'index alterne ou lit une trame de retard, la chaîne soumet des images selon un décalage temporel fixe, ce qui peut impacter la régularité du rendu selon la synchronisation des modes P et D.
 
 Avec une seule image :
-1 10.000000 -
-2 20.000000 10.000000
-3 30.000000 10.000000
-4 40.000000 10.000000
-5 50.000000 10.000000
-6 60.000000 10.000000
-7 70.000000 10.000000
-8 80.000000 10.000000
-SAUT MIN 10.000000
-SAUT MAX 10.000000
+1 10 -
+2 20 10
+3 30 10
+4 40 10
+5 50 10
+6 60 10
+7 70 10
+8 80 10
+SAUT MIN 10
+SAUT MAX 10
 TREMBLE NON
 
 La bonne lecture :
-La lecture de l'index doit se faire rigoureusement au moment de la soumission de l'image fraîchement rendue (ou en ciblant la bonne référence de synchronisation) pour que chaque trame affichée corresponde exactement à la position courante de la caméra, éliminant ainsi tout artéfact de tremblement visuel.
+La lecture de l'index doit se faire rigoureusement au moment de la soumission de l'image fraîchement rendue pour garantir que chaque trame affichée corresponde exactement à la position courante de la caméra sans décalage.

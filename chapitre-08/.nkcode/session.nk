@@ -1,5 +1,5 @@
 nksession/2
-active 64
+active 68
 ui 0 1
 F 280 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.cpp
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo1-votre_budget_calcule/budget.txt
@@ -36,12 +36,12 @@ F 7 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/latences.txt
 F 7 382 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo7-la_latence_injectee_et_la_borne/reponse.txt
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-07/exo6-ce_que_la_prediction_vous_apporte/gestes.txt
 F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo1-la_cible_hors_ecran/reponse.txt
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo2-deux_chaines/instants.txt
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo3-la_discipline_respectee/vitesses.txt
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo4-le_double_emprunt/chemin.txt
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo5-l_index_qui_recule/erreurs.txt
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo6-l_identifiant_opaque_suivi/gestes.txt
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo10-la_chaine_a_trois_images/resultat.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo2-deux_chaines/instants.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo3-la_discipline_respectee/vitesses.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo4-le_double_emprunt/chemin.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo5-l_index_qui_recule/erreurs.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo6-l_identifiant_opaque_suivi/gestes.txt
+F 9 14 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo10-la_chaine_a_trois_images/resultat.txt
 F 42 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo1-la_cible_hors_ecran/main.cpp
 F 54 48 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/chapitre-08.jenga
 F 12 31 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo10-la_chaine_a_trois_images/projet.jenga
@@ -61,8 +61,12 @@ F 76 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo5-l_index_qui_recu
 F 74 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo6-l_identifiant_opaque_suivi/main.cpp
 F 65 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo7-l_ecran_noir_provoque/main.cpp
 F 117 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo8-le_mauvais_index_provoque/mauvais.cpp
-F 0 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo7-l_ecran_noir_provoque/reponse.txt
-F 17 313 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo8-le_mauvais_index_provoque/reponse.txt
-F 7 0 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo7-l_ecran_noir_provoque/latences.txt
+F 0 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo7-l_ecran_noir_provoque/reponse.txt
+F 17 226 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo8-le_mauvais_index_provoque/reponse.txt
+F 7 0 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo7-l_ecran_noir_provoque/latences.txt
 F 76 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo9-compter_les_emprunts/emprunts.cpp
 F 46 1 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo10-la_chaine_a_trois_images/trois.cpp
+F 10 11 0 1 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo8-le_mauvais_index_provoque/resultat.txt
+F 12 13 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo9-compter_les_emprunts/resultat.txt
+F 9 273 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo9-compter_les_emprunts/reponse.txt
+F 36 282 0 0 0 D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/exo10-la_chaine_a_trois_images/reponse.txt
