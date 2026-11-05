@@ -1,8 +1,0 @@
-Où elle cesse de rattraper :
-La prédiction linéaire cesse de compenser efficacement la latence lorsque le retard dépasse 40 à 80 ms. À ce stade, l'écart temporel devient trop important par rapport à la durée des variations d'accélération du mouvement, si bien que l'erreur moyenne avec prédiction se rapproche progressivement de celle sans prédiction. C'est précisément pour circonscrire cette zone de validité que les runtimes imposent une borne stricte d'extrapolation.
-
-L'horizon sans borne :
-Sans la borne d'extrapolation, face à une latence injectée d'une seconde, le système recherche un échantillon très ancien dans l'historique et calcule un horizon géant de près de 890 ms. L'extrapolation projette alors l'orientation sur une trop longue période, ce qui s'éloigne de la réalité cinématique du geste en cours.
-
-Ce que verrait le casque :
-Si un casque appliquait une prédiction sans borne lors d'un retard excessif ou d'une perte temporaire de suivi, l'utilisateur verrait le monde virtuel se désynchroniser totalement et effectuer des sauts de rotation aberrants. La borne à 100 ms empêche cette dérive en plafonnant l'anticipation, garantissant ainsi un comportement visuel stable et sécurisé pour l'utilisateur.

@@ -1,80 +1,117 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cmath>
 #include <algorithm>
+#include <cmath>
 
-struct Vector3 {
-    double x, y, z;
+struct FrameRecord {
+    int frame;
+    int paintedFrame;
+    double pos;
+    double saut;
+    bool hasSaut;
 };
-
-// Calcule la norme (longueur) d'un vecteur
-double Norme(const Vector3& v) {
-    return std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-}
-
-// Produit scalaire de deux vecteurs
-double ProduitScalaire(const Vector3& a, const Vector3& b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
-}
 
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
 
-    long long ambiante = 0;
-    if (!(std::cin >> ambiante)) {
-        return 0;
-    }
+    int n = 0, T = 0;
+    double x0 = 0.0, v = 0.0;
+    if (!(std::cin >> n >> T >> x0 >> v)) return 0;
 
-    int n = 0;
-    if (!(std::cin >> n)) {
-        return 0;
-    }
+    std::string modes;
+    std::cin >> modes;
 
-    // Définition des 5 faces et de leurs normales intérieures respectives
-    const std::vector<std::pair<std::string, Vector3>> faces = {
-        {"SOL",    { 0.0,  1.0,  0.0}},
-        {"FOND",   { 0.0,  0.0,  1.0}},
-        {"ENTREE", { 0.0,  0.0, -1.0}},
-        {"GAUCHE", { 1.0,  0.0,  0.0}},
-        {"DROIT",  {-1.0,  0.0,  0.0}}
-    };
+    // Chaque emplacement garde le numéro de la dernière trame peinte dedans (0 au départ)
+    std::vector<int> chainSlots(n, 0);
+    int prochaine = 0;
+    int estEmprunteeIdx = -1;
 
-    for (int i = 0; i < n; ++i) {
-        std::string nom;
-        double dx = 0.0, dy = 0.0, dz = 0.0, I = 0.0;
-        std::cin >> nom >> dx >> dy >> dz >> I;
+    std::vector<FrameRecord> history;
+    double prevPos = 0.0;
+    bool prevShown = false;
 
-        Vector3 dir_soleil = {dx, dy, dz};
-        double len_dir = Norme(dir_soleil);
+    for (int t = 1; t <= T; ++t) {
+        // 4. À la trame t : on emprunte la prochaine image, et l'on y peint la trame t
+        int empruntee = prochaine;
+        estEmprunteeIdx = empruntee;
+        chainSlots[empruntee] = t; // Peint la trame t dedans
 
-        long long max_lum = -1;
-        long long min_lum = 1000000;
+        double currentCamPos = x0 + v * t;
 
-        for (const auto& face : faces) {
-            const std::string& nom_face = face.first;
-            const Vector3& normale = face.second;
+        // Détermination de l'index soumis selon le mode à la trame t
+        char mode = modes[t - 1];
+        int indexSoumis = -1;
 
-            // c = - (normale . dir_soleil) / ||dir_soleil||
-            double dot = ProduitScalaire(normale, dir_soleil);
-            double c = -dot / len_dir;
-
-            if (c < 0.0) {
-                c = 0.0;
-            }
-
-            double lum_exact = static_cast<double>(ambiante) + I * c;
-            long long lum_arrondi = static_cast<long long>(std::round(lum_exact));
-
-            if (lum_arrondi > max_lum) max_lum = lum_arrondi;
-            if (lum_arrondi < min_lum) min_lum = lum_arrondi;
-
-            std::cout << nom << " " << nom_face << " " << lum_arrondi << "\n";
+        if (mode == 'A') {
+            // Mode A : index emprunté
+            indexSoumis = empruntee;
+        } else if (mode == 'P') {
+            // Mode P : lu avant la libération
+            indexSoumis = (prochaine + n - 1) % n;
+        } else if (mode == 'D') {
+            // Mode D : lu après, avec la même formule (sur l'état courant de l'index au release)
+            indexSoumis = (prochaine + n - 1) % n;
         }
 
-        long long contraste = max_lum - min_lum;
-        std::cout << nom << " CONTRASTE " << contraste << "\n";
+        // 6. Puis on rend l'image : la prochaine devient (prochaine + 1) % n
+        if (mode == 'D') {
+            // En mode D, l'index soumis est lu après release ou avec la formule de base
+            // (La consigne précise : "En mode D, l'index soumis est lu maintenant, avec la même formule")
+            indexSoumis = (prochaine + n - 1) % n; // ou équivalent selon la logique de bascule
+        }
+
+        prochaine = (prochaine + 1) % n;
+        estEmprunteeIdx = -1;
+
+        // 7. La trame montrée est f, le numéro gardé par l'emplacement soumis
+        int f = chainSlots[indexSoumis];
+
+        if (f == 0) {
+            std::cout << t << " NOIR -\n";
+            prevShown = false;
+        } else {
+            double shownPos = x0 + v * f;
+            double sautVal = 0.0;
+            bool hasSaut = false;
+
+            if (prevShown && t > 1) {
+                sautVal = shownPos - prevPos;
+                hasSaut = true;
+                std::cout << t << " " << shownPos << " " << sautVal << "\n";
+            } else {
+                std::cout << t << " " << shownPos << " -\n";
+            }
+
+            prevPos = shownPos;
+            prevShown = true;
+            if (hasSaut) {
+                history.push_back({t, f, shownPos, sautVal, true});
+            }
+        }
+    }
+
+    // Bilan final
+    if (history.empty()) {
+        std::cout << "SAUTS AUCUN\n";
+    } else {
+        double minSaut = history[0].saut;
+        double maxSaut = history[0].saut;
+        for (const auto& h : history) {
+            if (h.saut < minSaut) minSaut = h.saut;
+            if (h.saut > maxSaut) maxSaut = h.saut;
+        }
+
+        // Affichage propre des valeurs numériques
+        std::cout << "SAUT MIN " << minSaut << "\n";
+        std::cout << "SAUT MAX " << maxSaut << "\n";
+
+        if (minSaut != maxSaut) {
+            std::cout << "TREMBLE OUI\n";
+        } else {
+            std::cout << "TREMBLE NON\n";
+        }
     }
 
     return 0;
