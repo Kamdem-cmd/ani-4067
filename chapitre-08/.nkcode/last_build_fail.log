@@ -1,0 +1,7 @@
+$ jenga build --config Debug --platform Windows-x86_64 --jenga-file "D:/ENSPY/AN-GAP_4/teguis/ani-4067/chapitre-08/chapitre-08.jenga"
+Error loading workspace: name 'user3d' is not defined
+  dans D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-08\exo1-la_cible_hors_ecran\projet.jenga, ligne 14
+        user3d()
+  user3d n'est pas un mot de Jenga : c'est une fonction que le workspace D'ORIGINE de ce fichier
+  definit lui-meme, en general dans un config/*.jenga charge par useconfig.
+[jenga-embed] erreur: builder: 'NoneType' object has no attribute 'defaultToolchain'

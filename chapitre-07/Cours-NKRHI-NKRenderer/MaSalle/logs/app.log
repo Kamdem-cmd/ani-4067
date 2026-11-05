@@ -88,86 +88,70 @@
 [2026-10-28 08:47:44.511] [INF] [default] [: in ] -> [jenga] info (embarque) : 30 ligne(s), 1 projet(s), 8 chaine(s) de compilation
 [2026-10-28 08:47:45.008] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
 [2026-10-28 08:47:45.039] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llv[2026-10-28 22:30:39.168] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle\etapes\etape5_salle.cpp
-etecterGel] -> [portes] l'entree du corps est masquee depuis 2015.59 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
-[2026-10-28 08:47:52.741] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 89 image(s) (3475.24 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
-[2026-10-28 08:48:07.844] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
-[2026-10-28 08:48:07.963] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
-[2026-10-28 08:48:08.208] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
-[2026-10-28 08:48:08.208] [INF] [default] [: in ] -> [term] demarre dans: D:/ENSPY/AN-GAP_4/teguis
-[2026-10-28 08:48:08.223] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
-[2026-10-28 08:48:08.223] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
-[2026-10-28 09:01:52.467] [INF] [default] [: in ] -> [hover] 'with' L20:C6 -> (rien)
-[2026-10-28 09:01:53.618] [INF] [default] [: in ] -> [hover] 'Add' L23:C6 -> type Add
-[2026-10-28 09:01:57.681] [INF] [default] [: in ] -> [hover] 'Unitest' L19:C23 -> use Unitest
-[2026-10-28 09:02:06.660] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
-[2026-10-28 09:02:08.225] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
-[2026-10-28 09:02:08.892] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
-[2026-10-28 09:02:09.655] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
-[2026-10-28 09:02:10.283] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
-[2026-10-28 09:02:12.272] [INF] [default] [: in ] -> [hover] 'R3D' L14:C15 -> (rien)
-[2026-10-28 09:02:14.310] [INF] [default] [: in ] -> [hover] 'Cours' L14:C15 -> (rien)
-[2026-10-28 09:02:19.279] [INF] [default] [: in ] -> [hover] 'R3D' L14:C38 -> (rien)
-[2026-10-28 09:02:27.941] [INF] [default] [: in ] -> [hover] 'Ma' L14:C38 -> (rien)
-[2026-10-28 09:02:37.309] [INF] [default] [: in ] -> [hover] 'MaSalle' L14:C38 -> (rien)
-[2026-10-28 09:02:43.085] [INF] [default] [: in ] -> [hover] 'MaSalle' L14:C38 -> (rien)
-[2026-10-28 09:03:18.484] [INF] [default] [: in ] -> [hover] 'exo1' L30:C18 -> (rien)
-[2026-10-28 09:03:19.403] [INF] [default] [: in ] -> [hover] 'l_image_qui_n_existe_pas' L33:C23 -> (rien)
-[2026-10-28 09:03:42.388] [INF] [default] [: in ] -> [lsp] 8 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\formats.cpp
-[2026-10-28 09:03:46.417] [INF] [default] [: in ] -> [lsp] 8 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo1-votre_budget_calcule\budget.cpp
-[2026-10-28 09:04:11.866] [INF] [default] [: in ] -> [hover] 'plus' L8:C14 -> le plus
-[2026-10-28 09:05:12.707] [INF] [default] [: in ] -> [hover] 'exo2' L33:C18 -> (rien)
-[2026-10-28 09:05:16.020] [INF] [default] [: in ] -> [hover] 'exo2' L33:C18 -> (rien)
-[2026-10-28 09:05:47.376] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\inexistant.cpp
-[2026-10-28 09:05:55.983] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo2-l_instant_predit_et_sa_periode\instants.cpp
-[2026-10-28 09:06:08.177] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+[2026-10-29 11:12:45.724] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2002.83 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:13:00.978] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2130.64 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:11.388] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 324 image(s) (12540.3 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:22.015] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2020.96 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:28.856] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 298 image(s) (8861.81 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:44.939] [INF] [default] [: in ] -> [jenga] lance : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/Cours-ANI4077-Contexte-Triangle/Cours-ANI4077-Contexte-Triangle/etape05_triangle/MonRhi.jenga"
+[2026-10-29 11:13:45.052] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-29 11:13:45.158] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 11:13:45.899] [INF] [default] [: in ] -> [chk] git indisponible ici - bascule sur le balayage maison
+[2026-10-29 11:13:46.663] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 11:13:50.633] [INF] [default] [: in ] -> [jenga] info : 61 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 11:13:50.675] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 11:13:50.677] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 11:13:50.696] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 11:13:50.766] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 11:13:51.783] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2008.6 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:14:00.914] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
+[2026-10-29 11:14:00.915] [INF] [default] [: in ] -> [term] demarre dans: D:/ENSPY/AN-GAP_4/teguis/Cours-ANI4077-Contexte-Triangle/Cours-ANI4077-Contexte-Triangle/etape05_triangle
+[2026-10-29 11:15:08.508] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
 
-[2026-10-28 09:06:08.209] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+[2026-10-29 11:15:08.553] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
 
-[2026-10-28 09:06:08.225] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1823 points non nuls
+[2026-10-29 11:15:08.597] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1823 points non nuls
 
-[2026-10-28 09:06:08.246] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+[2026-10-29 11:15:08.635] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
 
-[2026-10-28 09:06:08.248] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+[2026-10-29 11:15:08.636] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
 
-[2026-10-28 09:06:08.265] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1753 points non nuls
+[2026-10-29 11:15:08.651] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1528 points non nuls
 
-[2026-10-28 09:06:08.279] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+[2026-10-29 11:15:08.704] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
 
-[2026-10-28 09:06:08.280] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+[2026-10-29 11:15:08.706] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
 
-[2026-10-28 09:06:08.295] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1461 points non nuls
+[2026-10-29 11:15:08.728] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1461 points non nuls
 
-[2026-10-28 09:06:08.307] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+[2026-10-29 11:15:09.000] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
 
-[2026-10-28 09:06:08.308] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+[2026-10-29 11:15:09.003] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
 
-[2026-10-28 09:06:08.323] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1289 points non nuls
+[2026-10-29 11:15:09.020] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1753 points non nuls
 
-[2026-10-28 09:06:08.337] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+[2026-10-29 11:15:09.213] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Bold.ttf(343972o)
 
-[2026-10-28 09:06:08.339] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+[2026-10-29 11:15:09.215] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
 
-[2026-10-28 09:06:08.358] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 2048x2048, 2169 points non nuls
+[2026-10-29 11:15:09.230] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1877 points non nuls
 
-[2026-10-28 09:06:08.412] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+[2026-10-29 11:15:09.257] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
 
-[2026-10-28 09:06:08.414] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+[2026-10-29 11:15:09.259] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
 
-[2026-10-28 09:06:08.429] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1561 points non nuls
+[2026-10-29 11:15:09.274] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1289 points non nuls
 
-[2026-10-28 09:06:08.456] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Medium.ttf(342808o)
+[2026-10-29 11:15:12.588] [INF] [default] [: in ] -> [hover] 'mecanisme' -> (commentaire/chaine)
+[2026-10-29 11:21:15.052] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2017.3 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:21:37.976] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2019.29 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:25:09.036] [INF] [default] [NkEditorShell.cpp:227 in NkGelBilanSession] -> [gel] NKCode - IDE (Jenga) : 2 episode(s) signale(s) ; pire masquage continu de la session 591 image(s) (17279.4 ms), porte(s) O(souris sur popup)+R(saisie reservee)
+[2026-10-29 11:25:09.036] [INF] [default] [NkEditorShell.cpp:1335 in Run] -> [entree] NKCode - IDE (Jenga) : 32 transition(s) de bouton arrivee(s) entre deux images et rendue(s) a l'image suivante (aucune perdue)
+[2026-10-29 11:25:09.036] [INF] [default] [NkEditorShell.cpp:1342 in Run] -> [repos] NKCode - IDE (Jenga) : 10724 image(s) a pleine cadence, 488595 image(s) de repos en 158679 s
+[2026-10-29 11:25:09.110] [INF] [default] [NkDX11Renderer2D.cpp:520 in Shutdown] -> [NkDX11-2D] Shutdown
+[2026-10-29 11:25:09.210] [INF] [default] [NkDX11Context.cpp:363 in Shutdown] -> [NkDX11] Shutdown OK
 
-[2026-10-28 09:06:08.460] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
-
-[2026-10-28 09:06:08.483] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1848 points non nuls
-
-[2026-10-28 09:06:08.506] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
-
-[2026-10-28 09:06:08.507] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
-
-[2026-10-28 09:06:08.525] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1528 points non nuls
-
-[2026-10-28 09:06:25.591] [INF] [default] [: in ] -> [hover] 'texture' L8:C19 -> une texture
+NF] [default] [: in ] -> [hover] 'texture' L8:C19 -> une texture
 [2026-10-28 09:06:58.723] [INF] [default] [: in ] -> [hover] 'projet' L36:C46 -> (rien)
 [2026-10-28 09:07:03.084] [INF] [default] [: in ] -> [hover] 'exo3' L36:C18 -> (rien)
 [2026-10-28 09:07:24.880] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo3-mesurer_une_vitesse\mur.cpp
@@ -507,3 +491,233 @@ etecterGel] -> [portes] l'entree du corps est masquee depuis 2015.59 ms : porte(
 [2026-10-29 01:06:09.495] [INF] [default] [: in ] -> [hover] 'confusion' L8:C36 -> (rien)
 [2026-10-29 01:06:12.094] [INF] [default] [: in ] -> [hover] 'principale' L8:C9 -> (rien)
 [2026-10-29 01:06:12.827] [INF] [default] [: in ] -> [hover] 'principale' L8:C9 -> (rien)
+[2026-10-29 01:09:06.003] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\exo6-ce_que_la_prediction_vous_apporte\gestes.cpp
+[2026-10-29 01:19:00.498] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2012.61 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 01:19:14.090] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 01:19:14.099] [INF] [default] [: in ] -> [lsp] compile_commands.json : 10 entree(s)
+[2026-10-29 01:19:14.666] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 01:19:14.666] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 01:20:02.503] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\Cours-ANI4077-Contexte-Triangle\Cours-ANI4077-Contexte-Triangle\etape05_triangle\src\MonRhi\Maillage.h
+[2026-10-29 01:25:39.640] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-06\exo1-le_triangle_qui_ne_s_affiche_pas\main.cpp
+[2026-10-29 01:29:32.834] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo1-le_carre_des_deux_facons\main.cpp
+[2026-10-29 01:29:32.935] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo1-le_carre_des_deux_facons\main.cpp
+[2026-10-29 01:29:32.935] [INF] [default] [: in ] -> [lsp] 18 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo1-le_carre_des_deux_facons\main.cpp
+[2026-10-29 02:03:44.460] [INF] [default] [: in ] -> [hover] 'MonRhi' L21:C15 -> (rien)
+[2026-10-29 02:03:50.109] [INF] [default] [: in ] -> [hover] 'jenga' L24:C18 -> (rien)
+[2026-10-29 02:03:52.059] [INF] [default] [: in ] -> [hover] 'MonRhi' L21:C15 -> (rien)
+[2026-10-29 02:09:33.773] [INF] [default] [: in ] -> [hover] 'Seule' L4:C56 -> (rien)
+[2026-10-29 02:09:36.272] [INF] [default] [: in ] -> [hover] 'a' L5:C30 -> appris a
+[2026-10-29 02:11:23.519] [INF] [default] [: in ] -> [hover] 'commentaire' -> (commentaire/chaine)
+[2026-10-29 02:11:56.855] [INF] [default] [: in ] -> [hover] 'MonRhiWks' -> (commentaire/chaine)
+[2026-10-29 02:12:24.623] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\Cours-ANI4077-Contexte-Triangle\Cours-ANI4077-Contexte-Triangle\etape05_triangle\src\Essai\main.cpp
+[2026-10-29 02:15:05.726] [INF] [default] [: in ] -> [hover] 'useconfig' -> (commentaire/chaine)
+[2026-10-29 02:15:08.127] [INF] [default] [: in ] -> [hover] 'le' -> (commentaire/chaine)
+[2026-10-29 02:17:40.272] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2019.76 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:17:42.074] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 60 image(s) (3821.73 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:17:45.322] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 02:17:45.341] [INF] [default] [: in ] -> [lsp] compile_commands.json : 10 entree(s)
+[2026-10-29 02:17:45.405] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:17:46.917] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:17:47.752] [INF] [default] [: in ] -> [jenga] info (embarque) : 31 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 02:17:49.030] [INF] [default] [: in ] -> [chk] git indisponible ici - bascule sur le balayage maison
+[2026-10-29 02:17:54.884] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2003.41 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 02:18:05.718] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 02:18:05.734] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 02:18:05.850] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:18:06.066] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:18:43.218] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2053.64 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:18:48.214] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 107 image(s) (7049.12 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:18:49.761] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 02:18:49.785] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 02:18:49.829] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:18:51.624] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:18:52.476] [INF] [default] [: in ] -> [jenga] info (embarque) : 29 ligne(s), 0 projet(s), 8 chaine(s) de compilation
+[2026-10-29 02:18:58.732] [INF] [default] [: in ] -> [flags] le calcul des drapeaux a echoue : ceux d'avant sont gardes (clangd continue)
+[2026-10-29 02:19:08.724] [INF] [default] [: in ] -> [hover] 'chaque' L7:C25 -> a chaque
+[2026-10-29 02:19:28.467] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2043.68 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:19:32.900] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 114 image(s) (6477.3 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:19:36.414] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 02:19:36.452] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 02:19:36.474] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:19:38.431] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:19:39.092] [INF] [default] [: in ] -> [jenga] info (embarque) : 31 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 02:19:45.593] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2025.07 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 02:19:57.776] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 161 image(s) (7844.73 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : A(appModal) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : deroulant de la barre
+[2026-10-29 02:20:08.392] [INF] [default] [: in ] -> [hover] 'project' -> (commentaire/chaine)
+[2026-10-29 02:20:23.510] [INF] [default] [: in ] -> [hover] 'le' L9:C10 -> workspace le
+[2026-10-29 02:20:33.684] [INF] [default] [: in ] -> [hover] 'mon3d_application' -> (commentaire/chaine)
+[2026-10-29 02:20:54.218] [INF] [default] [: in ] -> [hover] 'usemon3d' L15:C6 -> def usemon3d(modules=None, extra_includes=None)
+[2026-10-29 02:21:09.332] [INF] [default] [: in ] -> [hover] 'usemon3d' -> (commentaire/chaine)
+[2026-10-29 02:21:17.730] [INF] [default] [: in ] -> [hover] 'useconfig' L11:C6 -> (rien)
+[2026-10-29 02:21:43.057] [INF] [default] [: in ] -> [hover] 'jenga' -> (commentaire/chaine)
+[2026-10-29 02:21:53.654] [INF] [default] [: in ] -> [jenga] lance : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/Cours-ANI4077-Contexte-Triangle/Cours-ANI4077-Contexte-Triangle/etape05_triangle/MonRhi.jenga"
+[2026-10-29 02:21:53.969] [INF] [default] [: in ] -> [jenga] IMPOSSIBLE DE LANCER : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/Cours-ANI4077-Contexte-Triangle/Cours-ANI4077-Contexte-Triangle/etape05_triangle/MonRhi.jenga"
+[2026-10-29 02:21:59.067] [INF] [default] [: in ] -> [jenga] info : 61 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 02:21:59.109] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 02:21:59.124] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 02:21:59.235] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:21:59.338] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:23:44.134] [INF] [default] [: in ] -> [hover] 'include' -> (commentaire/chaine)
+[2026-10-29 02:23:45.643] [INF] [default] [: in ] -> [hover] 'include' -> (commentaire/chaine)
+[2026-10-29 02:23:49.285] [INF] [default] [: in ] -> [jenga] info (embarque) : 62 ligne(s), 4 projet(s), 16 chaine(s) de compilation
+[2026-10-29 02:24:09.525] [INF] [default] [: in ] -> [jenga] info (embarque) : 62 ligne(s), 4 projet(s), 16 chaine(s) de compilation
+[2026-10-29 02:24:24.816] [INF] [default] [: in ] -> [hover] 'cpp' -> (commentaire/chaine)
+[2026-10-29 02:24:26.170] [INF] [default] [: in ] -> [hover] 'cpp' -> (commentaire/chaine)
+[2026-10-29 02:24:31.133] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
+[2026-10-29 02:24:32.395] [INF] [default] [: in ] -> [jenga] info (embarque) : 58 ligne(s), 0 projet(s), 16 chaine(s) de compilation
+[2026-10-29 02:24:56.180] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2094.04 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 02:24:58.096] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 73 image(s) (3127.78 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : A(appModal) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : deroulant de la barre
+[2026-10-29 02:25:48.037] [INF] [default] [: in ] -> [jenga] info (embarque) : 62 ligne(s), 4 projet(s), 16 chaine(s) de compilation
+[2026-10-29 02:25:54.677] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2021.89 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:25:58.914] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 103 image(s) (6258.93 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:26:06.127] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 02:26:06.196] [INF] [default] [: in ] -> [lsp] compile_commands.json : 12 entree(s)
+[2026-10-29 02:26:06.231] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:26:08.614] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:26:10.209] [INF] [default] [: in ] -> [jenga] info (embarque) : 39 ligne(s), 10 projet(s), 8 chaine(s) de compilation
+[2026-10-29 02:26:10.353] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2034.11 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 02:26:23.428] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 02:26:23.448] [INF] [default] [: in ] -> [lsp] compile_commands.json : 23 entree(s)
+[2026-10-29 02:26:23.464] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:26:23.981] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:28:08.946] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2291.85 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:28:38.246] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2025.52 ms : porte(s) R(saisie reservee) ; popupDepth 1 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:28:48.571] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 3094.49 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:29:16.450] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo1-le_carre_des_deux_facons\maille.cpp
+[2026-10-29 02:29:34.633] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4077\chapitre-08\exo1-le_carre_des_deux_facons\main.cpp
+[2026-10-29 02:52:23.628] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2008.67 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:52:31.797] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 344 image(s) (10177.5 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 02:52:38.596] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 02:52:38.599] [INF] [default] [: in ] -> [lsp] compile_commands.json : 18 entree(s)
+[2026-10-29 02:52:38.613] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:52:38.811] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:52:39.112] [INF] [default] [: in ] -> [jenga] info (embarque) : 31 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 02:52:40.582] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 02:52:40.590] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 02:52:40.602] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 02:52:40.744] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 02:53:09.438] [INF] [default] [: in ] -> [lsp] 11 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\Cours-ANI4077-Contexte-Triangle\Cours-ANI4077-Contexte-Triangle\etape05_triangle\src\MonRhi\Contexte.cpp
+[2026-10-29 02:53:20.998] [INF] [default] [: in ] -> [lsp] 21 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\Cours-ANI4077-Contexte-Triangle\Cours-ANI4077-Contexte-Triangle\etape05_triangle\src\MonRhi\Maillage.cpp
+[2026-10-29 02:53:32.959] [INF] [default] [: in ] -> [lsp] 1 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\Cours-ANI4077-Contexte-Triangle\Cours-ANI4077-Contexte-Triangle\etape05_triangle\src\MonRhi\Gl.h
+[2026-10-29 02:55:32.271] [INF] [default] [: in ] -> [hover] 'mon3d_application' -> (commentaire/chaine)
+[2026-10-29 02:55:36.101] [INF] [default] [: in ] -> [hover] 'mon3d_application' -> (commentaire/chaine)
+[2026-10-29 02:55:45.882] [INF] [default] [: in ] -> [hover] 'mon3d_application' -> (commentaire/chaine)
+[2026-10-29 02:56:04.042] [INF] [default] [: in ] -> [hover] 'bibliotheques' -> (commentaire/chaine)
+[2026-10-29 02:56:38.313] [INF] [default] [: in ] -> [hover] 'mon3d_bibliotheque' -> (commentaire/chaine)
+[2026-10-29 02:56:40.080] [INF] [default] [: in ] -> [hover] 'mon3d_bibliotheque' -> (commentaire/chaine)
+[2026-10-29 02:56:43.462] [INF] [default] [: in ] -> [hover] 'project' -> (commentaire/chaine)
+[2026-10-29 02:56:44.095] [INF] [default] [: in ] -> [hover] 'project' -> (commentaire/chaine)
+[2026-10-29 02:56:46.145] [INF] [default] [: in ] -> [hover] 'MonRhi' -> (commentaire/chaine)
+[2026-10-29 02:56:47.160] [INF] [default] [: in ] -> [hover] 'MonRhi' -> (commentaire/chaine)
+[2026-10-29 02:56:50.526] [INF] [default] [: in ] -> [hover] 'with' -> (commentaire/chaine)
+[2026-10-29 02:56:54.126] [INF] [default] [: in ] -> [hover] 'with' -> (commentaire/chaine)
+[2026-10-29 02:56:56.224] [INF] [default] [: in ] -> [hover] 'Jenga' -> (commentaire/chaine)
+[2026-10-29 02:56:56.908] [INF] [default] [: in ] -> [hover] 'chapitre' -> (commentaire/chaine)
+[2026-10-29 02:57:00.056] [INF] [default] [: in ] -> [hover] 'Jenga' -> (commentaire/chaine)
+[2026-10-29 02:57:00.853] [INF] [default] [: in ] -> [hover] 'Jenga' -> (commentaire/chaine)
+[2026-10-29 02:57:02.971] [INF] [default] [: in ] -> [hover] 'import' -> (commentaire/chaine)
+[2026-10-29 02:57:03.704] [INF] [default] [: in ] -> [hover] 'import' -> (commentaire/chaine)
+[2026-10-29 03:00:41.741] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2012.75 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:00:45.295] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 151 image(s) (5567.22 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:00:49.349] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:00:49.361] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:00:49.404] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:00:50.287] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:00:51.314] [INF] [default] [: in ] -> [jenga] info (embarque) : 31 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:01:08.814] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2027.38 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:01:10.809] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 03:01:10.816] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:01:10.852] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:01:13.056] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:01:13.765] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:01:13.766] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:01:13.766] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:01:13.775] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:01:14.176] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:01:14.176] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:01:56.056] [INF] [default] [: in ] -> [hover] 'mon3d' -> (commentaire/chaine)
+[2026-10-29 03:01:59.156] [INF] [default] [: in ] -> [hover] 'Debug' -> (commentaire/chaine)
+[2026-10-29 03:02:00.467] [INF] [default] [: in ] -> [hover] 'mon3d_bibliotheque' -> (commentaire/chaine)
+[2026-10-29 03:02:39.863] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:02:39.875] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:02:39.891] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:02:40.042] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:02:40.243] [INF] [default] [: in ] -> [jenga] info (embarque) : 31 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:04:59.761] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2001.09 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:05:05.272] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 265 image(s) (7512.09 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:05:09.027] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:05:09.043] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:05:09.161] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:05:09.428] [INF] [default] [: in ] -> [jenga] info (embarque) : 31 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:06:16.974] [INF] [default] [: in ] -> [hover] 'usemon3d' L15:C6 -> def usemon3d(modules=None, extra_includes=None)
+[2026-10-29 03:06:44.076] [INF] [default] [: in ] -> [jenga] lance : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/Cours-ANI4077-Contexte-Triangle/Cours-ANI4077-Contexte-Triangle/tampons_exo1/MonRhi.jenga"
+[2026-10-29 03:06:45.342] [INF] [default] [: in ] -> [jenga] info (embarque) : 29 ligne(s), 0 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:07:15.963] [INF] [default] [: in ] -> [hover] 'ordre' L17:C4 -> (rien)
+[2026-10-29 03:07:27.662] [INF] [default] [: in ] -> [hover] 'KIT_NAME' L35:C0 -> (rien)
+[2026-10-29 03:07:35.227] [INF] [default] [: in ] -> [hover] 'Famille' L93:C2 -> (rien)
+[2026-10-29 03:07:36.476] [INF] [default] [: in ] -> [hover] '_kit_selection' L100:C4 -> def _kit_selection(modules=None)
+[2026-10-29 03:08:05.617] [INF] [default] [: in ] -> [hover] 'links' L186:C12 -> (rien)
+[2026-10-29 03:08:15.078] [INF] [default] [: in ] -> [hover] 'mecanisme' -> (commentaire/chaine)
+[2026-10-29 03:08:15.644] [INF] [default] [: in ] -> [hover] 'config' -> (commentaire/chaine)
+[2026-10-29 03:08:25.857] [INF] [default] [: in ] -> [hover] 'mon3d_bibliotheque' -> (commentaire/chaine)
+[2026-10-29 03:08:30.317] [INF] [default] [: in ] -> [hover] 'usemon3d' -> (commentaire/chaine)
+[2026-10-29 03:08:33.188] [INF] [default] [: in ] -> [hover] 'usemon3d' -> (commentaire/chaine)
+[2026-10-29 03:08:34.820] [INF] [default] [: in ] -> [hover] 'mon3d_bibliotheque' -> (commentaire/chaine)
+[2026-10-29 03:08:46.699] [INF] [default] [: in ] -> [hover] 'usemon3d' -> (commentaire/chaine)
+[2026-10-29 03:08:48.249] [INF] [default] [: in ] -> [hover] 'usemon3d' -> (commentaire/chaine)
+[2026-10-29 03:08:50.332] [INF] [default] [: in ] -> [hover] 'mon3d' -> (commentaire/chaine)
+[2026-10-29 03:08:52.182] [INF] [default] [: in ] -> [jenga] info (embarque) : 29 ligne(s), 0 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:08:52.817] [INF] [default] [: in ] -> [jenga] info (embarque) : 29 ligne(s), 0 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:08:53.233] [INF] [default] [: in ] -> [jenga] info (embarque) : 29 ligne(s), 0 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:09:34.811] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2011.93 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:09:37.947] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 194 image(s) (5148.75 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:09:40.585] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:09:40.598] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:09:40.612] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:09:40.751] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:09:50.464] [INF] [default] [: in ] -> [hover] 'macOS' L38:C5 -> (rien)
+[2026-10-29 03:09:55.046] [INF] [default] [: in ] -> [hover] 'Nkentseu' L27:C4 -> (rien)
+[2026-10-29 03:09:55.946] [INF] [default] [: in ] -> [hover] 'passer' L23:C3 -> (rien)
+[2026-10-29 03:10:17.332] [INF] [default] [: in ] -> [hover] 'moteur' L26:C6 -> Le moteur
+[2026-10-29 03:11:12.917] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2003.75 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:11:15.766] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 194 image(s) (4852.55 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:11:17.067] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:11:17.067] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:11:17.067] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:11:17.077] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:11:17.110] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:11:17.434] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:11:21.299] [INF] [default] [: in ] -> [hover] 'Contexte' L10:C21 -> (rien)
+[2026-10-29 03:11:30.796] [INF] [default] [: in ] -> [hover] 'etape04_contexte' L19:C9 -> Dans NKCode : ouvrez le dossier etape04_contexte (ou etape05_triangle)
+[2026-10-29 03:13:09.262] [INF] [default] [: in ] -> [hover] 'la' L60:C51 -> et la
+[2026-10-29 03:15:03.016] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2003.28 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:15:04.413] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 112 image(s) (3399.85 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:15:04.806] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 03:15:04.808] [INF] [default] [: in ] -> [lsp] compile_commands.json : 0 entree(s)
+[2026-10-29 03:15:04.824] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:15:05.339] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:15:06.430] [INF] [default] [: in ] -> [jenga] info (embarque) : 31 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 03:15:14.052] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 03:15:14.054] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 03:15:14.158] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 03:15:14.158] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 03:15:26.898] [INF] [default] [: in ] -> [hover] 'jenga' -> (commentaire/chaine)
+[2026-10-29 03:15:53.944] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2000.23 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 03:16:01.808] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 248 image(s) (9863.84 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:21:56.866] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2012.97 ms : porte(s) R(saisie reservee) ; popupDepth 1 ; sources ouvertes : question de fermeture
+[2026-10-29 11:22:10.781] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2022.78 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:22:20.862] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 297 image(s) (7164.35 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : A(appModal) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:22:59.237] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2008.52 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:23:04.092] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 242 image(s) (6863.09 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:23:05.706] [ERR] [default] [NkSocket.cpp:567 in Create] -> [NKNet] bind() failed: code 10048
+[2026-10-29 11:23:05.708] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 11:23:05.733] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 11:23:05.984] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 11:24:27.840] [INF] [default] [: in ] -> [hover] 'fenetre' L19:C53 -> une fenetre
+[2026-10-29 11:24:33.994] [INF] [default] [: in ] -> [hover] 'kit' L8:C22 -> (rien)
+[2026-10-29 11:25:03.292] [INF] [default] [NkEditorShell.cpp:227 in NkGelBilanSession] -> [gel] NKCode - IDE (Jenga) : 21 episode(s) signale(s) ; pire masquage continu de la session 1077 image(s) (25308.5 ms), porte(s) A(appModal)
+[2026-10-29 11:25:03.292] [INF] [default] [NkEditorShell.cpp:1335 in Run] -> [entree] NKCode - IDE (Jenga) : 986 transition(s) de bouton arrivee(s) entre deux images et rendue(s) a l'image suivante (aucune perdue)
+[2026-10-29 11:25:03.292] [INF] [default] [NkEditorShell.cpp:1342 in Run] -> [repos] NKCode - IDE (Jenga) : 251711 image(s) a pleine cadence, 446241 image(s) de repos en 95886.3 s
+[2026-10-29 11:25:03.616] [INF] [default] [NkDX11Renderer2D.cpp:520 in Shutdown] -> [NkDX11-2D] Shutdown
+[2026-10-29 11:25:03.720] [INF] [default] [NkDX11Context.cpp:363 in Shutdown] -> [NkDX11] Shutdown OK
+

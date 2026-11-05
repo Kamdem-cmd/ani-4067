@@ -89,3 +89,66 @@
 [2026-10-27 15:21:42.538] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
 [2026-10-27 15:22:00.101] [INF] [default] [: in ] -> [ac] index projet PRET: 3622 types, 55966 membres, 4378 fonctions
 [2026-10-28 22:30:39.168] [INF] [default] [: in ] -> [lsp] 0 diagnostic(s) <- D:\ENSPY\AN-GAP_4\teguis\ani-4067\chapitre-07\Cours-NKRHI-NKRenderer\MaSalle\etapes\etape5_salle.cpp
+[2026-10-29 11:12:45.724] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2002.83 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:13:00.978] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2130.64 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:11.388] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 324 image(s) (12540.3 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:22.015] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2020.96 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:28.856] [WRN] [default] [NkEditorShell.cpp:299 in NkDetecterGel] -> [gel] LE CORPS NE REPOND PLUS : 298 image(s) (8861.81 ms) sans que rien bouge, 3 geste(s) ignore(s) -- porte(s) : R(saisie reservee) ; popupDepth 0 ; activeId libre ; focus texte non ; drag titre non ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:13:44.939] [INF] [default] [: in ] -> [jenga] lance : jenga info --jenga-file "D:/ENSPY/AN-GAP_4/teguis/Cours-ANI4077-Contexte-Triangle/Cours-ANI4077-Contexte-Triangle/etape05_triangle/MonRhi.jenga"
+[2026-10-29 11:13:45.052] [INF] [default] [: in ] -> [lsp] compile_commands.json : 6 entree(s)
+[2026-10-29 11:13:45.158] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 11:13:45.899] [INF] [default] [: in ] -> [chk] git indisponible ici - bascule sur le balayage maison
+[2026-10-29 11:13:46.663] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 11:13:50.633] [INF] [default] [: in ] -> [jenga] info : 61 ligne(s), 2 projet(s), 8 chaine(s) de compilation
+[2026-10-29 11:13:50.675] [INF] [default] [: in ] -> [lsp] drapeaux de compilation changes : clangd redemarre
+[2026-10-29 11:13:50.677] [INF] [default] [: in ] -> [lsp] compile_commands.json : 5 entree(s)
+[2026-10-29 11:13:50.696] [INF] [default] [: in ] -> [lsp] clangd lance, initialize envoye (C:/Users/SMART/AppData/Local/Programs/NKCode/tools/compilers/llvm-mingw/bin/clangd.exe)
+[2026-10-29 11:13:50.766] [INF] [default] [: in ] -> [lsp] clangd PRET (initialise)
+[2026-10-29 11:13:51.783] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2008.6 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:14:00.914] [INF] [default] [: in ] -> [term] nouveau terminal: Windows PowerShell
+[2026-10-29 11:14:00.915] [INF] [default] [: in ] -> [term] demarre dans: D:/ENSPY/AN-GAP_4/teguis/Cours-ANI4077-Contexte-Triangle/Cours-ANI4077-Contexte-Triangle/etape05_triangle
+[2026-10-29 11:15:08.508] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-29 11:15:08.553] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 11:15:08.597] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1823 points non nuls
+
+[2026-10-29 11:15:08.635] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-29 11:15:08.636] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 11:15:08.651] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1528 points non nuls
+
+[2026-10-29 11:15:08.704] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-29 11:15:08.706] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 11:15:08.728] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1461 points non nuls
+
+[2026-10-29 11:15:09.000] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-SemiBold.ttf(343244o)
+
+[2026-10-29 11:15:09.003] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 11:15:09.020] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1753 points non nuls
+
+[2026-10-29 11:15:09.213] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Bold.ttf(343972o)
+
+[2026-10-29 11:15:09.215] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 11:15:09.230] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1877 points non nuls
+
+[2026-10-29 11:15:09.257] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:/Users/SMART/AppData/Local/Programs/NKCode/data/fonts/visionneuses/Inter_28pt-Regular.ttf(342484o)
+
+[2026-10-29 11:15:09.259] [INF] [default] [NkFontAtlas.cpp:259 in AddFontFromFile] -> [NkFontAtlas] TTF lu:C:\Windows\Fonts\seguisym.ttf(2454728o)
+
+[2026-10-29 11:15:09.274] [INF] [default] [NkFontAtlas.cpp:621 in Build] -> [NkFontAtlas] Build():2147 glyphes rasterises, atlas 1024x1024, 1289 points non nuls
+
+[2026-10-29 11:15:12.588] [INF] [default] [: in ] -> [hover] 'mecanisme' -> (commentaire/chaine)
+[2026-10-29 11:21:15.052] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2017.3 ms : porte(s) A(appModal) ; popupDepth 0 ; sources ouvertes : deroulant de la barre
+[2026-10-29 11:21:37.976] [INF] [default] [NkEditorShell.cpp:272 in NkDetecterGel] -> [portes] l'entree du corps est masquee depuis 2019.29 ms : porte(s) R(saisie reservee) ; popupDepth 0 ; sources ouvertes : aucune que NKCode sache nommer
+[2026-10-29 11:25:09.036] [INF] [default] [NkEditorShell.cpp:227 in NkGelBilanSession] -> [gel] NKCode - IDE (Jenga) : 2 episode(s) signale(s) ; pire masquage continu de la session 591 image(s) (17279.4 ms), porte(s) O(souris sur popup)+R(saisie reservee)
+[2026-10-29 11:25:09.036] [INF] [default] [NkEditorShell.cpp:1335 in Run] -> [entree] NKCode - IDE (Jenga) : 32 transition(s) de bouton arrivee(s) entre deux images et rendue(s) a l'image suivante (aucune perdue)
+[2026-10-29 11:25:09.036] [INF] [default] [NkEditorShell.cpp:1342 in Run] -> [repos] NKCode - IDE (Jenga) : 10724 image(s) a pleine cadence, 488595 image(s) de repos en 158679 s
+[2026-10-29 11:25:09.110] [INF] [default] [NkDX11Renderer2D.cpp:520 in Shutdown] -> [NkDX11-2D] Shutdown
+[2026-10-29 11:25:09.210] [INF] [default] [NkDX11Context.cpp:363 in Shutdown] -> [NkDX11] Shutdown OK
+
