@@ -1,0 +1,37 @@
+Mes trente lignes :
+Trame 1 : Image 0
+Trame 2 : Image 1
+Trame 3 : Image 2
+Trame 4 : Image 0
+Trame 5 : Image 1
+Trame 6 : Image 2
+Trame 7 : Image 0
+Trame 8 : Image 1
+Trame 9 : Image 2
+Trame 10 : Image 0
+Trame 11 : Image 1
+Trame 12 : Image 2
+Trame 13 : Image 0
+Trame 14 : Image 1
+Trame 15 : Image 2
+Trame 16 : Image 0
+Trame 17 : Image 1
+Trame 18 : Image 2
+Trame 19 : Image 0
+Trame 20 : Image 1
+Trame 21 : Image 2
+Trame 22 : Image 0
+Trame 23 : Image 1
+Trame 24 : Image 2
+Trame 25 : Image 0
+Trame 26 : Image 1
+Trame 27 : Image 2
+Trame 28 : Image 0
+Trame 29 : Image 1
+Trame 30 : Image 2
+
+Le minimum d'images :
+Le minimum d'images nécessaire pour éliminer tout conflit dépend directement de la durée de persistance du compositeur (L). Lorsque L vaut 2, une chaîne de deux images génère des conflits car l'image peinte est encore lue, tandis qu'une chaîne de trois images (triple buffering) offre une marge de sécurité suffisante pour éviter que le CPU/GPU ne réécrive dans une ressource active.
+
+Sur le simulateur :
+Sur le simulateur, passer à trois images (triple buffering) garantit un découplage fluide entre la cadence de rendu et la fréquence de rafraîchissement du compositeur VR, éliminant les micro-saccades et les déchirements d'image (tearing) dus aux conflits d'accès simultanés.
