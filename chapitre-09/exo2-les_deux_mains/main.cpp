@@ -1,84 +1,115 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <set>
 
-struct ChaineInfo {
+struct ActionDef {
     std::string nom;
-    int largeur;
-    int hauteur;
-    int images;
-    int oeil; // 0 = gauche, 1 = droit
-    bool acceptee;
-    std::string motifRefus; // "TAILLE" ou "IMAGES"
+    std::string usage;
+    std::string main;
+    std::string commande;
 };
 
 int main() {
-    // Optimisation des flux E/S
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
 
-    int N;
-    if (!(std::cin >> N)) return 0;
+    int A = 0, T = 0;
+    if (!(std::cin >> A >> T)) return 0;
 
-    std::vector<ChaineInfo> chaines(N);
-    for (int i = 0; i < N; ++i) {
-        std::cin >> chaines[i].largeur >> chaines[i].hauteur >> chaines[i].images >> chaines[i].oeil >> chaines[i].nom;
-    }
-
-    int accepteesCount = 0;
-    int emplacementsCount = 0;
-    int occupesCount = 0;
+    std::vector<ActionDef> actions(A);
+    int droiteCount = 0;
     int gaucheCount = 0;
-    int droitCount = 0;
-    int sansNomCount = 0;
 
-    std::vector<std::string> lignesAffichage;
+    for (int i = 0; i < A; ++i) {
+        std::cin >> actions[i].nom >> actions[i].usage;
+        const auto& u = actions[i].usage;
 
-    for (int i = 0; i < N; ++i) {
-        const auto& c = chaines[i];
-        std::string nomAffichage = (c.nom == "-") ? "SANS-NOM" : c.nom;
-
-        // Règle 2 : Si largeur ou hauteur vaut 0, refusé pour TAILLE (contrôle en premier)
-        if (c.largeur == 0 || c.hauteur == 0) {
-            lignesAffichage.push_back("REFUSEE " + nomAffichage + " TAILLE");
+        if (u == "SELECT") {
+            actions[i].main = "DROITE";
+            actions[i].commande = "SOURIS_G";
+        } else if (u == "GRAB") {
+            actions[i].main = "DROITE";
+            actions[i].commande = "SOURIS_D";
+        } else if (u == "MENU") {
+            actions[i].main = "GAUCHE";
+            actions[i].commande = "TAB";
+        } else if (u == "MOVE") {
+            actions[i].main = "GAUCHE";
+            actions[i].commande = "FLECHES";
+        } else if (u == "AIM_POSE" || u == "GRIP_POSE" || u == "HAPTIC") {
+            actions[i].main = "DROITE";
+            actions[i].commande = "AUCUNE";
+        } else if (u == "SELECT_LEFT") {
+            actions[i].main = "GAUCHE";
+            actions[i].commande = "SOURIS_M";
+        } else if (u == "GRAB_LEFT") {
+            actions[i].main = "GAUCHE";
+            actions[i].commande = "MAJ_G";
+        } else if (u == "AIM_POSE_LEFT" || u == "GRIP_POSE_LEFT" || u == "HAPTIC_LEFT") {
+            actions[i].main = "GAUCHE";
+            actions[i].commande = "AUCUNE";
+        } else if (u == "MOVE_RIGHT") {
+            actions[i].main = "DROITE";
+            actions[i].commande = "IJKL";
         }
-        // Règle 3 : Sinon, si images vaut 0 ou plus de 4, refusé pour IMAGES
-        else if (c.images == 0 || c.images > 4) {
-            lignesAffichage.push_back("REFUSEE " + nomAffichage + " IMAGES");
-        }
-        // Règle 4 : Acceptée
-        else {
-            accepteesCount++;
-            emplacementsCount += 4; // Chacune réserve un tableau fixe de 4 emplacements
-            occupesCount += c.images;
 
-            if (c.oeil == 0) {
-                gaucheCount++;
+        if (actions[i].main == "DROITE") droiteCount++;
+        else gaucheCount++;
+
+        std::cout << actions[i].nom << " " << actions[i].main << " " << actions[i].commande << "\n";
+    }
+
+    int teteCount = 0;
+
+    for (int t = 1; t <= T; ++t) {
+        int k = 0;
+        std::cin >> k;
+        std::set<std::string> keys;
+        for (int j = 0; j < k; ++j) {
+            std::string key;
+            std::cin >> key;
+            keys.insert(key);
+        }
+
+        // Vérification mouvement tête (Z, Q, S, D, W, A)
+        if (keys.count("Z") || keys.count("Q") || keys.count("S") || 
+            keys.count("D") || keys.count("W") || keys.count("A")) {
+            teteCount++;
+        }
+
+        std::cout << t;
+
+        for (int i = 0; i < A; ++i) {
+            const auto& cmd = actions[i].commande;
+            if (cmd == "AUCUNE") {
+                std::cout << " -";
+            } else if (cmd == "FLECHES") {
+                int x = 0, y = 0;
+                if (keys.count("F_DROITE")) x += 1;
+                if (keys.count("F_GAUCHE")) x -= 1;
+                if (keys.count("F_HAUT")) y += 1;
+                if (keys.count("F_BAS")) y -= 1;
+                std::cout << " " << x << "," << y;
+            } else if (cmd == "IJKL") {
+                int x = 0, y = 0;
+                if (keys.count("L")) x += 1;
+                if (keys.count("J")) x -= 1;
+                if (keys.count("I")) y += 1;
+                if (keys.count("K")) y -= 1;
+                std::cout << " " << x << "," << y;
             } else {
-                droitCount++;
+                int val = keys.count(cmd) ? 1 : 0;
+                std::cout << " " << val;
             }
-
-            if (c.nom == "-") {
-                sansNomCount++;
-            }
-
-            std::string oeilStr = (c.oeil == 0) ? "GAUCHE" : "DROIT";
-            lignesAffichage.push_back("CHAINE " + nomAffichage + " " + std::to_string(c.largeur) + " " + std::to_string(c.hauteur) + " " + std::to_string(c.images) + " " + oeilStr);
         }
+        std::cout << "\n";
     }
 
-    // Affichage des lignes de résultats individuels
-    for (const auto& ligne : lignesAffichage) {
-        std::cout << ligne << "\n";
-    }
-
-    // Affichage du bilan final (6 lignes strictes)
-    std::cout << "ACCEPTEES " << accepteesCount << "\n";
-    std::cout << "EMPLACEMENTS " << emplacementsCount << "\n";
-    std::cout << "OCCUPES " << occupesCount << "\n";
+    std::cout << "DROITE " << droiteCount << "\n";
     std::cout << "GAUCHE " << gaucheCount << "\n";
-    std::cout << "DROIT " << droitCount << "\n";
-    std::cout << "SANS NOM " << sansNomCount << "\n";
+    std::cout << "TETE " << teteCount << "\n";
 
     return 0;
 }

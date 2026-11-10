@@ -1,137 +1,92 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <sstream>
+#include <unordered_set>
 
-struct CibleInfo {
-    int id;
-    int w;
-    int h;
+struct Action {
+    std::string nom;
+    std::string type;
+    int usageNum;
 };
 
+int getUsageNum(const std::string& usage) {
+    if (usage == "SELECT") return 0;
+    if (usage == "GRAB") return 1;
+    if (usage == "MENU") return 2;
+    if (usage == "MOVE") return 3;
+    if (usage == "AIM_POSE") return 4;
+    if (usage == "GRIP_POSE") return 5;
+    if (usage == "HAPTIC") return 6;
+    if (usage == "SELECT_LEFT") return 7;
+    if (usage == "GRAB_LEFT") return 8;
+    if (usage == "AIM_POSE_LEFT") return 9;
+    if (usage == "GRIP_POSE_LEFT") return 10;
+    if (usage == "HAPTIC_LEFT") return 11;
+    if (usage == "MOVE_RIGHT") return 12;
+    return 0;
+}
+
 int main() {
-    std::string line;
-    if (!std::getline(std::cin, line)) return 0;
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
 
-    std::stringstream ss(line);
-    int windowW, windowH, F, N;
-    if (!(ss >> windowW >> windowH >> F >> N)) return 0;
+    int N = 0;
+    if (!(std::cin >> N)) return 0;
 
-    int currentRenderW = windowW;
-    int currentRenderH = windowH;
-    bool offscreenOn = false;
-    int currentTarget = 0; // 0 = fenêtre
+    std::vector<Action> actions;
+    std::unordered_set<std::string> nomsVus;
 
-    std::vector<CibleInfo> cibles;
-    std::vector<bool> bufferBusy(F, false); // true si le tampon porte un travail jamais terminé
-
-    int imageCount = 0;
-    bool bloque = false;
-    int bloqueIndex = -1;
+    bool estAttache = false;
+    int kAttachees = 0;
+    int nomsEnDouble = 0;
 
     for (int i = 0; i < N; ++i) {
-        if (!std::getline(std::cin, line)) break;
-        if (line.empty()) {
-            --i;
-            continue;
-        }
-
-        if (bloque) {
-            // Après un BLOQUE, plus aucun ordre n'agit ni n'affiche, jusqu'au bilan
-            continue;
-        }
-
-        std::stringstream cmdStream(line);
         std::string cmd;
-        cmdStream >> cmd;
+        if (!(std::cin >> cmd)) break;
 
-        if (cmd == "allume") {
-            std::string sub;
-            cmdStream >> sub;
-            if (sub == "OFFSCREEN") {
-                offscreenOn = true;
+        if (cmd == "cree") {
+            std::string nom, type, usageStr;
+            std::cin >> nom >> type >> usageStr;
+
+            if (nomsVus.count(nom) > 0) {
+                nomsEnDouble++;
+            } else {
+                nomsVus.insert(nom);
+            }
+
+            int uNum = getUsageNum(usageStr);
+            actions.push_back({nom, type, uNum});
+            int h = static_cast<int>(actions.size());
+
+            std::cout << "ACTION " << h << " " << nom << " " << type << " " << uNum << "\n";
+        }
+        else if (cmd == "attache") {
+            if (estAttache) {
+                std::cout << "ATTACHE REFUSE\n";
+            } else {
+                estAttache = true;
+                kAttachees = static_cast<int>(actions.size());
+                std::cout << "ATTACHE " << kAttachees << "\n";
             }
         }
-        else if (cmd == "cible") {
-            int w, h;
-            cmdStream >> w >> h;
-            if (!offscreenOn) {
-                std::cout << "CIBLE NULLE\n";
-            } else {
-                int newId = (int)cibles.size() + 1;
-                cibles.push_back({newId, w, h});
-                std::cout << "CIBLE " << newId << " " << w << " " << h << "\n";
-            }
-        }
-        else if (cmd == "vers") {
-            int k;
-            cmdStream >> k;
-            if (k == 0) {
-                currentTarget = 0;
-            } else {
-                bool found = false;
-                for (const auto& c : cibles) {
-                    if (c.id == k) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) {
-                    currentTarget = k;
-                } else {
-                    std::cout << "VERS REFUSE\n";
-                }
-            }
-        }
-        else if (cmd == "taille") {
-            int w, h;
-            cmdStream >> w >> h;
-            currentRenderW = w;
-            currentRenderH = h;
-        }
-        else if (cmd == "image") {
-            imageCount++;
-            int bufIndex = (imageCount - 1) % F;
+        else if (cmd == "lit") {
+            uint64_t h;
+            std::cin >> h;
 
-            if (bufferBusy[bufIndex]) {
-                bloque = true;
-                bloqueIndex = imageCount;
-                std::cout << "BLOQUE " << bloqueIndex << "\n";
-                break;
+            if (h == 0 || h > actions.size()) {
+                std::cout << "LIT " << h << " INVALIDE\n";
+            } else if (!estAttache || h > static_cast<uint64_t>(kAttachees)) {
+                std::cout << "LIT " << h << " INCONNUE\n";
             } else {
-                // Affichage de l'image
-                if (currentTarget == 0) {
-                    std::cout << "IMAGE " << imageCount << " FENETRE\n";
-                } else {
-                    std::cout << "IMAGE " << imageCount << " CIBLE " << currentTarget << "\n";
-                }
-
-                // Vérification du blocage (règle 9) :
-                // "Si l'on dessine vers une cible et que la zone est plus large OU plus haute qu'elle, 
-                //  le travail de l'image ne se termine jamais : son tampon reste pris pour toujours."
-                if (currentTarget != 0) {
-                    int targetW = 0, targetH = 0;
-                    for (const auto& c : cibles) {
-                        if (c.id == currentTarget) {
-                            targetW = c.w;
-                            targetH = c.h;
-                            break;
-                        }
-                    }
-                    if (currentRenderW > targetW || currentRenderH > targetH) {
-                        bufferBusy[bufIndex] = true;
-                    }
-                }
+                std::cout << "LIT " << h << " " << actions[h - 1].nom << "\n";
             }
         }
     }
 
-    std::cout << "IMAGES " << imageCount << "\n";
-    if (bloque) {
-        std::cout << "ETAT BLOQUE\n";
-    } else {
-        std::cout << "ETAT LIBRE\n";
-    }
+    // Bilan final strict
+    std::cout << "ACTIONS " << actions.size() << "\n";
+    std::cout << "ATTACHEES " << kAttachees << "\n";
+    std::cout << "NOMS EN DOUBLE " << nomsEnDouble << "\n";
 
     return 0;
 }

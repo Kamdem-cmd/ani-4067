@@ -1,75 +1,71 @@
 #include <iostream>
-#include <vector>
 #include <string>
-#include <unordered_set>
+#include <algorithm>
 #include <cstdint>
 
 int main() {
-    // Optimisation des flux E/S
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
 
-    uint64_t n = 0;
     int N = 0;
-    if (!(std::cin >> n >> N)) return 0;
+    if (!(std::cin >> N)) return 0;
 
-    // Emplacements de la chaîne, initialisés à 0
-    std::vector<uint64_t> chaine(n, 0);
+    int bonnes = 0;
+    int longues = 0;
+    int muettes = 0;
+    int breves = 0;
+    uint64_t totalTemps = 0;
 
-    // Ensemble des textures existantes (créées et non détruites)
-    std::unordered_set<uint64_t> texturesExistantes;
+    for (int i = 1; i <= N; ++i) {
+        int aRaw, dRaw, fRaw;
+        std::cin >> aRaw >> dRaw >> fRaw;
 
-    int mortesCount = 0;
-    int largesCount = 0;
+        // Amplitude bridée entre 0 et 100
+        int A = std::max(0, std::min(100, aRaw));
 
-    for (int k = 0; k < N; ++k) {
-        std::string cmd;
-        if (!(std::cin >> cmd)) break;
-
-        if (cmd == "cree") {
-            uint64_t h;
-            std::cin >> h;
-            texturesExistantes.insert(h);
+        // Durée
+        std::string dStr;
+        int DVal = 0;
+        if (dRaw > 0) {
+            DVal = dRaw;
+            dStr = std::to_string(dRaw);
+        } else {
+            DVal = 0;
+            dStr = "MIN";
         }
-        else if (cmd == "detruit") {
-            uint64_t h;
-            std::cin >> h;
-            texturesExistantes.erase(h);
+
+        // Fréquence
+        std::string fStr;
+        if (fRaw > 0) {
+            fStr = std::to_string(fRaw);
+        } else {
+            fStr = "DEFAUT";
         }
-        else if (cmd == "set") {
-            uint64_t i, h;
-            std::cin >> i >> h;
-            if (i >= n) {
-                std::cout << "SET IGNORE " << i << "\n";
-            } else {
-                chaine[i] = h;
-                if (h > 4294967295ULL) {
-                    largesCount++;
-                }
-            }
+
+        std::string verdict = "";
+        if (A == 0) {
+            verdict = "MUETTE";
+            muettes++;
+        } else if (DVal > 0 && DVal < 50) { // MIN vaut 0 donc < 50
+            verdict = "BREVE";
+            breves++;
+        } else if (DVal <= 200) {
+            verdict = "BONNE";
+            bonnes++;
+        } else {
+            verdict = "LONGUE";
+            longues++;
         }
-        else if (cmd == "get") {
-            uint64_t i;
-            std::cin >> i;
-            if (i >= n) {
-                std::cout << "GET " << i << " 0 VIDE\n";
-            } else {
-                uint64_t h = chaine[i];
-                if (h == 0) {
-                    std::cout << "GET " << i << " 0 VIDE\n";
-                } else if (texturesExistantes.count(h) > 0) {
-                    std::cout << "GET " << i << " " << h << " VIVANTE\n";
-                } else {
-                    std::cout << "GET " << i << " " << h << " MORTE\n";
-                    mortesCount++;
-                }
-            }
-        }
+
+        totalTemps += static_cast<uint64_t>(DVal);
+
+        std::cout << i << " " << A << " " << dStr << " " << fStr << " " << verdict << "\n";
     }
 
-    // Bilan final strict
-    std::cout << "MORTES " << mortesCount << "\n";
-    std::cout << "LARGES " << largesCount << "\n";
+    std::cout << "BONNES " << bonnes << "\n";
+    std::cout << "LONGUES " << longues << "\n";
+    std::cout << "MUETTES " << muettes << "\n";
+    std::cout << "TEMPS " << totalTemps << "\n";
 
     return 0;
 }

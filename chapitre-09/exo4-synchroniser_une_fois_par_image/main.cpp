@@ -1,64 +1,55 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <cstdint>
 
 int main() {
-    // Optimisation des flux E/S
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
 
-    uint64_t n = 0, v = 0;
-    int N = 0;
-    if (!(std::cin >> n >> v >> N)) return 0;
+    int T = 0;
+    if (!(std::cin >> T)) return 0;
 
-    // 26 variables (de 'a' à 'z') initialisées à v
-    std::vector<uint64_t> vars(26, v);
+    int current = 0;
+    int changed = 0;
+    int active = 0;
 
-    uint64_t prochaine = 0;
-    bool estEmpruntee = false;
+    int appuisReels = 0;
+    int saisies = 0;
+    int syncRefusees = 0;
+    int pPrev = 0;
 
-    for (int i = 0; i < N; ++i) {
-        std::string cmd;
-        if (!(std::cin >> cmd)) break;
+    for (int t = 1; t <= T; ++t) {
+        int p, s, f;
+        std::cin >> p >> s >> f;
 
-        if (cmd == "acquire") {
-            char xChar;
-            std::cin >> xChar;
-            int idx = xChar - 'a';
+        // Suivi des appuis réels (p passe de 0 à 1)
+        if (p == 1 && pPrev == 0) {
+            appuisReels++;
+        }
+        pPrev = p;
 
-            if (estEmpruntee) {
-                // Emprunt refusé : la variable X n'est pas modifiée
-                std::cout << "ACQUIRE FAUX " << xChar << " " << vars[idx] << "\n";
+        int appelsReussis = 0;
+        for (int i = 0; i < s; ++i) {
+            if (f == 1) {
+                appelsReussis++;
+                changed = (p != current) ? 1 : 0;
+                current = p;
+                active = 1;
             } else {
-                // Emprunt réussi : on note l'emprunt et on écrit prochaine dans X
-                estEmpruntee = true;
-                vars[idx] = prochaine;
-                std::cout << "ACQUIRE VRAI " << xChar << " " << vars[idx] << "\n";
+                syncRefusees++;
             }
         }
-        else if (cmd == "release") {
-            if (!estEmpruntee) {
-                std::cout << "RELEASE FAUX\n";
-            } else {
-                estEmpruntee = false;
-                prochaine = (prochaine + 1) % n;
-                std::cout << "RELEASE VRAI\n";
-            }
+
+        std::string saisitStr = "-";
+        if (current == 1 && changed == 1) {
+            saisitStr = "SAISIT";
+            saisies++;
         }
-        else if (cmd == "last") {
-            uint64_t j = (prochaine + n - 1) % n;
-            std::cout << "LAST " << j << "\n";
-        }
+
+        std::cout << t << " " << current << " " << changed << " " << active << " " << saisitStr << "\n";
     }
 
-    // Bilan final strict
-    if (estEmpruntee) {
-        std::cout << "EMPRUNTEE OUI\n";
-    } else {
-        std::cout << "EMPRUNTEE NON\n";
-    }
-    std::cout << "PROCHAINE " << prochaine << "\n";
+    std::cout << "APPUIS REELS " << appuisReels << "\n";
+    std::cout << "SAISIES " << saisies << "\n";
+    std::cout << "SYNC REFUSEES " << syncRefusees << "\n";
 
     return 0;
 }

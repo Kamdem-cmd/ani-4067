@@ -1,76 +1,130 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
+#include <set>
+
+struct Action {
+Voici la solution complète pour l'**Exercice 9 : Une intention, deux commandes**, comprenant les trois fichiers à placer dans le dossier **`chapitre-09/exo9-une_intention_deux_commandes/`** de ton dépôt GitHub `Kamdem-cmd/ani-4067`.
+
+---
+
+### 1. Le fichier `correspondance.cpp`
+Ce programme lit les actions déclarées, configure successivement deux tables de correspondance distinctes, simule l'état des commandes image par image pour détecter les nouveaux appuis, journalise l'exécution pour chaque table, et compare les résultats obtenus.
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <map>
+#include <set>
+
+struct Action {
+    std::string nom;
+    std::string usage;
+};
+
+struct SimulationResult {
+    std::vector<std::string> lignes;
+};
+
+SimulationResult simulerTable(const std::vector<Action>& actions, int tableIdx) {
+    int U = 0;
+    std::cin >> U;
+
+    std::map<std::string, std::string> usageToCmd;
+    for (int i = 0; i < U; ++i) {
+        std::string usage, cmd;
+        std::cin >> usage >> cmd;
+        usageToCmd[usage] = cmd;
+    }
+
+    SimulationResult res;
+    res.lignes.push_back("TABLE " + std::to_string(tableIdx));
+
+    // Actions inactives (dont l'usage manque dans la table)
+    for (const auto& action : actions) {
+        if (usageToCmd.find(action.usage) == usageToCmd.end()) {
+            res.lignes.push_back("INACTIVE " + action.nom);
+        }
+    }
+
+    int T = 0;
+    std::cin >> T;
+
+    // Suivi des appuis précédents pour chaque action
+    std::set<std::string> prevTenues;
+
+    for (int t = 1; t <= T; ++t) {
+        int k = 0;
+        std::cin >> k;
+        std::set<std::string> tenuesActuelles;
+        for (int j = 0; j < k; ++j) {
+            std::string c;
+            std::cin >> c;
+            tenuesActuelles.insert(c);
+        }
+
+        std::string ligneImage = std::to_string(t);
+        bool anyAppuye = false;
+
+        for (const auto& action : actions) {
+            if (usageToCmd.find(action.usage) == usageToCmd.end()) {
+                continue; // Action inactive
+            }
+            std::string cmd = usageToCmd[action.usage];
+            bool estTenue = (tenuesActuelles.count(cmd) > 0);
+            bool etaitTenue = (prevTenues.count(action.nom) > 0);
+
+            if (estTenue && !etaitTenue) {
+                ligneImage += " " + action.nom;
+                anyAppuye = true;
+            }
+        }
+
+        if (!anyAppuye) {
+            ligneImage += " -";
+        }
+
+        res.lignes.push_back(ligneImage);
+
+        // Mettre à jour l'état précédent
+        prevTenues.clear();
+        for (const auto& action : actions) {
+            if (usageToCmd.find(action.usage) != usageToCmd.end()) {
+                if (tenuesActuelles.count(usageToCmd[action.usage]) > 0) {
+                    prevTenues.insert(action.nom);
+                }
+            }
+        }
+    }
+
+    return res;
+}
 
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
 
-    int n = 0, N = 0;
-    if (!(std::cin >> n >> N)) return 0;
+    int A = 0;
+    if (!(std::cin >> A)) return 0;
 
-    bool estEmpruntee = false;
-    int reussies = 0;
-    int refusees = 0;
-    int liberations = 0;
-    int premiereFuite = -1;
-    bool enFuite = false;
-
-    for (int t = 1; t <= N; ++t) {
-        std::string mode;
-        std::cin >> mode;
-
-        if (enFuite) {
-            // Après une seule fuite, plus aucune trame ne dessine (chaîne figée/bloquée)
-            std::cout << t << " BLOQUEE\n";
-            continue;
-        }
-
-        // Chaque trame commence par un emprunt
-        if (estEmpruntee) {
-            // L'emprunt est refusé car une image est encore empruntée
-            std::cout << t << " BLOQUEE\n";
-            refusees++;
-        } else {
-            // Emprunt réussi
-            estEmpruntee = true;
-            reussies++;
-
-            if (mode == "normal") {
-                // Dessine puis rend l'image
-                estEmpruntee = false;
-                liberations++;
-                std::cout << t << " OK\n";
-            }
-            else if (mode == "sortie") {
-                // Sort aussitôt après l'emprunt sans rendre l'image (fuite)
-                std::cout << t << " FUITE\n";
-                enFuite = true;
-                if (premiereFuite == -1) {
-                    premiereFuite = t;
-                }
-            }
-            else if (mode == "double") {
-                // Tente un second emprunt qui est refusé, puis rend l'image
-                refusees++; // Le second emprunt refusé se compte
-                estEmpruntee = false;
-                liberations++;
-                std::cout << t << " DOUBLE\n";
-            }
-        }
+    std::vector<Action> actions(A);
+    for (int i = 0; i < A; ++i) {
+        std::cin >> actions[i].nom >> actions[i].usage;
     }
 
-    int ecart = reussies - liberations;
+    auto res1 = simulerTable(actions, 1);
+    auto res2 = simulerTable(actions, 2);
 
-    std::cout << "REUSSIES " << reussies << "\n";
-    std::cout << "REFUSEES " << refusees << "\n";
-    std::cout << "LIBERATIONS " << liberations << "\n";
-    std::cout << "ECART " << ecart << "\n";
+    for (const auto& l : res1.lignes) std::cout << l << "\n";
+    for (const auto& l : res2.lignes) std::cout << l << "\n";
 
-    if (premiereFuite != -1) {
-        std::cout << "PREMIERE FUITE " << premiereFuite << "\n";
+    if (res1.lignes == res2.lignes) {
+        std::cout << "IDENTIQUES OUI\n";
     } else {
-        std::cout << "PREMIERE FUITE AUCUNE\n";
+        std::cout << "IDENTIQUES NON\n";
     }
 
     return 0;
