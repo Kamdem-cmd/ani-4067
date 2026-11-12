@@ -15,8 +15,8 @@
     "reportUndefinedVariable": "warning",
     "reportWildcardImportFromLibrary": "none",
     "extraPaths": [
-        "D:/ENSPY/AN-GAP_4/teguis/Jenga",
-        ".jenga-typings"
+        "C:/Users/SMART/AppData/Local/Programs/NKCode/tools/jenga-src",
+        ".jenga/typings"
     ],
-    "_jengaIdeConfigVersion": "fead504d056f3679"
+    "_jengaIdeConfigVersion": "b0a0fa00ea60d912"
 }

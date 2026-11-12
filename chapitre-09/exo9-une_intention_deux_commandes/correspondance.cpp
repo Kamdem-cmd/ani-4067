@@ -4,15 +4,6 @@
 #include <map>
 #include <set>
 
-struct Action {
-Voici la solution complète pour l'**Exercice 9 : Une intention, deux commandes**, comprenant les trois fichiers à placer dans le dossier **`chapitre-09/exo9-une_intention_deux_commandes/`** de ton dépôt GitHub `Kamdem-cmd/ani-4067`.
-
----
-
-### 1. Le fichier `correspondance.cpp`
-Ce programme lit les actions déclarées, configure successivement deux tables de correspondance distinctes, simule l'état des commandes image par image pour détecter les nouveaux appuis, journalise l'exécution pour chaque table, et compare les résultats obtenus.
-
-```cpp
 #include <iostream>
 #include <string>
 #include <vector>

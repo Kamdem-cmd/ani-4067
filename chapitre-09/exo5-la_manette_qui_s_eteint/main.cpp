@@ -1,77 +1,83 @@
 #include <iostream>
-#include <vector>
-#include <cstdint>
-
-struct Result {
-    uint64_t n;
-    uint64_t r;
-    bool refusee;
-    uint64_t prochaine;
-    uint64_t juste;
-    int signe;
-    uint32_t nonsigne;
-};
+#include <string>
 
 int main() {
-    // Optimisation des flux E/S
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
 
-    int N = 0;
-    if (!(std::cin >> N)) return 0;
+    int T = 0;
+    if (!(std::cin >> T)) return 0;
 
-    std::vector<Result> results;
-    int refuseesCount = 0;
-    int fauxSigneCount = 0;
-    int fauxNonSigneCount = 0;
-
-    for (int i = 0; i < N; ++i) {
-        uint64_t n = 0, r = 0;
-        if (!(std::cin >> n >> r)) break;
-
-        Result res;
-        res.n = n;
-        res.r = r;
-
-        if (n == 0 || n > 4) {
-            res.refusee = true;
-            refuseesCount++;
-        } else {
-            res.refusee = false;
-            res.prochaine = r % n;
-            res.juste = (res.prochaine + n - 1) % n;
-
-            // Calcul signé en int (ex: -1 % n)
-            int64_t proc_signed = static_cast<int64_t>(res.prochaine);
-            res.signe = static_cast<int>((proc_signed - 1) % static_cast<int64_t>(n));
-
-            // Calcul non signé en uint32_t (gestion de l'underflow)
-            uint32_t proc_ns = static_cast<uint32_t>(res.prochaine);
-            res.nonsigne = (proc_ns - 1) % static_cast<uint32_t>(n);
-
-            if (static_cast<uint64_t>(res.signe) != res.juste) {
-                fauxSigneCount++;
-            }
-            if (static_cast<uint64_t>(res.nonsigne) != res.juste) {
-                fauxNonSigneCount++;
-            }
-        }
-        results.push_back(res);
+    std::string signs;
+    if (T > 0) {
+        std::cin >> signs;
     }
 
-    // Affichage ligne par ligne
-    for (const auto& res : results) {
-        if (res.refusee) {
-            std::cout << res.n << " " << res.r << " REFUSEE\n";
-        } else {
-            std::cout << res.n << " " << res.r << " " << res.prochaine << " " << res.juste << " " << res.signe << " " << res.nonsigne << "\n";
+    int currentPrev = 0;
+    bool avecTenu = false;
+    bool sansTenu = false;
+    bool sansTombe = false;
+
+    int prisesAvec = 0;
+    int prisesSans = 0;
+    int chutesSans = 0;
+    int coincesAvec = 0;
+    int differences = 0;
+
+    for (int t = 1; t <= T; ++t) {
+        char sig = signs[t - 1];
+        int active = (sig == 'x') ? 0 : 1;
+        int rawCurrent = (sig == '1') ? 1 : 0;
+        int current = (active == 0) ? 0 : rawCurrent;
+
+        int changed = (current != currentPrev) ? 1 : 0;
+
+        // Version AVEC
+        if (active == 1) {
+            if (current == 1 && changed == 1) {
+                if (!avecTenu) prisesAvec++;
+                avecTenu = true;
+            } else if (current == 0 && changed == 1) {
+                avecTenu = false;
+            }
         }
+
+        // Version SANS
+        if (!sansTombe) {
+            if (current == 1 && changed == 1) {
+                if (!sansTenu) prisesSans++;
+                sansTenu = true;
+            } else if (current == 0 && changed == 1) {
+                if (active == 0) {
+                    sansTombe = true;
+                    sansTenu = false;
+                    chutesSans++;
+                } else {
+                    sansTenu = false;
+                }
+            }
+        }
+
+        std::string resAvec = avecTenu ? "TENU" : "LIBRE";
+        std::string resSans = sansTenu ? "TENU" : "LIBRE";
+
+        if (resAvec != resSans) {
+            differences++;
+        }
+
+        if (active == 0 && avecTenu) {
+            coincesAvec++;
+        }
+
+        std::cout << t << " " << resAvec << " " << resSans << "\n";
+        currentPrev = current;
     }
 
-    // Bilan final strict
-    std::cout << "REFUSEES " << refuseesCount << "\n";
-    std::cout << "FAUX SIGNE " << fauxSigneCount << "\n";
-    std::cout << "FAUX NON SIGNE " << fauxNonSigneCount << "\n";
+    std::cout << "PRISES AVEC " << prisesAvec << "\n";
+    std::cout << "PRISES SANS " << prisesSans << "\n";
+    std::cout << "CHUTES SANS " << chutesSans << "\n";
+    std::cout << "COINCES AVEC " << coincesAvec << "\n";
+    std::cout << "DIFFERENCES " << differences << "\n";
 
     return 0;
 }
