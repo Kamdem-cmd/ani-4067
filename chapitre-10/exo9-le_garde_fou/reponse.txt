@@ -1,0 +1,8 @@
+Le chemin fautif :
+Le chemin fautif est le signe C (échec des vues à l'image 3) qui exécute un continue au milieu du corps de boucle. Dans la version sans garde, ce saut contourne l'appel final à End(), laissant la trame ouverte indéfiniment et provoquant le refus systématique de Wait() et Begin() sur toutes les itérations suivantes (10 refus au total et une trame bloquée ouverte à la fin).
+
+Pourquoi le destructeur :
+En C++, le principe RAII garantit que le destructeur d'un objet local (ici GardeTrame) est automatiquement invoqué par le compilateur dès que l'exécution quitte sa portée lexicale, quelle que soit la façon dont on en sort : fin normale de l'itération, instruction continue, break, return anticipé ou même exception levée. Il devient ainsi structurellement impossible d'oublier la fermeture de la trame.
+
+Le return :
+Lorsque la boucle rencontre le signe R (à l'image 6) et exécute un return anticipé, la version sans garde quitte la fonction immédiatement sans jamais appeler End() (même si la trame avait réussi à rester fermée jusque-là, elle se terminerait en état ouvert). À l'inverse, la version avec GardeTrame détruit automatiquement l'objet de garde lors du dépilement de la pile d'appels avant de sortir de la fonction, ce qui ferme proprement la 6e trame (DEBUTS 6 FINS 6 OUVERTE NON).

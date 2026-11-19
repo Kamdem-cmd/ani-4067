@@ -43,14 +43,14 @@ with workspace("chapitre-10"):
     with include("exo6-le_mauvais_espace/projet.jenga"):
         pass
 
-    with include("exo7-le_premier_objet_saisi/projet.jenga"):
+    with include("exo7-un_panneau_en_couche_quad/projet.jenga"):
         pass
 
-    with include("exo8-paume_ou_visee/projet.jenga"):
+    with include("exo8-deux_poses_deux_images/projet.jenga"):
         pass
 
-    with include("exo9-une_intention_deux_commandes/projet.jenga"):
+    with include("exo9-le_garde_fou/projet.jenga"):
         pass
 
-    with include("exo10-le_deplacement_au_manche/projet.jenga"):
+    with include("exo10-les_six_symptomes/projet.jenga"):
         pass

@@ -1,0 +1,8 @@
+Ce que le simulateur dit :
+Le simulateur vérifie et signale uniquement les fautes structurelles du cycle de vie de la trame et de la composition des couches : l'oubli d'appel à EndFrame (JAMAIS ou SI_RENDU, lignes 2 et 3), la soumission d'une trame sans appel préalable à BeginFrame ou avec une image encore empruntée, ainsi que l'absence d'une chaîne d'images renseignée pour l'un des yeux dans la couche de projection (d = 0 à la ligne 4), en journalisant immédiatement un refus ou un avertissement explicite.
+
+Ce qu'il tait :
+Le simulateur reste totalement muet sur les erreurs sémantiques et géométriques de pose et de temps : utiliser l'instant courant N au lieu de l'instant prédit P (TREMBLE, ligne 5), soumettre une pose relue F au lieu de la pose du rendu R (DE_TRAVERS, ligne 6), ou déclarer un mauvais espace de référence L au lieu de S (DECALE, ligne 6). Il ne peut pas les détecter car ces valeurs sont techniquement valides au regard du protocole d'appel : seul un observateur humain ou une comparaison physique avec la scène réelle perçoit que le monde tremble ou flotte à la mauvaise hauteur.
+
+Plus sévère :
+Un simulateur doit être plus sévère qu'un vrai casque physique car les pilotes matériels des casques commerciaux masquent souvent les fautes par tolérance implicite ou par reprojection matérielle jusqu'au moment où l'application est portée sur un autre casque plus strict. Par exemple, sur notre sortie (ligne 3), une boucle qui n'appelle EndFrame que SI_RENDU semble fonctionner tant que le casque reste sur la tête, mais ne repart plus dès que la fenêtre est réduite ou le casque posé : le simulateur le signale immédiatement, alors que sur un vrai casque le développeur ne verrait qu'un écran figé sans message d'erreur.

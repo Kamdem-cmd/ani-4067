@@ -1,0 +1,8 @@
+Négligeable :
+L'écart de position est négligeable : sur ces cinq images, le déplacement moyen de la tête entre le rendu et la fin de trame n'est que de 5 mm (avec un pic à 13 mm), ce qui reste imperceptible à l'œil humain sur des objets situés à distance normale. En revanche, l'écart angulaire moyen de 770 millièmes de degré (0,77 degré, avec un pic à 2,2 degrés à l'image 3) est loin d'être négligeable : une rotation de plus d'un degré entre le rendu et l'affichage provoque un décalage visuel net et du mal des transports s'il n'est pas compensé.
+
+Seuil :
+Un degré correspond à 1000 millièmes de degré. Avec un intervalle d = 11 millisecondes entre le rendu et la fin de trame, la relation écart = vitesse × d donne vitesse = 1000 / 11 ≈ 90,91 degrés par seconde. Dès que la tête tourne à plus de 91 degrés par seconde (un mouvement de regard tout à fait courant en réalité virtuelle), l'écart de lacet dépasse un degré durant ce seul intervalle de 11 ms.
+
+Ce que corrige le compositeur :
+Le compositeur corrige principalement l'écart de rotation (orientation) par reprojection temporelle asynchrone (ATW / TimeWarp) : il applique une transformation de rotation à l'image déjà rendue en comparant la pose utilisée lors du rendu (enregistrée dans la couche de projection) avec la pose la plus fraîche relue juste avant le balayage de l'écran du casque.
