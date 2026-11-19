@@ -1,0 +1,44 @@
+4
+tirer SELECT
+saisir GRAB
+menu MENU
+saisir_g GRAB_LEFT
+3
+SELECT SOURIS_G
+GRAB SOURIS_D
+MENU TAB
+6
+0
+1 SOURIS_G
+2 SOURIS_G SOURIS_D
+1 SOURIS_D
+1 TAB
+0
+3
+SELECT ESPACE
+GRAB E
+MENU TAB
+6
+0
+1 ESPACE
+2 ESPACE E
+1 E
+1 TAB
+0
+TABLE 1
+INACTIVE saisir_g
+1 -
+2 tirer
+3 saisir
+4 -
+5 menu
+6 -
+TABLE 2
+INACTIVE saisir_g
+1 -
+2 tirer
+3 saisir
+4 -
+5 menu
+6 -
+IDENTIQUES NON

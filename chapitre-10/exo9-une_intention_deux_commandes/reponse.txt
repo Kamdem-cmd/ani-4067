@@ -1,0 +1,10 @@
+La relation :
+L'écart entre le nombre d'emprunts réussis (a) et le nombre de libérations (c) correspond directement au nombre d'images non rendues (fuites). Si une image est empruntée et non libérée, cet écart augmente, bloquant définitivement les acquisitions ultérieures.
+
+Mes trois nombres :
+REUSSIES : 3600
+REFUSEES : 0
+LIBERATIONS : 3600
+
+Le chemin qui fuit :
+Le chemin qui fuit se produit dans les gestionnaires de ressources ou les boucles de rendu conditionnelles où un chemin d'erreur (early return ou exception) sort d'une fonction graphique après un appel à AcquireImage sans exécuter l'appel correspondant à ReleaseImage.
