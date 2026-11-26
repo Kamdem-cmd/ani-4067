@@ -1,0 +1,8 @@
+Le défaut neutre :
+Parce que l'interface commune fournit une implémentation par défaut inoffensive (no-op) pour toutes les méthodes absentes du simulateur (comme GetVulkanRequirements, BindVulkan ou ApplyHaptic), l'application n'a jamais besoin de tester quel backend est actif avant d'appeler une fonction. Lorsqu'elle tourne sur le simulateur, ces appels réussissent silencieusement sans effet matériel, permettant au même code applicatif de s'exécuter tel quel sans branchement conditionnel.
+
+Les crochets de test :
+Les deux méthodes propres au simulateur (DebugSetHead et DebugPushSample) servent à piloter artificiellement le suivi de la tête et à injecter des échantillons datés déterministes depuis des tests automatisés ou un clavier/souris. Un vrai casque physique ne peut pas les offrir car ses poses proviennent uniquement de capteurs matériels inertiels et optiques temps réel qu'on ne peut pas forcer arbitrairement par logiciel.
+
+L'image :
+Les méthodes propres au casque liées au matériel graphique et aux images sont GetVulkanRequirements, GetVulkanPhysicalDevice, BindVulkan, CreateHmdSwapchains, SubmitEyes, GetDisplayRefreshRates, GetDisplayRefreshRate, RequestDisplayRefreshRate et GetVisibilityMask. Le simulateur n'en a pas besoin car il ne pilote aucun écran stéréoscopique dédié ni pipeline de reprojection matériel : il se contente de calculer les vues et poses mathématiques dans une fenêtre classique gérée directement par le moteur de rendu.
